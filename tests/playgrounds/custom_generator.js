@@ -537,6 +537,7 @@ var codelabToolbox = {
     ]
   }
 
+var int_inputs = ["AgeInYears", "HR", "BPSys", "PainScore", "PatientModel", "Temperature", "Respiration", "SpO2"];
 
 var codelabGenerator = new Blockly.Generator('JSON');
   codelabGenerator['goandreturn'] = function(block){
@@ -549,7 +550,6 @@ var codelabGenerator = new Blockly.Generator('JSON');
 
   codelabGenerator['gotolabel'] = function(block){
     var label = block.getField("label").selectedOption_[0];
-    console.log(block.getField("label"))
     var code = "Goto '" + label + "'\n";
     return code;
   };
@@ -566,7 +566,6 @@ var codelabGenerator = new Blockly.Generator('JSON');
     code = code.replace(")", "");
     code = code.replace("(", "");
     code = code.replace(")", "");
-    console.log(code);
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.JavaScript.ORDER_NONE];
   };
@@ -599,10 +598,10 @@ var codelabGenerator = new Blockly.Generator('JSON');
     // TODO: Assemble JavaScript into code variable.
     var code = "";
     objs.forEach(element => {
-      if(element){
+      if(element){/**
         if(own_line.indexOf(element.name) != -1){
           code += "\n";
-        }
+        }*/
         if(int_inputs.indexOf(element.name) != -1){
           code += "$" + element.name + ' = ' + block.getFieldValue(element.name) + '\n'
         }
@@ -634,8 +633,8 @@ var codelabGenerator = new Blockly.Generator('JSON');
     var number_hr = block.getField('HR');
     var text_bp = block.getField('BP');
     var number_bpsys = block.getField('BPSys');
-    var number_respiration_ = block.getField('Respiration:');
-    var number_spo2_ = block.getField('SpO2:');
+    var number_respiration_ = block.getField('Respiration');
+    var number_spo2_ = block.getField('SpO2');
     var number_painscore = block.getField('PainScore');
     var text_abnormalresponse = block.getField('AbnormalResponse');
     var text_patientspeak = block.getField('PatientSpeak');
@@ -643,10 +642,10 @@ var codelabGenerator = new Blockly.Generator('JSON');
     // TODO: Assemble JavaScript into code variable.
     var code = "";
     objs.forEach(element => {
-      if(element){
+      if(element){/**
         if(own_line.indexOf(element.name) != -1){
           code += "\n";
-        }
+        }*/
         if(int_inputs.indexOf(element.name) != -1){
           code += "$" + element.name + ' = ' + block.getFieldValue(element.name) + '\n'
         }
