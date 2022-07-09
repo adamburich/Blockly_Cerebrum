@@ -10,6 +10,8 @@
 <script src="../../node_modules/@blockly/theme-modern/dist/index.js"></script>
 <script src="../../node_modules/@blockly/theme-modern/dist/index.js"></script>
 <script src="./custom_generator.js"></script>
+<script src="./custom_toolbox.js"></script>
+<script src="./file_handler.js"></script>
 
 <script type="module">
 import Blockly from './blockly.mjs';
@@ -23,6 +25,9 @@ function start() {
 function createWorkspace(blocklyDiv, options) {
   var workspace = Blockly.inject(blocklyDiv, options);
   workspace.configureContextMenu = configureContextMenu.bind(workspace);
+  /**
+   *  CODE FOR WORKSPACE INJECTION - WORKS AS PROOF OF CONCEPT BUT NOT DONE
+   * 
   var xml_text = 
   '<xml xmlns="https://developers.google.com/blockly/xml">' +
   '<variables>' +
@@ -40,6 +45,7 @@ function createWorkspace(blocklyDiv, options) {
   var xml = Blockly.Xml.textToDom(xml_text);
   Blockly.Xml.domToWorkspace(xml, workspace);
   console.log(workspace);
+  */
   return workspace;
 }
 
@@ -118,7 +124,7 @@ function initPlayground() {
       'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.19.2/min/vs')
       .then(function(playground) {
         configurePlayground(playground);
-        console.log("Logging Playground:\n" + playground);
+        //console.log("Logging Playground:\n" + playground);
       });
 }
 
@@ -149,7 +155,10 @@ function configureContextMenu(menuOptions, e) {
   // Adds a default-sized workspace comment to the workspace.
   menuOptions.push(Blockly.ContextMenu.workspaceCommentOption(workspace, e));
 }
+
 start();
+
+
 </script>
 
 <style>
