@@ -1,4 +1,784 @@
 Blockly.common.defineBlocksWithJsonArray([
+  {
+    "type": "object_calling",
+    "message0": "%1 %2",
+    "args0": [
+      {
+        "type": "field_variable",
+        "name": "Object_Variable",
+        "variable": "Object"
+      },
+      {
+        "type": "input_statement",
+        "name": "NAME"
+      }
+    ],
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+      "type": "param",
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "param_val"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 345,
+      "tooltip": "Param block - Goes attach to an ObjectMessageHandler call",
+      "helpUrl": ""
+    },
+    {
+      "type": "follow",
+      "message0": "Follow %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "switchtoscene",
+      "message0": "SwitchToScene %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "sceneName"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "clickable_reset",
+      "message0": "clickable.reset",
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "clickable_ispressed",
+      "message0": "clickable.ispressed",
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "clickable_resetpressed",
+      "message0": "clickable.resetpressed",
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "clickable",
+      "message0": "clickable %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "clickable_bool",
+          "check": "Boolean"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "playsound",
+      "message0": "PlaySound %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "interval"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "Attach Interval for Sound to Play on",
+      "helpUrl": ""
+    },
+    {
+      "type": "stopsound",
+      "message0": "StopSound",
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "play",
+      "message0": "Play %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "triggerName"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "Attach Trigger Name",
+      "helpUrl": ""
+    },
+    {
+      "type": "jump",
+      "message0": "Jump %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "says",
+      "message0": "Says %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "saying",
+          "check": "String"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "on",
+      "message0": "On %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "off",
+      "message0": "Off %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "delete",
+      "message0": "Delete %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "exists",
+      "message0": "Exists %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "localrotatetox",
+      "message0": "LocalRotateToX %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "localrotatetoy",
+      "message0": "LocalRotateToY %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "localrotatetoz",
+      "message0": "LocalRotateToZ %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "localrotatex",
+      "message0": "LocalRotateX %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "localrotatey",
+      "message0": "LocalRotateY %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "localrotatez",
+      "message0": "LocalRotateZ %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "rotatetox",
+      "message0": "RotateToX %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "rotatetoy",
+      "message0": "RotateToY %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "rotatetoz",
+      "message0": "RotateToZ %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "rotatex",
+      "message0": "RotateX %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "rotatey",
+      "message0": "RotateY %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "rotatez",
+      "message0": "RotateZ %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "angleInDegrees"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "localmovex",
+      "message0": "LocalMoveX %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "distance"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "localmovey",
+      "message0": "LocalMoveY %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "distance"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "localmovez",
+      "message0": "LocalMoveZ %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "distance"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "movex",
+      "message0": "MoveX %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "distance"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "movey",
+      "message0": "MoveY %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "distance"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "movez",
+      "message0": "MoveZ %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "distance"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "movex",
+      "message0": "MoveX %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "Distance"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "matchrotation",
+      "message0": "MatchRotation %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "attachto",
+      "message0": "AttachTo %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "outline",
+      "message0": "Outline %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "outline_on",
+      "message0": "Outline.on",
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "outline_off",
+      "message0": "Outline.off",
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "outline_color",
+      "message0": "Outline.color %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "outline_check",
+      "message0": "Outline.check %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "scale",
+      "message0": "Scale %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "moveto",
+      "message0": "MoveTo %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "align",
+      "message0": "Align %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "orient",
+      "message0": "Orient %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "grab",
+      "message0": "Grab %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "release",
+      "message0": "Release %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "lookatme",
+      "message0": "LookAtMe %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "lookat",
+      "message0": "LookAt %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "ison",
+      "message0": "IsOn %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "isoff",
+      "message0": "IsOff %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "enableclick",
+      "message0": "EnableClick %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "disableclick",
+      "message0": "DisableClick %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
+    {
+      "type": "parentto",
+      "message0": "ParentTo %1",
+      "args0": [
+        {
+          "type": "input_statement",
+          "name": "Params",
+          "check": "Params"
+        }
+      ],
+      "previousStatement": null,
+      "colour": 230,
+      "tooltip": "",
+      "helpUrl": ""
+    },
     {
       "type": "gameobjecthandlercall",
       "message0": "%1 %2",
@@ -429,17 +1209,6 @@ Blockly.common.defineBlocksWithJsonArray([
               },
             ]
           },
-          //Object Message Handler Calls
-          {
-            'kind':'category',
-            'name':'Object Message Handler Calls',
-            'contents':[
-              {
-                "kind": "block",
-                "type": "gameobjecthandlercall"
-              },
-            ]
-          },
           //Logic category
           {
             'kind':'category',
@@ -517,23 +1286,9 @@ Blockly.common.defineBlocksWithJsonArray([
             'name':'Call From Object',
             "contents": [
               {
-                "type": "object_calling",
-                "message0": "%1 %2",
-                "args0": [
-                  {
-                    "type": "field_variable",
-                    "name": "Object_Variable",
-                    "variable": "Object"
-                  },
-                  {
-                    "type": "input_statement",
-                    "name": "NAME"
-                  }
-                ],
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              }
+                'kind': 'block',
+                'type': 'object_calling'
+              },
             ]
           },
           {
@@ -541,750 +1296,168 @@ Blockly.common.defineBlocksWithJsonArray([
             'name':'Object Message Handler Calls',
             "contents": [
               {
-                "type": "follow",
-                "message0": "Follow %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'follow'
               },
               {
-                "type": "switchtoscene",
-                "message0": "SwitchToScene %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "sceneName"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'switchtoscene'
               },
               {
-                "type": "clickable_reset",
-                "message0": "clickable.reset",
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'clickable_reset'
               },
               {
-                "type": "clickable_ispressed",
-                "message0": "clickable.ispressed",
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'clickable_ispressed'
               },
               {
-                "type": "clickable_resetpressed",
-                "message0": "clickable.resetpressed",
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'clickable_resetpressed'
               },
               {
-                "type": "clickable",
-                "message0": "clickable %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "clickable_bool",
-                    "check": "Boolean"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'clickable'
               },
               {
-                "type": "playsound",
-                "message0": "PlaySound %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "interval"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "Attach Interval for Sound to Play on",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'playsound'
               },
               {
-                "type": "stopsound",
-                "message0": "StopSound",
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'stopsound'
               },
               {
-                "type": "play",
-                "message0": "Play %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "triggerName"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "Attach Trigger Name",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'play'
               },
               {
-                "type": "jump",
-                "message0": "Jump %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'jump'
               },
               {
-                "type": "says",
-                "message0": "Says %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "saying",
-                    "check": "String"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'says'
               },
               {
-                "type": "on",
-                "message0": "On %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'on'
               },
               {
-                "type": "off",
-                "message0": "Off %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'off'
               },
               {
-                "type": "delete",
-                "message0": "Delete %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'delete'
               },
               {
-                "type": "exists",
-                "message0": "Exists %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'exists'
               },
               {
-                "type": "localrotatetox",
-                "message0": "LocalRotateToX %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'localrotatetox'
               },
               {
-                "type": "localrotatetoy",
-                "message0": "LocalRotateToY %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'localrotatex'
               },
               {
-                "type": "localrotatetoz",
-                "message0": "LocalRotateToZ %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'rotatetox'
               },
               {
-                "type": "localrotatex",
-                "message0": "LocalRotateX %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'rotatex'
               },
               {
-                "type": "localrotatey",
-                "message0": "LocalRotateY %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'localmovex'
               },
               {
-                "type": "localrotatez",
-                "message0": "LocalRotateZ %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'movex'
               },
               {
-                "type": "rotatetox",
-                "message0": "RotateToX %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'localrotatetoy'
               },
               {
-                "type": "rotatetoy",
-                "message0": "RotateToY %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'localrotatey'
               },
               {
-                "type": "rotatetoz",
-                "message0": "RotateToZ %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'rotatetoy'
               },
               {
-                "type": "rotatex",
-                "message0": "RotateX %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'rotatey'
               },
               {
-                "type": "rotatey",
-                "message0": "RotateY %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'localmovey'
               },
               {
-                "type": "rotatez",
-                "message0": "RotateZ %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "angleInDegrees"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'movey'
               },
               {
-                "type": "localmovex",
-                "message0": "LocalMoveX %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "distance"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'localrotatetoz'
               },
               {
-                "type": "localmovey",
-                "message0": "LocalMoveY %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "distance"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'localrotatez'
               },
               {
-                "type": "localmovez",
-                "message0": "LocalMoveZ %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "distance"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'rotatetoz'
               },
               {
-                "type": "movex",
-                "message0": "MoveX %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "distance"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'rotatez'
               },
               {
-                "type": "movey",
-                "message0": "MoveY %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "distance"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'localmovez'
               },
               {
-                "type": "movez",
-                "message0": "MoveZ %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "distance"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'movez'
               },
               {
-                "type": "movex",
-                "message0": "MoveX %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "Distance"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'matchrotation'
               },
               {
-                "type": "matchrotation",
-                "message0": "MatchRotation %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'parentto'
               },
               {
-                "type": "attachto",
-                "message0": "AttachTo %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'attachto'
               },
               {
-                "type": "outline",
-                "message0": "Outline %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'outline'
               },
               {
-                "type": "outline_on",
-                "message0": "Outline.on",
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'outline_on'
               },
               {
-                "type": "outline_off",
-                "message0": "Outline.off",
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'outline_off'
               },
               {
-                "type": "outline_color",
-                "message0": "Outline.color %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'outline_color'
               },
               {
-                "type": "outline_check",
-                "message0": "Outline.check %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "scale",
-                "message0": "Scale %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "moveto",
-                "message0": "MoveTo %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "align",
-                "message0": "Align %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "orient",
-                "message0": "Orient %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "grab",
-                "message0": "Grab %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "release",
-                "message0": "Release %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "lookatme",
-                "message0": "LookAtMe %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "lookat",
-                "message0": "LookAt %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "ison",
-                "message0": "IsOn %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "isoff",
-                "message0": "IsOff %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "enableclick",
-                "message0": "EnableClick %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "disableclick",
-                "message0": "DisableClick %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
-              },
-              {
-                "type": "parentto",
-                "message0": "ParentTo %1",
-                "args0": [
-                  {
-                    "type": "input_statement",
-                    "name": "Params",
-                    "check": "Params"
-                  }
-                ],
-                "previousStatement": null,
-                "colour": 230,
-                "tooltip": "",
-                "helpUrl": ""
+                'kind': 'block',
+                'type': 'outline_check'
               }
             ]
           },
@@ -1293,21 +1466,9 @@ Blockly.common.defineBlocksWithJsonArray([
             'name':'Params',
             "contents": [
               {
-                "type": "param",
-                "message0": "%1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "param_val"
-                  }
-                ],
-                "inputsInline": true,
-                "previousStatement": null,
-                "nextStatement": null,
-                "colour": 345,
-                "tooltip": "Param block - Goes attach to an ObjectMessageHandler call",
-                "helpUrl": ""
-              }
+                'kind': 'block',
+                'type': 'param'
+              },
             ]
           }
           
