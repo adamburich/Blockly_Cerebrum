@@ -191,7 +191,218 @@ var codelabGenerator = new Blockly.Generator('JSON');
     var code = '...;\n';
     return code;
   };
+
+  codelabGenerator['follow'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
   
+  codelabGenerator['switchtoscene'] = function(block) {
+    var value_scenename = Blockly.JavaScript.valueToCode(block, 'sceneName', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['object'] = function(block) {
+    var variable_object_variable = Blockly.JavaScript.nameDB_.getName(block.getFieldValue('Object_Variable'), Blockly.Variables.NAME_TYPE);
+    var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['clickable_reset'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['clickable_ispressed'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['clickable_resetpressed'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['clickable'] = function(block) {
+    var value_clickable_bool = Blockly.JavaScript.valueToCode(block, 'clickable_bool', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['playsound'] = function(block) {
+    var value_interval = Blockly.JavaScript.valueToCode(block, 'interval', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['stopsound'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['play'] = function(block) {
+    var value_triggername = Blockly.JavaScript.valueToCode(block, 'triggerName', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['jump'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['says'] = function(block) {
+    var value_saying = Blockly.JavaScript.valueToCode(block, 'saying', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['on'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['off'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['delete'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['exists'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['localrotatetox'] = function(block) {
+    var value_angleindegrees = Blockly.JavaScript.valueToCode(block, 'angleInDegrees', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['localrotatex'] = function(block) {
+    var value_angleindegrees = Blockly.JavaScript.valueToCode(block, 'angleInDegrees', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['rotatetox'] = function(block) {
+    var value_angleindegrees = Blockly.JavaScript.valueToCode(block, 'angleInDegrees', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['rotatex'] = function(block) {
+    var value_angleindegrees = Blockly.JavaScript.valueToCode(block, 'angleInDegrees', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['localmovex'] = function(block) {
+    var value_distance = Blockly.JavaScript.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['movex'] = function(block) {
+    var value_distance = Blockly.JavaScript.valueToCode(block, 'Distance', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['matchrotation'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['parentto'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params');
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['attachto'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['outline'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['outline_on'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['outline_off'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['outline_color'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['outline_check'] = function(block) {
+    var statements_params = Blockly.JavaScript.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
+  
+  codelabGenerator['param'] = function(block) {
+    var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '...;\n';
+    return code;
+  };
   function addLineToCode(line, code){
     code += "$" + line + "\n";
   }
