@@ -8,11 +8,14 @@
 <script src="../themes/test_themes.js"></script>
 <script src="../../node_modules/@blockly/dev-tools/dist/index.js"></script>
 <script src="../../node_modules/@blockly/theme-modern/dist/index.js"></script>
+<script src="../../node_modules/@blockly/theme-modern/dist/index.js"></script>
 <script src="./custom_generator.js"></script>
+<script src="./custom_toolbox.js"></script>
+<script src="./file_handler.js"></script>
+
 <script type="module">
 import Blockly from './blockly.mjs';
 'use strict';
-//var wspace;
 
 function start() {
   setBackgroundColour();
@@ -22,14 +25,33 @@ function start() {
 function createWorkspace(blocklyDiv, options) {
   var workspace = Blockly.inject(blocklyDiv, options);
   workspace.configureContextMenu = configureContextMenu.bind(workspace);
-  //wspace = workspace;
+  /**
+   *  CODE FOR WORKSPACE INJECTION - WORKS AS PROOF OF CONCEPT BUT NOT DONE
+   * 
+  var xml_text = 
+  '<xml xmlns="https://developers.google.com/blockly/xml">' +
+  '<variables>' +
+    '<variable id="t)XYB+:H$]s[H@FEw{r%">PatientAge</variable>' +
+  '</variables>' +
+  '<block type="variables_set_dynamic" id="j#5n+tp0e-oy!XGRtZo6" x="463" y="238">' +
+    '<field name="VAR" id="t)XYB+:H$]s[H@FEw{r%">PatientAge</field>' +
+    '<value name="VALUE">' +
+      '<block type="math_number" id="SZd1~^@!HsB#;dwPUpT(">' +
+        '<field name="NUM">22</field>' +
+      '</block>' +
+    '</value>' +
+  '</block>' +
+'</xml>';
+  var xml = Blockly.Xml.textToDom(xml_text);
+  Blockly.Xml.domToWorkspace(xml, workspace);
+  console.log(workspace);
+  */
   return workspace;
 }
 
 function configurePlayground(playground) {
-  // Rendering options.
   playground.addGenerator('Codelab', codelabGenerator);
-  
+  // Rendering options.
   var gui = playground.getGUI();
   var renderingFolder = gui.addFolder('Rendering');
   var renderingOptions = {
@@ -38,18 +60,14 @@ function configurePlayground(playground) {
   renderingFolder.add(renderingOptions, 'font Size', 0, 50)
     .onChange(function(value) {
       var ws = playground.getWorkspace();
-      loadBlock(ws);
-
       var fontStyle = {
         'size': value
       };
       ws.getTheme().setFontStyle(fontStyle);
       // Refresh theme.
       ws.setTheme(ws.getTheme());
-      console.log(ws);
     });
 }
-
 function initPlayground() {
   if (typeof window.createPlayground === 'undefined') {
     alert('You need to run \'npm install\' in order to use this playground.');
@@ -100,16 +118,14 @@ function initPlayground() {
       'test blocks': toolboxTestBlocks,
     }
   }
-  var wspace = '<xml xmlns="https://developers.google.com/blockly/xml">  <variables>    <variable id="O!`npk/d_)@Cv;{.UrJ+">item</variable>  </variables>  <block type="variables_set_dynamic" id="CySxo1gV?|E?]T(MR}5s" x="563" y="163">    <field name="VAR" id="O!`npk/d_)@Cv;{.UrJ+">item</field>  </block></xml>'
+
   createPlayground(document.getElementById('root'), createWorkspace,
       defaultOptions, playgroundConfig,
       'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.19.2/min/vs')
       .then(function(playground) {
-        //playground.state.state_.workspaceXml = wspace;
         configurePlayground(playground);
-        //console.log(playground.state.state_.workspaceXml);
+        //console.log("Logging Playground:\n" + playground);
       });
-      console.log(playgroundConfig);
 }
 
 function setBackgroundColour() {
@@ -139,28 +155,10 @@ function configureContextMenu(menuOptions, e) {
   // Adds a default-sized workspace comment to the workspace.
   menuOptions.push(Blockly.ContextMenu.workspaceCommentOption(workspace, e));
 }
+
 start();
 
 
-function loadBlock(ws) { // xml is the same block xml you stored
-    /**if (typeof xml != "string" || xml.length < 5) {
-      console.log(typeof xml)
-        console.log("first false return in loadblock")
-        return false;
-    }*/
-    try {
-        console.log(this)
-        var dom = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml">  <variables>    <variable id="PvGq=#2}dXf-Tx4V8^sq">age</variable>    <variable id="4ZG}Fo?#3L!}ZWEE|q*k">patientmodel</variable>    <variable id="azQ3HKvXN(vNs,$|r-Pv">summary</variable>    <variable id="B88dDzjEEk|U1#?#wVBG">diagnosis</variable>    <variable id="FmljU3_,_Qlg|XbUSnNH">type</variable>  </variables>  <block type="variables_set_dynamic" id="D{C}w=F_[*:f7KhYQJ%s" x="163" y="113">    <field name="VAR" id="PvGq=#2}dXf-Tx4V8^sq">age</field>    <next>      <block type="variables_set_dynamic" id="1KXB4;1Ql+4{`{8!4jf[">        <field name="VAR" id="4ZG}Fo?#3L!}ZWEE|q*k">patientmodel</field>        <next>          <block type="variables_set_dynamic" id="4-HohHUW;~J[rE;aS1ZF">            <field name="VAR" id="azQ3HKvXN(vNs,$|r-Pv">summary</field>            <next>              <block type="variables_set_dynamic" id="u@A+Tfop)XMJI.`?h-nc">                <field name="VAR" id="B88dDzjEEk|U1#?#wVBG">diagnosis</field>                <next>                  <block type="variables_set_dynamic" id="j[nHiCGu;TA.Zo{gr:g8">                    <field name="VAR" id="FmljU3_,_Qlg|XbUSnNH">type</field>                  </block>                </next>              </block>            </next>          </block>        </next>      </block>    </next>  </block></xml>');
-        ws.clear();
-        Blockly.Xml.domToWorkspace(ws, dom);
-        return true;
-    } catch (e) {
-        console.log(e);
-        return false;
-    }
-}
-
-//loadBlock(xml);
 </script>
 
 <style>
