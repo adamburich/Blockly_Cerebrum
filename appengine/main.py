@@ -33,7 +33,7 @@ def app(environ, start_response):
 # Redirect for root directory.
 def redirect(environ, start_response):
   headers = [
-    ("Location", "static/demos/index.html")
+    ("Location", "tests\playgrounds\\advanced_playground.html")
   ]
   start_response("301 Found", headers)
   return []

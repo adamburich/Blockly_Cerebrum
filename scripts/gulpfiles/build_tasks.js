@@ -130,6 +130,11 @@ const chunks = [
     name: 'dart',
     entry: 'generators/dart/all.js',
     reexport: 'Blockly.Dart',
+  },
+  {
+    name: 'cerebrum',
+    entry: 'generators/cerebrum/all.js',
+    reexport: 'Blockly.Cerebrum',
   }
 ];
 

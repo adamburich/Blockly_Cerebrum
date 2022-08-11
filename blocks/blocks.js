@@ -13,6 +13,7 @@
 goog.module('Blockly.libraryBlocks');
 goog.module.declareLegacyNamespace();
 
+const cerebrum_blocks = goog.require('Blockly.libraryBlocks.cerebrum_blocks');
 const colour = goog.require('Blockly.libraryBlocks.colour');
 const lists = goog.require('Blockly.libraryBlocks.lists');
 const logic = goog.require('Blockly.libraryBlocks.logic');
@@ -26,6 +27,7 @@ const variablesDynamic = goog.require('Blockly.libraryBlocks.variablesDynamic');
 const {BlockDefinition} = goog.requireType('Blockly.blocks');
 
 
+exports.cerebrum_blocks = cerebrum_blocks;
 exports.colour = colour;
 exports.lists = lists;
 exports.logic = logic;
@@ -36,12 +38,13 @@ exports.texts = texts;
 exports.variables = variables;
 exports.variablesDynamic = variablesDynamic;
 
+
 /**
  * A dictionary of the block definitions provided by all the
  * Blockly.libraryBlocks.* modules.
  * @type {!Object<string, !BlockDefinition>}
  */
 const blocks = Object.assign(
-    {}, colour.blocks, lists.blocks, logic.blocks, loops.blocks, math.blocks,
+    {}, cerebrum_blocks.blocks, colour.blocks, lists.blocks, logic.blocks, loops.blocks, math.blocks,
     procedures.blocks, variables.blocks, variablesDynamic.blocks);
 exports.blocks = blocks;

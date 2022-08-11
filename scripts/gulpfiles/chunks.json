@@ -333,6 +333,7 @@
     "./generators/dart/lists.js",
     "./generators/dart.js",
     "./generators/dart/colour.js",
-    "./generators/dart/all.js"
+    "./generators/dart/all.js",
+    "./"
   ]
 }
