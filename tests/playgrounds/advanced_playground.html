@@ -6,54 +6,121 @@
 <script src="prepare.js"></script>
 <script src="./screenshot.js"></script>
 <script src="../themes/test_themes.js"></script>
-<script src="../../node_modules/@blockly/dev-tools/dist/index.js"></script>
-<script src="../../node_modules/@blockly/theme-modern/dist/index.js"></script>
-<script src="../../node_modules/@blockly/theme-modern/dist/index.js"></script>
+<script src="https://unpkg.com/@blockly/dev-tools/dist/index.js"></script>
+<script src="https://unpkg.com/@blockly/theme-modern/dist/index.js"></script>
 <script src="./block_definitions.js"></script>
 <script src="./cerebrum_generator.js"></script>
 <script src="./cerebrum_toolbox.js"></script>
 <script src="./file_handler.js"></script>
+<script src="./AddButtons.js"></script>
+<script src="./prettify.js"></script>
+<script src="./AddBlocksToPlayground.js"></script>
+<script src="./ParsePatient.js"></script>
+<script src="./CodeToWorkspace.js"></script>
+<script src="./xmlstring.js"></script>
+
+
+
 
 <script type="module">
 import Blockly from './blockly.mjs';
 'use strict';
 
+var wspace;
+
 function start() {
   setBackgroundColour();
   initPlayground();
+  addButtons();
+  var download = document.getElementById("download-code");
+  download.onclick = updateCodeAndDownload;
+  setTimeout(prettify, 125);
+}
+
+function allowUpload(workspace){
+  setUpFile(workspace);
+}
+
+function insertBlocksTest(){
+  //workspace.addTopBlock(new Blockly.Block(workspace, 'clickable_reset'));
+  //console.log(wspace);
+  
+  //handleTextXML(workspace)
+  let line1 = "$PatientName = 'Lim Ah Nee'";
+  let line2 = "$isEWS = 'true'";
+  let line3 = "Create $PatientModel $PatientObjName";
+  let line4 = "$PatientObjName align $PatientBedLoc 0";
+  let line5 = "Do 'NEWS_Nurse/SetupPatient.txt'";
+  let line6 = "waitfor";
+  let arr = [line4];
+  parseArrToWorkspace(arr, wspace);
+  // let vd = varDecl(line);
+  // buildVariableSetBlock(wspace, vd);
+}
+
+function updateCodeAndDownload(){
+  var code = codelabGenerator.workspaceToCode(wspace);
+  var files = codeToFiles(code);
+
+  //console.log(files);
+
+  //var download = document.getElementById("download-code");
+  // download.href = window.URL.createObjectURL(new Blob([code], {type: "text/plain"}));
+  // download.download = "code.txt";
+  
+  for(let i = 0; i < files.length; i++){
+    var a = document.createElement("a");
+    a.href = window.URL.createObjectURL(new Blob([files[i].funcText], {type: "text/plain"}));
+    a.download = files[i].fname;
+    a.click();
+  }
+}
+
+function populatePatientVars(workspace){
+  workspace.createVariable("PatientName", "", "PatientName");
+  workspace.createVariable("isEWS", "", "isEWS");
+  workspace.createVariable("PatientIC", "", "PatientIC");
+  workspace.createVariable("BloodType", "", "BloodType");
+  workspace.createVariable("AgeInYears", "", "AgeInYears");
+  workspace.createVariable("PatientModel", "", "PatientModel");
+  workspace.createVariable("PatientDiag", "", "PatientDiag");
+  workspace.createVariable("PatientGender", "", "PatientGender");
+  workspace.createVariable("PatientSummary", "", "PatientSummary");
+  workspace.createVariable("PatientType", "", "PatientType");
+  workspace.createVariable("Temperature", "", "Temperature");
+  workspace.createVariable("HR", "", "HR");
+  workspace.createVariable("BP", "", "BP");
+  workspace.createVariable("BPSys", "", "BPSys");
+  workspace.createVariable("Respiration", "", "Respiration");
+  workspace.createVariable("SpO2", "", "SpO2");
+  workspace.createVariable("PainScore", "", "PainScore");
+  workspace.createVariable("AbnormalResponse", "", "AbnormalResponse");
+  workspace.createVariable("PatientSpeak", "", "PatientSpeak");
+  workspace.createVariable("PatientObjName", "", "PatientObjName");
+  workspace.createVariable("PatientBedLoc", "", "PatientBedLoc");
+  workspace.createVariable("RigType", "", "RigType");
+  workspace.createVariable("HeadAmount", "", "HeadAmount");
+  workspace.createVariable("WeightAmount", "", "WeightAmount");
+  workspace.createVariable("Patient", "", "Patient");
 }
 
 function createWorkspace(blocklyDiv, options) {
-  var workspace = Blockly.inject(blocklyDiv, options);
-  workspace.configureContextMenu = configureContextMenu.bind(workspace);
-  /**
-   *  CODE FOR WORKSPACE INJECTION - WORKS AS PROOF OF CONCEPT BUT NOT DONE
-   * 
-  var xml_text = 
-  '<xml xmlns="https://developers.google.com/blockly/xml">' +
-  '<variables>' +
-    '<variable id="t)XYB+:H$]s[H@FEw{r%">PatientAge</variable>' +
-  '</variables>' +
-  '<block type="variables_set_dynamic" id="j#5n+tp0e-oy!XGRtZo6" x="463" y="238">' +
-    '<field name="VAR" id="t)XYB+:H$]s[H@FEw{r%">PatientAge</field>' +
-    '<value name="VALUE">' +
-      '<block type="math_number" id="SZd1~^@!HsB#;dwPUpT(">' +
-        '<field name="NUM">22</field>' +
-      '</block>' +
-    '</value>' +
-  '</block>' +
-'</xml>';
-  var xml = Blockly.Xml.textToDom(xml_text);
-  Blockly.Xml.domToWorkspace(xml, workspace);
-  console.log(workspace);
-  */
-  return workspace;
+  wspace = Blockly.inject(blocklyDiv, options);
+  wspace.configureContextMenu = configureContextMenu.bind(wspace);
+
+  populatePatientVars(wspace);
+  allowUpload(wspace);
+  //space = workspace;
+  //console.log(wspace)
+  //insertBlocksTest();
+  return wspace;
 }
 
 function configurePlayground(playground) {
-  playground.addGenerator('Codelab', codelabGenerator);
+  playground.addGenerator('Cerebrum', codelabGenerator);
   // Rendering options.
   var gui = playground.getGUI();
+  gui.addFolder('Upload');
   var renderingFolder = gui.addFolder('Rendering');
   var renderingOptions = {
     'font Size': 10,
@@ -61,14 +128,18 @@ function configurePlayground(playground) {
   renderingFolder.add(renderingOptions, 'font Size', 0, 50)
     .onChange(function(value) {
       var ws = playground.getWorkspace();
+      wspace = ws;
       var fontStyle = {
         'size': value
       };
       ws.getTheme().setFontStyle(fontStyle);
       // Refresh theme.
       ws.setTheme(ws.getTheme());
+
     });
+  
 }
+
 function initPlayground() {
   if (typeof window.createPlayground === 'undefined') {
     alert('You need to run \'npm install\' in order to use this playground.');
@@ -181,6 +252,10 @@ start();
 
   .zelos-renderer .blocklyFlyoutButton .blocklyText {
     font-size: 1.5rem;
+  }
+
+  #root > div:nth-child(3) > div:nth-child(2) > div:nth-child(4) {
+    display: none !important;
   }
 </style>
 </head>

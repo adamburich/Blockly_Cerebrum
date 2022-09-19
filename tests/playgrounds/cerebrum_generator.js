@@ -9,19 +9,45 @@ var codelabGenerator = new Blockly.Generator('JSON');
     code += "Do $" + functionName + "\n";
     return code;
   };
-  
+
+  codelabGenerator.finish = function(code){
+    
+    code = code.replaceAll("TRUE", "true");
+    code = code.replaceAll("FALSE", "false");
+    code = code.replaceAll("  ", " ");
+    /**
+     * CODE TO REMOVE DUPLICATE LINES
+     * 
+    let codeArr = code.split('\n');
+    let arr = [];
+    for(let i = 0; i < codeArr.length; i++){
+      if(!arr.includes(codeArr[i])){
+        arr.push(codeArr[i]);
+      }
+    }
+    code = arr.join("\n");*/
+    return code;
+    
+  }
+
   codelabGenerator.scrub_ = function(block, code, opt_thisOnly) {
+    const lastBlock = block.getParent();
+    if(!lastBlock){
+      code = "\n" + code;
+    }
     const nextBlock =
         block.nextConnection && block.nextConnection.targetBlock();
     if (nextBlock && !opt_thisOnly){
       if((block.type == "param") && (nextBlock.type == "param")){
-        return code + ' ' + codelabGenerator.blockToCode(nextBlock);
+        code = code + ' ' + codelabGenerator.blockToCode(nextBlock);
       }
       else{
-        return code + '\n' + codelabGenerator.blockToCode(nextBlock);
+        code = code + '\n' + codelabGenerator.blockToCode(nextBlock);
       }
     }
+    //code = code.trimStart("\n");
     return code;
+    //return code;
   };
 
   codelabGenerator['gotolabelreturn'] = function(block){
@@ -31,7 +57,7 @@ var codelabGenerator = new Blockly.Generator('JSON');
   };
 
   codelabGenerator['gotolabelnoreturn'] = function(block){
-    console.log(block);
+    //console.log(block);
     var tt_block = block.childBlocks_[0];
     var tt = "";
     var name = "";
@@ -46,15 +72,98 @@ var codelabGenerator = new Blockly.Generator('JSON');
   };
 
   codelabGenerator['controls_if'] = function(block){
-    var code = "If\n" + "\t$cond" + "\n" + "Then\n" + "\tDo $something\n" + "Endif\n";
+    var cond = codelabGenerator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
+    var body = codelabGenerator.statementToCode(block, "DO0");
+    var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Endif";
     return code;
   };
 
+  codelabGenerator['controls_ifelse'] = codelabGenerator['controls_if'];
+
+  codelabGenerator['logic_compare'] = function(block) {
+  // Comparison operator.
+  const OPERATORS =
+      {'EQ': '==', 'NEQ': '!=', 'LT': '<', 'LTE': '<=', 'GT': '>', 'GTE': '>='};
+  const operator = OPERATORS[block.getFieldValue('OP')];
+  const order = (operator === '==' || operator === '!=') ?
+      Blockly.JavaScript.ORDER_EQUALITY :
+      Blockly.JavaScript.ORDER_RELATIONAL;
+  const argument0 = codelabGenerator.valueToCode(block, 'A', order) || '0';
+  const argument1 = codelabGenerator.valueToCode(block, 'B', order) || '0';
+  const code = argument0 + ' ' + operator + ' ' + argument1;
+  return [code, order];
+};
+
+codelabGenerator['logic_operation'] = function(block) {
+  // Operations 'and', 'or'.
+  const operator = (block.getFieldValue('OP') === 'AND') ? '&&' : '||';
+  const order = (operator === '&&') ? Blockly.JavaScript.ORDER_LOGICAL_AND :
+                                      Blockly.JavaScript.ORDER_LOGICAL_OR;
+  let argument0 = codelabGenerator.valueToCode(block, 'A', order);
+  let argument1 = codelabGenerator.valueToCode(block, 'B', order);
+  if (!argument0 && !argument1) {
+    // If there are no arguments, then the return value is false.
+    argument0 = 'false';
+    argument1 = 'false';
+  } else {
+    // Single missing arguments have no effect on the return value.
+    const defaultArgument = (operator === '&&') ? 'true' : 'false';
+    if (!argument0) {
+      argument0 = defaultArgument;
+    }
+    if (!argument1) {
+      argument1 = defaultArgument;
+    }
+  }
+  const code = argument0 + ' ' + operator + ' ' + argument1;
+  return [code, order];
+};
+
+codelabGenerator['logic_negate'] = function(block) {
+  // Negation.
+  const order = Blockly.JavaScript.ORDER_LOGICAL_NOT;
+  const argument0 = codelabGenerator.valueToCode(block, 'BOOL', order) || 'true';
+  const code = '!' + argument0;
+  return [code, order];
+};
+
+codelabGenerator['logic_boolean'] = function(block) {
+  // Boolean values true and false.
+  const code = (block.getFieldValue('BOOL') === 'TRUE') ? 'true' : 'false';
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+codelabGenerator['logic_null'] = function(block) {
+  // Null data type.
+  return ['null', Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+codelabGenerator['logic_ternary'] = function(block) {
+  // Ternary operator.
+  const value_if =
+      codelabGenerator.valueToCode(block, 'IF', Blockly.JavaScript.ORDER_CONDITIONAL) ||
+      'false';
+  const value_then =
+    codelabGenerator.valueToCode(block, 'THEN', Blockly.JavaScript.ORDER_CONDITIONAL) ||
+      'null';
+  const value_else =
+    codelabGenerator.valueToCode(block, 'ELSE', Blockly.JavaScript.ORDER_CONDITIONAL) ||
+      'null';
+  const code = value_if + ' ? ' + value_then + ' : ' + value_else;
+  return [code, Blockly.JavaScript.ORDER_CONDITIONAL];
+};
+
   codelabGenerator['variables_set'] = function variables_set(block) {
     
+  // Variable setter.
+    const argument0 = codelabGenerator.valueToCode(
+    block, 'VALUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
+    const varName = block.inputList[0].fieldRow[1].selectedOption_[0];
+    return "$" + varName + ' = ' + argument0 + '';
+    /**
     var var_name = block.inputList[0].fieldRow[1].selectedOption_[0];
     var code = "$" + var_name + " = ";
-    //console.log(block)
+    var type = block.childBlocks_[0].type;
     if(block.childBlocks_[0].type == "math_number"){
       var var_val = block.childBlocks_[0].inputList[0].fieldRow[0].value_;
       code += "" + var_val + "";
@@ -63,22 +172,25 @@ var codelabGenerator = new Blockly.Generator('JSON');
       var var_val = block.childBlocks_[0].inputList[0].fieldRow[1].value_;
       code += "'" + var_val + "'";
     }
+    else{
+      var var_val = codelabGenerator.statementToCode(block.childBlocks_[0], type);
+      code += var_val;
+    }
     else if(block.childBlocks_[0].type == "variables_get"){
-      
+      var var_val = block.childBlocks_[0].inputList[0].fieldRow[1].value_;
+      code += var_val;
     }
-    if(block.nextConnection.targetConnection != null){
-      if(block.nextConnection.targetConnection.sourceBlock_.type == "variables_set"){
-        //console.log("there is another variable set block")
-        code += variables_set(block.nextConnection.targetConnection.sourceBlock_);
-      } 
-    }
+    else if(block.childBlocks_[0].type == "logic_boolean"){
+      var var_val = block.childBlocks_[0].inputList[0].fieldRow[0].value_;
+      code += var_val;
+    }*/
 
     return code;
   }
 
   codelabGenerator['variables_get'] = function(block) {
     //console.log(block.inputList[0].fieldRow[0].selectedOption_[0]);
-    var code = "$" + block.inputList[0].fieldRow[0].selectedOption_[0] + "\n";
+    var code = "$" + block.inputList[0].fieldRow[0].selectedOption_[0];
     return [code, Blockly.JavaScript.ORDER_ATOMIC]
   }
 
@@ -92,7 +204,7 @@ var codelabGenerator = new Blockly.Generator('JSON');
     //console.log(block)
     var body = codelabGenerator.statementToCode(block, "STACK");
     
-    return "\nLabel '" + name + "'\n" + body;
+    return "\nLabel '" + name + "'\n" + body + "\nReturn";
   }
 
   codelabGenerator['procedures_defnoreturn'] = function(block) {
@@ -141,7 +253,7 @@ var codelabGenerator = new Blockly.Generator('JSON');
       var type = block.nextConnection.targetConnection.sourceBlock_.type;
       body += codelabGenerator.statementToCode()
     }*/
-    return "Label '" + name + "'\n" + body;
+    return "Label '" + name + "'\n" + body + "\nReturn";
   }
 
   codelabGenerator['procedures_callnoreturn'] = function(block) {
@@ -213,7 +325,7 @@ var codelabGenerator = new Blockly.Generator('JSON');
   };
   
   codelabGenerator['play'] = function(block) {
-    var value_triggername = codelabGenerator.valueToCode(block, 'triggerName', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_triggername = codelabGenerator.statementToCode(block, 'triggername', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
     var code = 'play ' + value_triggername;
     return code;
@@ -595,8 +707,9 @@ var codelabGenerator = new Blockly.Generator('JSON');
   };
   
   codelabGenerator['setitemtext'] = function(block) {
+    var text = codelabGenerator.valueToCode(block, "stringexpression", Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = " setItemText";
+    var code = " setItemText " + text.replaceAll("\\'", "");
     //console.log("." + statements_params)
     return code;
   };
@@ -613,7 +726,56 @@ var codelabGenerator = new Blockly.Generator('JSON');
 
   codelabGenerator['scale'] = function(block) {
     // TODO: Assemble JavaScript into code variable.
-    var code = " scale";
+    var statements_params = codelabGenerator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = " scale " + statements_params;
+    //console.log("." + statements_params)
+    return code;
+  };
+
+  codelabGenerator['align'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var statements_params = codelabGenerator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = " align " + statements_params;
+    //console.log("." + statements_params)
+    return code;
+  };
+
+  codelabGenerator['orient'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var statements_params = codelabGenerator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = " orient " + statements_params;
+    //console.log("." + statements_params)
+    return code;
+  };
+  
+  codelabGenerator['grab'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var statements_params = codelabGenerator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = " grab " + statements_params;
+    //console.log("." + statements_params)
+    return code;
+  };
+
+  codelabGenerator['release'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var statements_params = codelabGenerator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = " release " + statements_params;
+    //console.log("." + statements_params)
+    return code;
+  };
+
+  codelabGenerator['lookat'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var statements_params = codelabGenerator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = " lookat " + statements_params;
+    //console.log("." + statements_params)
+    return code;
+  };
+  
+  codelabGenerator['lookatme'] = function(block) {
+    // TODO: Assemble JavaScript into code variable.
+    var statements_params = codelabGenerator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = " lookatme " + statements_params;
     //console.log("." + statements_params)
     return code;
   };
@@ -708,16 +870,21 @@ var codelabGenerator = new Blockly.Generator('JSON');
   };
 
   codelabGenerator['do_return'] = function(block) {
-    //console.log(block);
     var tt_block = block.childBlocks_[0];
     var tt = "";
     var name = "";
     if(tt_block != null){
-      tt = tt_block.tooltip;
-      name = tt.substring(tt.indexOf('"')+1, tt.lastIndexOf('"'))
+      if(tt_block.type == "text"){
+        name = codelabGenerator.valueToCode(block, "fname", Blockly.JavaScript.ORDER_NONE);
+      }
+      else{
+        tt = tt_block.tooltip;
+        name = tt.substring(tt.indexOf('"')+1, tt.lastIndexOf('"'))
+        name = "'" + name + "'";
+      }
     }
     //var fname = codelabGenerator.valueToCode(block, 'fname', Blockly.JavaScript.ORDER_ATOMIC);
-    var fname = "'"+name+"'";
+    var fname = name;
     var paramblock = null;
     if(block.nextConnection.targetConnection != null){
       paramblock = block.nextConnection.targetConnection.sourceBlock_;
@@ -746,8 +913,13 @@ var codelabGenerator = new Blockly.Generator('JSON');
     var tt = "";
     var name = "";
     if(tt_block != null){
-      tt = tt_block.tooltip;
-      name = tt.substring(tt.indexOf('"')+1, tt.lastIndexOf('"'))
+      if(tt_block.type == "text"){
+        name = tt_block.getFieldValue("NAME");
+      }
+      else{
+        tt = tt_block.tooltip;
+        name = tt.substring(tt.indexOf('"')+1, tt.lastIndexOf('"'))
+      }
     }
     //var fname = codelabGenerator.statementToCode(block, 'fname', Blockly.JavaScript.ORDER_ATOMIC);
     var fname = "'"+name+"'";
@@ -770,6 +942,25 @@ var codelabGenerator = new Blockly.Generator('JSON');
     }
     // TODO: Assemble JavaScript into code variable.
     var code = "Do " + fname.trimStart() + " " + params;
+    return code;
+  };
+
+  codelabGenerator['create'] = function(block){
+    var prefabName = codelabGenerator.valueToCode(block, 'prefabName', Blockly.JavaScript.ORDER_ATOMIC).replaceAll("'","");
+    var objectName = codelabGenerator.valueToCode(block, 'objectName', Blockly.JavaScript.ORDER_ATOMIC).replaceAll("'","");
+
+    return "Create "+prefabName + " "+objectName;
+  }
+
+  codelabGenerator['waitfor'] = function(block){
+
+    return "waitfor";
+  }
+
+  codelabGenerator['comment'] = function(block) {
+    var value_comment_val = codelabGenerator.valueToCode(block, 'comment_val', Blockly.JavaScript.ORDER_ATOMIC);
+    // TODO: Assemble JavaScript into code variable.
+    var code = '####################\n' + "# "+value_comment_val.replaceAll("'", "") + '\n####################';
     return code;
   };
 
