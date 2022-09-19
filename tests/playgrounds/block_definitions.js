@@ -1589,19 +1589,21 @@ const custom_block_lib = [
         "previousStatement":null
       },
       {
-                "type": "comment",
-                "message0": "Add Comment: %1",
-                "args0": [
-                  {
-                    "type": "input_value",
-                    "name": "comment_val",
-                    "check": "String"
-                  }
-                ],
-                "inputsInline": true,
-                "colour": 75,
-                "tooltip": "",
-                "helpUrl": ""
+        "type": "comment",
+        "message0": "Add Comment: %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "comment_val",
+            "check": "String"
+          }
+        ],
+        "inputsInline": true,
+        "colour": 75,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       }
-      ];
+  ];
 

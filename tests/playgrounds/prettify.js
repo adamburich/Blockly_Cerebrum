@@ -1,4 +1,4 @@
-function prettify(){
+function hideUnusedGenerators(){
     var spans = document.getElementsByTagName("span");
 
     for (var i = 0; i < spans.length; i++) {

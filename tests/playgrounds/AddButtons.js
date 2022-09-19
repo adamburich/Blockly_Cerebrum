@@ -6,48 +6,39 @@ function addButtons(){
     for (var i = 0; i < spans.length; i++) {
     if (spans[i].textContent == searchText) {
         found = spans[i];
+        found.innerHTML = "Blockly Cerebrum Playground"
         break;
     }
     }
-    
-    let downloaddiv = document.createElement("div");
-    downloaddiv = setupDivButton(downloaddiv, "Save Code", "download-code");
-
-    //let uploaddiv = document.createElement("div");
-    //uploaddiv = setupDivButton(uploaddiv, "Upload", "upload-code");
 
     var target = found.nextSibling;
     target.style.maxHeight = "20%";
     target.nextSibling.style.maxHeight = "80%";
-    target.appendChild(downloaddiv); 
+    // target.appendChild(downloaddiv); 
+
     let input = document.createElement("input");
     input.setAttribute("name", "upload-code");
     input.setAttribute("type", "file");
     input.setAttribute("id", "upload-code");
     let inputTitle = document.createElement("h3");
     inputTitle.innerText = "Upload Existing Cerebrum File";
+    input.style.marginLeft = "5px";
+    inputTitle.style.marginLeft = "5px";
+
+    let dl = document.createElement("input");
+    dl.setAttribute("name", "download-code");
+    dl.setAttribute("type", "button");
+    dl.setAttribute("id", "download-code");
+    dl.setAttribute("value", "Download Code")
+    let dlTitle = document.createElement("h3");
+    dlTitle.innerText = "Download Workspace Code";
+    dl.style.marginLeft = "5px";
+    dlTitle.style.marginLeft = "5px";
+    dlTitle.style.marginTop = "25px";
+
     target.appendChild(inputTitle);
     target.appendChild(input);
-}
+    target.appendChild(dlTitle);
+    target.appendChild(dl);
 
-function setupDivButton(div, text, buttonID){
-    div.classList.add("dg");
-    div.classList.add("main");
-    let ul = document.createElement("ul");
-    let li = document.createElement("li");
-    li.classList.add("cr");
-    li.classList.add("function");
-    let div2 = document.createElement("div");
-    let span = document.createElement("span");
-    span.classList.add("property-name");
-    let download = document.createElement("a");
-    download.innerHTML = text;
-    download.style.color = "white";
-    download.setAttribute("id", buttonID);
-    span.appendChild(download);
-    div2.appendChild(span);
-    li.appendChild(div2);
-    ul.appendChild(li);
-    div.appendChild(ul);
-    return div;
 }

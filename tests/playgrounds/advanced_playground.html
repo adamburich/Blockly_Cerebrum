@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Advanced Blockly Playground</title>
+<title>Blockly Cerebrum Playground</title>
 <script src="prepare.js"></script>
 <script src="./screenshot.js"></script>
 <script src="../themes/test_themes.js"></script>
@@ -11,11 +11,11 @@
 <script src="./block_definitions.js"></script>
 <script src="./cerebrum_generator.js"></script>
 <script src="./cerebrum_toolbox.js"></script>
-<script src="./file_handler.js"></script>
+<script src="./FileHandler.js"></script>
 <script src="./AddButtons.js"></script>
-<script src="./prettify.js"></script>
-<script src="./AddBlocksToPlayground.js"></script>
-<script src="./ParsePatient.js"></script>
+<script src="./Prettify.js"></script>
+<script src="./BuildBlocksFromCode.js"></script>
+<script src="./ParseFileContents.js"></script>
 <script src="./CodeToWorkspace.js"></script>
 <script src="./xmlstring.js"></script>
 
@@ -34,7 +34,7 @@ function start() {
   addButtons();
   var download = document.getElementById("download-code");
   download.onclick = updateCodeAndDownload;
-  setTimeout(prettify, 125);
+  setTimeout(hideUnusedGenerators, 125);
 }
 
 function allowUpload(workspace){
@@ -59,14 +59,8 @@ function insertBlocksTest(){
 }
 
 function updateCodeAndDownload(){
-  var code = codelabGenerator.workspaceToCode(wspace);
+  var code = cerebrumGenerator.workspaceToCode(wspace);
   var files = codeToFiles(code);
-
-  //console.log(files);
-
-  //var download = document.getElementById("download-code");
-  // download.href = window.URL.createObjectURL(new Blob([code], {type: "text/plain"}));
-  // download.download = "code.txt";
   
   for(let i = 0; i < files.length; i++){
     var a = document.createElement("a");
@@ -110,14 +104,12 @@ function createWorkspace(blocklyDiv, options) {
 
   populatePatientVars(wspace);
   allowUpload(wspace);
-  //space = workspace;
-  //console.log(wspace)
   //insertBlocksTest();
   return wspace;
 }
 
 function configurePlayground(playground) {
-  playground.addGenerator('Cerebrum', codelabGenerator);
+  playground.addGenerator('Cerebrum', cerebrumGenerator);
   // Rendering options.
   var gui = playground.getGUI();
   gui.addFolder('Upload');
@@ -254,9 +246,11 @@ start();
     font-size: 1.5rem;
   }
 
-  #root > div:nth-child(3) > div:nth-child(2) > div:nth-child(4) {
+  /* This styling is used to hide the debug menu */
+  div.dg.main {
     display: none !important;
   }
+
 </style>
 </head>
 <body>
