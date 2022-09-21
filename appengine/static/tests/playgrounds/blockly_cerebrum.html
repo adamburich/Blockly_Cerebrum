@@ -8,25 +8,26 @@
 <script src="../themes/test_themes.js"></script>
 <script src="https://unpkg.com/@blockly/dev-tools/dist/index.js"></script>
 <script src="https://unpkg.com/@blockly/theme-modern/dist/index.js"></script>
-<script src="./block_definitions.js"></script>
-<script src="./cerebrum_generator.js"></script>
-<script src="./cerebrum_toolbox.js"></script>
-<script src="./FileHandler.js"></script>
-<script src="./AddButtons.js"></script>
-<script src="./Prettify.js"></script>
-<script src="./BuildBlocksFromCode.js"></script>
-<script src="./ParseFileContents.js"></script>
-<script src="./CodeToWorkspace.js"></script>
-<script src="./xmlstring.js"></script>
 
+<script src="./Cerebrum/Blocks/block_definitions.js"></script>
 
+<script src="./Cerebrum/Generator/cerebrum_generator.js"></script>
 
+<script src="./Cerebrum/Toolbox/cerebrum_toolbox.js"></script>
+
+<script src="./Cerebrum/Helper/FileHandler.js"></script>
+<script src="./Cerebrum/Helper/AddButtons.js"></script>
+<script src="./Cerebrum/Helper/Prettify.js"></script>
+<script src="./Cerebrum/Helper/BuildBlocksFromCode.js"></script>
+<script src="./Cerebrum/Helper/ParseFileContents.js"></script>
+<script src="./Cerebrum/Helper/CodeToWorkspace.js"></script>
 
 <script type="module">
 import Blockly from './blockly.mjs';
 'use strict';
 
 var wspace;
+var happened = false;
 
 function start() {
   setBackgroundColour();
@@ -36,10 +37,28 @@ function start() {
   download.onclick = updateCodeAndDownload;
   setTimeout(hideUnusedGenerators, 125);
   setTimeout(hideUnusedGenerators, 10000);
+
 }
 
 function allowUpload(workspace){
   setUpFile(workspace);
+}
+
+function insertBlocksTest(){
+  //workspace.addTopBlock(new Blockly.Block(workspace, 'clickable_reset'));
+  //console.log(wspace);
+  
+  //handleTextXML(workspace)
+  let line1 = "$PatientName = 'Lim Ah Nee'";
+  let line2 = "$isEWS = 'true'";
+  let line3 = "Create $PatientModel $PatientObjName";
+  let line4 = "$PatientObjName align $PatientBedLoc 0";
+  let line5 = "Do 'NEWS_Nurse/SetupPatient.txt'";
+  let line6 = "waitfor";
+  let arr = [line4];
+  parseArrToWorkspace(arr, wspace);
+  // let vd = varDecl(line);
+  // buildVariableSetBlock(wspace, vd);
 }
 
 function updateCodeAndDownload(){
@@ -88,6 +107,7 @@ function createWorkspace(blocklyDiv, options) {
 
   populatePatientVars(wspace);
   allowUpload(wspace);
+  //insertBlocksTest();
   return wspace;
 }
 
