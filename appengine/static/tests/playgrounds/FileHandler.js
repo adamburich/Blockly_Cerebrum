@@ -1,0 +1,107 @@
+function codeToFiles(code){
+    let lines = code.split("\n");
+    
+    let files = [];
+    let mainFile = [];
+
+    for(let i = 0; i < lines.length; i++){
+        if(lines[i].split(" ")[0] == "Label"){
+            let func = [];
+            let fname = lines[i].split(" ")[1].replaceAll("'", "");
+            i++;
+            while(lines[i] != "Return"){
+                func.push(lines[i].trim());
+                i++;
+            }
+            i++;
+            let funcText = func.join("\n");
+            files.push({fname, funcText});
+        }
+        else if(lines[i].split(" ")[0] == "Do"){
+            let fCallText = lines[i].split(" ")[1].replaceAll("'", "");
+            let fCallTextFile = "'" + fCallText + ".txt'"
+            let newLine = "Do " + fCallTextFile;
+            mainFile.push(newLine);
+        }
+        else{
+            mainFile.push(lines[i]);
+        }
+    }
+    let funcText = mainFile.join("\n");
+    let fname = "main";
+    files.push({fname, funcText}); 
+
+    return files;
+}
+
+let reader = new FileReader();
+
+let fileInput;
+let file_text;
+
+function handleEvent(event) {
+    //eventLog.textContent += `${event.type}: ${event.loaded} bytes transferred\n`;
+
+    if (event.type === "load") {
+        reader.result;
+    }
+}
+
+function addListeners(reader) {
+    reader.addEventListener('loadstart', handleEvent);
+    reader.addEventListener('load', handleEvent);
+    reader.addEventListener('loadend', handleEvent);
+    reader.addEventListener('progress', handleEvent);
+    reader.addEventListener('error', handleEvent);
+    reader.addEventListener('abort', handleEvent);
+}
+
+function handleSelected(e) {
+    //eventLog.textContent = '';
+    let selectedFile = fileInput.files[0];
+    if (selectedFile) {
+        addListeners(reader);
+        console.log((reader.readAsText(selectedFile)));
+        console.log(reader.result);
+    }
+}
+
+function setUpFile(workspace){
+    let input = document.getElementById('upload-code')
+    input.addEventListener('change', () => {
+        let files = input.files;
+     
+        if (files.length == 0) return;
+     
+        /* If any further modifications have to be made on the
+           Extracted text. The text can be accessed using the
+           file variable. But since this is const, it is a read
+           only variable, hence immutable. To make any changes,
+           changing const to var, here and In the reader.onload
+           function would be advisible */
+        const file = files[0];
+     
+        let reader = new FileReader();
+     
+        reader.onload = (e) => {
+            const file = e.target.result;
+     
+            // This is a regular expression to identify carriage
+            // Returns and line breaks
+            const lines = file.split(/\r\n|\n/);
+            console.log(workspace)
+            console.log(lines)
+            return parseArrToWorkspace(lines, workspace);
+            //textarea.value = lines.join('\n');
+     
+        };
+     
+        reader.onerror = (e) => alert(e.target.error.name);
+     
+        reader.readAsText(file);
+    });
+}
+
+function prepareFileText(){
+    return file_text.split("\n");
+}

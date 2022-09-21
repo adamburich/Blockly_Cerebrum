@@ -1,6 +1,4 @@
-
-
-let custom_block_lib = [
+const custom_block_lib = [
     {
       'type': 'expression_arithmetic',
       'message0': '%1 %2 %3',
@@ -69,7 +67,9 @@ let custom_block_lib = [
       ],
       "colour": 230,
       "tooltip": "",
-      "helpUrl": ""
+      "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
     },
     {
         "type": "param",
@@ -81,11 +81,13 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "nextStatement":null,
         "colour": 345,
         "tooltip": "Param block - Goes attach to an ObjectMessageHandler call",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "follow",
@@ -97,10 +99,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "switchtoscene",
@@ -112,34 +116,42 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "clickable_reset",
         "message0": "clickable.reset",
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "clickable_ispressed",
         "message0": "clickable.ispressed",
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "clickable_resetpressed",
         "message0": "clickable.resetpressed",
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "clickable",
@@ -151,11 +163,13 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "playsound",
@@ -167,35 +181,41 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         
         "colour": 230,
         "tooltip": "Attach Interval for Sound to Play on",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "stopsound",
         "message0": "StopSound",
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "play",
         "message0": "Play %1",
         "args0": [
           {
-            "type": "input_value",
+            "type": "input_statement",
             "name": "triggername"
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         
         "colour": 230,
         "tooltip": "Attach Trigger Name",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "jump",
@@ -207,10 +227,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "says",
@@ -223,10 +245,12 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "on",
@@ -238,10 +262,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "off",
@@ -253,10 +279,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "delete",
@@ -268,10 +296,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "exists",
@@ -283,10 +313,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "localrotatetox",
@@ -302,11 +334,13 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "localrotatetoy",
@@ -322,10 +356,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "localrotatetoz",
@@ -341,10 +377,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "localrotatex",
@@ -360,10 +398,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "localrotatey",
@@ -379,10 +419,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "localrotatez",
@@ -398,10 +440,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "rotatetox",
@@ -417,10 +461,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "rotatetoy",
@@ -436,10 +482,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "rotatetoz",
@@ -455,10 +503,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "rotatex",
@@ -474,10 +524,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "rotatey",
@@ -493,10 +545,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "rotatez",
@@ -512,10 +566,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "localmovex",
@@ -531,10 +587,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "localmovey",
@@ -550,10 +608,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "localmovez",
@@ -569,10 +629,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "movex",
@@ -588,10 +650,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "movey",
@@ -607,10 +671,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "movez",
@@ -626,10 +692,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "movex",
@@ -645,10 +713,12 @@ let custom_block_lib = [
             }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "matchrotation",
@@ -660,10 +730,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "attachto",
@@ -675,10 +747,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "outline",
@@ -690,26 +764,32 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "outline_on",
         "message0": "Outline.on",
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "outline_off",
         "message0": "Outline.off",
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "outline_color",
@@ -721,10 +801,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "outline_check",
@@ -736,10 +818,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "scale",
@@ -751,10 +835,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "moveto",
@@ -766,10 +852,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "align",
@@ -781,10 +869,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "orient",
@@ -796,10 +886,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "grab",
@@ -811,10 +903,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "release",
@@ -826,10 +920,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "lookatme",
@@ -841,10 +937,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "lookat",
@@ -856,10 +954,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "ison",
@@ -871,10 +971,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "isoff",
@@ -886,10 +988,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "enableclick",
@@ -901,10 +1005,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "disableclick",
@@ -916,10 +1022,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "parentto",
@@ -931,10 +1039,12 @@ let custom_block_lib = [
             "check": "Params"
           }
         ],
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "gameobjecthandlercall",
@@ -953,7 +1063,9 @@ let custom_block_lib = [
         ],
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "gotolabelreturn",
@@ -967,7 +1079,9 @@ let custom_block_lib = [
         "inputsInline": true,
         "colour": 230,
         "tooltip": "Label returns a value",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "gotolabelnoreturn",
@@ -980,7 +1094,9 @@ let custom_block_lib = [
         ],
         "colour": 230,
         "tooltip": "Label does not return a value",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "label",
@@ -991,11 +1107,13 @@ let custom_block_lib = [
             "name": "fname",
           },
         ],
-        "nextStatement": null,
+        
         "inputsInline": true,
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "do_noreturn",
@@ -1007,11 +1125,13 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "nextStatement": null,
-        "previousStatement": null,
+        
+        
         "colour": 230,
         "tooltip": "Do no return",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "do_return",
@@ -1023,11 +1143,13 @@ let custom_block_lib = [
           },
         ],
         "inputsInline": true,
-        "nextStatement": null,
-        "previousStatement": null,
+        
+        
         "colour": 230,
         "tooltip": "Do & return",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "setitemdate",
@@ -1043,11 +1165,13 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         
         "colour": 230,
         "tooltip": "Params dayOffset, format",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "setitemtext",
@@ -1059,10 +1183,12 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "Params StringExpression",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "setitemdatetime",
@@ -1078,18 +1204,22 @@ let custom_block_lib = [
             }
           ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "Params dayOffset, format",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "menu_on",
         "message0": "Menu.on",
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "menu_question",
@@ -1101,11 +1231,13 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "menu_choices",
@@ -1118,19 +1250,23 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         
         "colour": 230,
         "tooltip": "Attach choices as array block of strings",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "menu_done",
         "message0": "Menu.done",
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "menu_result",
@@ -1142,19 +1278,332 @@ let custom_block_lib = [
           }
         ],
         "inputsInline": true,
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "Attach target string to check choice against",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       },
       {
         "type": "menu_choice",
         "message0": "Menu.choice",
-        "previousStatement": null,
+        
         "colour": 230,
         "tooltip": "",
-        "helpUrl": ""
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "pause",
+        "message0": "pause %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "timeInSeconds"
+          }
+        ],
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "waitfor",
+        "message0": "waitfor",
+        'previousStatement': null,
+        'nextStatement': null,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "ison",
+        "message0": "ison %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "objectName"
+          }
+        ],
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "isoff",
+        "message0": "isoff %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "objectName"
+          }
+        ],
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "turnon",
+        "message0": "ison %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "objectName"
+          }
+        ],
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "turnoff",
+        "message0": "isoff %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "objectName"
+          }
+        ],
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "create",
+        "message0": "create %1 %2",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "prefabName"
+          },
+          {
+            "type": "input_value",
+            "name": "objectName"
+          }
+        ],
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "destroy",
+        "message0": "destroy %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "objectName"
+          }
+        ],
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "debug",
+        "message0": "debug %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "message"
+          }
+        ],
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "debug_on",
+        "message0": "debug.on",
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "debug_off",
+        "message0": "debug.off",
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "debugCanvas",
+        "message0": "debugCanvas",
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "debugCanvas_on",
+        "message0": "debugcanvas.on",
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "debugCanvas_off",
+        "message0": "debugcanvas.off",
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "debugDelay",
+        "message0": "debug.delay",
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "gameDelay",
+        "message0": "game.delay %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "timeInSeconds"
+          }
+        ],
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "prompt",
+        "message0": "prompt %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "message"
+          }
+        ],
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "speaker1",
+        "message0": "speaker1 %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "message"
+          }
+        ],
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "speaker2",
+        "message0": "speaker2 %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "message"
+          }
+        ],
+        'previousStatement': null,
+        'nextStatement': null,
+        "inputsInline": true,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
+      },
+      {
+        "type": "comment",
+        "message0": "Add Comment: %1",
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "comment_val",
+            "check": "String"
+          }
+        ],
+        "inputsInline": true,
+        "colour": 75,
+        "tooltip": "",
+        "helpUrl": "",
+        "nextStatement":null,
+        "previousStatement":null
       }
-      ];
-
+  ];
 

@@ -27,6 +27,7 @@ import Blockly from './blockly.mjs';
 'use strict';
 
 var wspace;
+var happened = false;
 
 function start() {
   setBackgroundColour();
@@ -35,6 +36,8 @@ function start() {
   var download = document.getElementById("download-code");
   download.onclick = updateCodeAndDownload;
   setTimeout(hideUnusedGenerators, 125);
+  setTimeout(hideUnusedGenerators, 10000);
+
 }
 
 function allowUpload(workspace){
