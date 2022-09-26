@@ -1,3 +1,6 @@
+
+import {buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './BuildBlocksFromCode.js'
+
 const SPECIAL_CHARS = ["#", "$"];
 const GAME_MANAGER_RWORDS = [
     "if", "else", "then", "dochoice", "endif", "pause", "waitfor", "ison", "isoff",
@@ -129,4 +132,6 @@ function fcallFromObject(line){
     var objname = chunks[0];
     fcall(remaining_line)
 }
+
+export {fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, parseExpression, fcall, objectMessageHandlerCall, varDecl}
 

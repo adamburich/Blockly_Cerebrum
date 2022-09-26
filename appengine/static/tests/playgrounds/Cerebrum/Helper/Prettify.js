@@ -7,3 +7,5 @@ function hideUnusedGenerators(){
         }
     }
 }
+
+export {hideUnusedGenerators}

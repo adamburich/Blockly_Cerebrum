@@ -1,3 +1,5 @@
+import { custom_block_lib } from "../Blocks/CustomBlockLibrary.mjs";
+
 const simpleObjectMessageHandlerCalls = "switchtoscene clickable says playsound localrotatetox localrotatetoy localrotatetoz localrotatex localrotatey localrotatez rotatetox rotatetoy rotatetoz rotatey rotatex rotatez movex movey movez localmovez localmovex localmovey setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
 
 function buildVariableSetBlock(workspace, declarationValues){
@@ -101,9 +103,9 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs){
 }
 
 function buildCommentBlock(workspace, comment){
-    commentBlock = workspace.newBlock("comment")
+    let commentBlock = workspace.newBlock("comment")
     //console.log(buildValBlocks(workspace, [comment]))
-    commentValBlock = buildValBlocks(workspace, [comment])[0];
+    let commentValBlock = buildValBlocks(workspace, [comment])[0];
     let parentConnection = commentBlock.getInput("comment_val").connection;
     let childConnection = commentValBlock.outputConnection;
     parentConnection.connect(childConnection);
@@ -175,9 +177,14 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall){
     let args = callAndArgs[1].trimStart(" ");
     let args_arr = args.split(" ");
 
+    //Handle some special cases - our gamemanager's ison and isoff calls can't be named those things since they're in use by default blockly so our calls are is_on and is_off - this is fine we just have to catch it and translate
     if(call == "do"){
         call = "do_return";
         //console.log("Identified Do call with args " + args_arr)
+    }else if(call == "ison"){
+        call = "is_on";
+    }else if(call == "isoff"){
+        call = "is_off";
     }
 
     var result = custom_block_lib.filter(obj => {
@@ -258,3 +265,5 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall){
 
     return init_block;
 }
+
+export {buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock}

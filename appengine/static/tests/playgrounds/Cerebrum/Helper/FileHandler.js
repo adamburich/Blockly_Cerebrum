@@ -1,35 +1,39 @@
-function codeToFiles(code){
+
+import { parseArrToWorkspace } from './ParseFileContents.js'
+import { cerebrumGenerator } from '../Generator/CerebrumGenerator.mjs'
+
+function codeToFiles(code) {
     let lines = code.split("\n");
-    
+
     let files = [];
     let mainFile = [];
 
-    for(let i = 0; i < lines.length; i++){
-        if(lines[i].split(" ")[0] == "Label"){
+    for (let i = 0; i < lines.length; i++) {
+        if (lines[i].split(" ")[0] == "Label") {
             let func = [];
             let fname = lines[i].split(" ")[1].replaceAll("'", "");
             i++;
-            while(lines[i] != "Return"){
+            while (lines[i] != "Return") {
                 func.push(lines[i].trim());
                 i++;
             }
             i++;
             let funcText = func.join("\n");
-            files.push({fname, funcText});
+            files.push({ fname, funcText });
         }
-        else if(lines[i].split(" ")[0] == "Do"){
+        else if (lines[i].split(" ")[0] == "Do") {
             let fCallText = lines[i].split(" ")[1].replaceAll("'", "");
             let fCallTextFile = "'" + fCallText + ".txt'"
             let newLine = "Do " + fCallTextFile;
             mainFile.push(newLine);
         }
-        else{
+        else {
             mainFile.push(lines[i]);
         }
     }
     let funcText = mainFile.join("\n");
     let fname = "main";
-    files.push({fname, funcText}); 
+    files.push({ fname, funcText });
 
     return files;
 }
@@ -66,13 +70,13 @@ function handleSelected(e) {
     }
 }
 
-function setUpFile(workspace){
+function setUpFile(workspace) {
     let input = document.getElementById('upload-code')
     input.addEventListener('change', () => {
         let files = input.files;
-     
+
         if (files.length == 0) return;
-     
+
         /* If any further modifications have to be made on the
            Extracted text. The text can be accessed using the
            file variable. But since this is const, it is a read
@@ -80,12 +84,12 @@ function setUpFile(workspace){
            changing const to var, here and In the reader.onload
            function would be advisible */
         const file = files[0];
-     
+
         let reader = new FileReader();
-     
+
         reader.onload = (e) => {
             const file = e.target.result;
-     
+
             // This is a regular expression to identify carriage
             // Returns and line breaks
             const lines = file.split(/\r\n|\n/);
@@ -93,15 +97,45 @@ function setUpFile(workspace){
             console.log(lines)
             return parseArrToWorkspace(lines, workspace);
             //textarea.value = lines.join('\n');
-     
+
         };
-     
+
         reader.onerror = (e) => alert(e.target.error.name);
-     
+
         reader.readAsText(file);
     });
 }
 
-function prepareFileText(){
+function prepareFileText() {
     return file_text.split("\n");
 }
+
+function updateCodeAndDownload(workspace) {
+    var code = cerebrumGenerator.workspaceToCode(workspace);
+
+    let singleFile = document.getElementById("single-output").checked;
+
+    if (singleFile) {
+        console.log(code);
+        var a = document.createElement("a");
+        a.href = window.URL.createObjectURL(new Blob([code], { type: "text/plain" }));
+        a.download = "code";
+        a.click();
+    }
+    else {
+        var files = codeToFiles(code);
+        for (let i = 0; i < files.length; i++) {
+            var a = document.createElement("a");
+            a.href = window.URL.createObjectURL(new Blob([files[i].funcText], { type: "text/plain" }));
+            a.download = files[i].fname;
+            a.click();
+        }
+    }
+
+}
+
+function allowUpload(workspace) {
+    setUpFile(workspace);
+}
+
+export { prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }

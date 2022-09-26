@@ -9,20 +9,13 @@
 <script src="https://unpkg.com/@blockly/dev-tools/dist/index.js"></script>
 <script src="https://unpkg.com/@blockly/theme-modern/dist/index.js"></script>
 
-<script src="./Cerebrum/Blocks/block_definitions.js"></script>
-
-<script src="./Cerebrum/Generator/cerebrum_generator.js"></script>
-
-<script src="./Cerebrum/Toolbox/cerebrum_toolbox.js"></script>
-
-<script src="./Cerebrum/Helper/FileHandler.js"></script>
-<script src="./Cerebrum/Helper/AddButtons.js"></script>
-<script src="./Cerebrum/Helper/Prettify.js"></script>
-<script src="./Cerebrum/Helper/BuildBlocksFromCode.js"></script>
-<script src="./Cerebrum/Helper/ParseFileContents.js"></script>
-<script src="./Cerebrum/Helper/CodeToWorkspace.js"></script>
-
 <script type="module">
+
+import { cerebrumToolbox } from './Cerebrum/Toolbox/cerebrum_toolbox.mjs'
+import { custom_block_lib } from './Cerebrum/Blocks/CustomBlockLibrary.mjs'
+import { addButtons, updateCodeAndDownload, hideUnusedGenerators, allowUpload, populatePatientVars } from './Cerebrum/Helper/helpers.mjs'
+import { cerebrumGenerator } from './Cerebrum/Generator/CerebrumGenerator.mjs'
+
 import Blockly from './blockly.mjs';
 'use strict';
 
@@ -34,71 +27,12 @@ function start() {
   initPlayground();
   addButtons();
   var download = document.getElementById("download-code");
-  download.onclick = updateCodeAndDownload;
+  download.onclick = function(){
+    updateCodeAndDownload(wspace);
+  };
   setTimeout(hideUnusedGenerators, 125);
-  setTimeout(hideUnusedGenerators, 10000);
+  setTimeout(hideUnusedGenerators, 5000);
 
-}
-
-function allowUpload(workspace){
-  setUpFile(workspace);
-}
-
-function insertBlocksTest(){
-  //workspace.addTopBlock(new Blockly.Block(workspace, 'clickable_reset'));
-  //console.log(wspace);
-  
-  //handleTextXML(workspace)
-  let line1 = "$PatientName = 'Lim Ah Nee'";
-  let line2 = "$isEWS = 'true'";
-  let line3 = "Create $PatientModel $PatientObjName";
-  let line4 = "$PatientObjName align $PatientBedLoc 0";
-  let line5 = "Do 'NEWS_Nurse/SetupPatient.txt'";
-  let line6 = "waitfor";
-  let arr = [line4];
-  parseArrToWorkspace(arr, wspace);
-  // let vd = varDecl(line);
-  // buildVariableSetBlock(wspace, vd);
-}
-
-function updateCodeAndDownload(){
-  var code = cerebrumGenerator.workspaceToCode(wspace);
-  var files = codeToFiles(code);
-  
-  for(let i = 0; i < files.length; i++){
-    var a = document.createElement("a");
-    a.href = window.URL.createObjectURL(new Blob([files[i].funcText], {type: "text/plain"}));
-    a.download = files[i].fname;
-    a.click();
-  }
-}
-
-function populatePatientVars(workspace){
-  workspace.createVariable("PatientName", "", "PatientName");
-  workspace.createVariable("isEWS", "", "isEWS");
-  workspace.createVariable("PatientIC", "", "PatientIC");
-  workspace.createVariable("BloodType", "", "BloodType");
-  workspace.createVariable("AgeInYears", "", "AgeInYears");
-  workspace.createVariable("PatientModel", "", "PatientModel");
-  workspace.createVariable("PatientDiag", "", "PatientDiag");
-  workspace.createVariable("PatientGender", "", "PatientGender");
-  workspace.createVariable("PatientSummary", "", "PatientSummary");
-  workspace.createVariable("PatientType", "", "PatientType");
-  workspace.createVariable("Temperature", "", "Temperature");
-  workspace.createVariable("HR", "", "HR");
-  workspace.createVariable("BP", "", "BP");
-  workspace.createVariable("BPSys", "", "BPSys");
-  workspace.createVariable("Respiration", "", "Respiration");
-  workspace.createVariable("SpO2", "", "SpO2");
-  workspace.createVariable("PainScore", "", "PainScore");
-  workspace.createVariable("AbnormalResponse", "", "AbnormalResponse");
-  workspace.createVariable("PatientSpeak", "", "PatientSpeak");
-  workspace.createVariable("PatientObjName", "", "PatientObjName");
-  workspace.createVariable("PatientBedLoc", "", "PatientBedLoc");
-  workspace.createVariable("RigType", "", "RigType");
-  workspace.createVariable("HeadAmount", "", "HeadAmount");
-  workspace.createVariable("WeightAmount", "", "WeightAmount");
-  workspace.createVariable("Patient", "", "Patient");
 }
 
 function createWorkspace(blocklyDiv, options) {
@@ -164,7 +98,7 @@ function initPlayground() {
           drag: true,
           wheel: false,
         },
-        toolbox: codelabToolbox,
+        toolbox: cerebrumToolbox,
         toolboxPosition: 'start',
         renderer: 'geras',
         zoom:

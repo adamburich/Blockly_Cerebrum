@@ -1,4 +1,25 @@
-const simpleObjectMessageHandlerCalls = "switchtoscene clickable says playsound localrotatetox localrotatetoy localrotatetoz localrotatex localrotatey localrotatez rotatetox rotatetoy rotatetoz rotatey rotatex rotatez movex movey movez localmovez localmovex localmovey setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
+/**
+ * Blockly Cerebrum Implementation
+ * 
+ * BuildBlocksFromCode.js
+ * LARGE SCRIPT LOTS OF STUFF IN HERE
+ * - Builder functions (generally speaking there's about 1 for each type of parse function in /Helper/ParseFileContents.js) 
+ * - Each function builds a set of blocks, attaches it to the workspace, and renders the workspace again
+ * - In writing a builder function the blocks must be created, connected, initialized, and then the workspace rendered.
+ * 
+ * Written by Adam Burich, Summer of 2022
+ * 
+ */
+
+import { custom_block_lib } from "../Blocks/CustomBlockLibrary.mjs";
+
+const simpleObjectMessageHandlerCalls = "setmaterial switchtoscene clickable says playsound localrotatetox localrotatetoy localrotatetoz localrotatex localrotatey localrotatez rotatetox rotatetoy rotatetoz rotatey rotatex rotatez movex movey movez localmovez localmovex localmovey setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
+
+function buildIfThenBlock(ifParts, workspace){
+    let ifCond = ifParts[0];
+    let thenBod = ifParts[1];
+    let elseBod = ifParts[2];
+}
 
 function buildVariableSetBlock(workspace, declarationValues){
     //console.log(declarationValues)
@@ -25,6 +46,10 @@ function buildVariableSetBlock(workspace, declarationValues){
     else if(payload.charAt(0) == "$"){
         // console.log("VARIABLE ASSIGNMENT HAPPENING NOW")
         let varId = payload.substring(1, payload.length);
+        if(!workspace.getAllVariableNames().includes(varId)){
+            workspace.createVariable(varId, "", varId);
+        }
+        //console.log(workspace.getAllVariableNames());
         // workspace.createVariable(varId, "", varId);
         // workspace.render();
         // console.log(workspace.getPotentialVariableMap())
@@ -101,9 +126,10 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs){
 }
 
 function buildCommentBlock(workspace, comment){
-    commentBlock = workspace.newBlock("comment")
+    let commentBlock = workspace.newBlock("comment")
+    //comment = comment.replace("#", "");
     //console.log(buildValBlocks(workspace, [comment]))
-    commentValBlock = buildValBlocks(workspace, [comment])[0];
+    let commentValBlock = buildValBlocks(workspace, [comment])[0];
     let parentConnection = commentBlock.getInput("comment_val").connection;
     let childConnection = commentValBlock.outputConnection;
     parentConnection.connect(childConnection);
@@ -175,9 +201,14 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall){
     let args = callAndArgs[1].trimStart(" ");
     let args_arr = args.split(" ");
 
+    //Handle some special cases - our gamemanager's ison and isoff calls can't be named those things since they're in use by default blockly so our calls are is_on and is_off - this is fine we just have to catch it and translate
     if(call == "do"){
         call = "do_return";
         //console.log("Identified Do call with args " + args_arr)
+    }else if(call == "ison"){
+        call = "is_on";
+    }else if(call == "isoff"){
+        call = "is_off";
     }
 
     var result = custom_block_lib.filter(obj => {
@@ -223,7 +254,8 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall){
                     valBlock.setFieldValue(payload, "NUM");
                 }else{
                     valBlock = workspace.newBlock("text")
-                    let payload_val = payload.substring(1, payload.length-1);
+                    //let payload_val = payload.substring(1, payload.length-1);
+                    let payload_val = payload;
                     valBlock.setFieldValue(payload_val, "TEXT");
                 }
             }
@@ -258,3 +290,7 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall){
 
     return init_block;
 }
+
+
+
+export {buildIfThenBlock, buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock}
