@@ -130,5 +130,11 @@ export function bindControlFlowCommand(generator) {
         return code;
     };
 
-    generator['controls_ifelse'] = generator['controls_if'];
+    generator['controls_ifelse'] = function (block) {
+        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
+        var body = generator.statementToCode(block, "DO0");
+        var elseBody = generator.statementToCode(block, "ELSE");
+        var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Else\n" + elseBody + "\n" + "Endif";
+        return code;
+    };
 }

@@ -53,6 +53,7 @@ function varDecl(line){
  */
 function parseArrToWorkspace(arr, workspace){
     let parentBlock = null;
+    let newBlocks = [];
     for(let i = 0; i < arr.length; i++){
         let thisBlock;
         if(arr[i].trim() == "If"){
