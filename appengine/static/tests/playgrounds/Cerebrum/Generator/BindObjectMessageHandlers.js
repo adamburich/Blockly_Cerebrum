@@ -18,10 +18,17 @@ export function bindObjectMessageHandlersToGenerator(generator) {
         return code;
     };
 
-
     generator['clickable_reset'] = function (block) {
         // TODO: Assemble JavaScript into code variable.
         var code = 'clickable.reset';
+        return code;
+    };
+
+    generator['localposition'] = function (block) {
+        var xpos = generator.valueToCode(block, 'xpos', Blockly.JavaScript.ORDER_ATOMIC);
+        var ypos = generator.valueToCode(block, 'ypos', Blockly.JavaScript.ORDER_ATOMIC);
+        var zpos = generator.valueToCode(block, 'zpos', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = ' localposition ' + xpos + ',' + ypos + ',' + zpos;
         return code;
     };
 
@@ -443,6 +450,15 @@ export function bindObjectMessageHandlersToGenerator(generator) {
         var format = generator.valueToCode(block, "format", Blockly.JavaScript.ORDER_ATOMIC);
 
         var code = " setItemDate " + offset + " " + format;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['setmaterial'] = function (block) {
+
+        var material = generator.statementToCode(block, "material", Blockly.JavaScript.ORDER_ATOMIC);
+
+        var code = " setMaterial " + material;
         //console.log("." + statements_params)
         return code;
     };

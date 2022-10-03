@@ -12,6 +12,8 @@ export function bindMisc(generator) {
         return code;
     };
     generator['expression_arithmetic'] = function (block) {
+
+
         // Basic arithmetic operators, and power.
         const OPERATORS = {
             'ADD': [' + ', Blockly.JavaScript.ORDER_ADDITION],

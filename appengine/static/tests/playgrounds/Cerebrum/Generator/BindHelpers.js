@@ -4,6 +4,14 @@
  */
 
 export function bindHelpers(generator) {
+
+    generator['comment'] = function (block) {
+        var value_comment_val = generator.valueToCode(block, 'comment_val', Blockly.JavaScript.ORDER_ATOMIC);
+        // TODO: Assemble JavaScript into code variable.
+        let code = value_comment_val.slice(1, -1).replaceAll("\\", "");
+        return code;
+    };
+
     generator['object_calling'] = function (block) {
         var object = block.getField("Object_Variable")
         var object_string = "$" + object.selectedOption_[0]

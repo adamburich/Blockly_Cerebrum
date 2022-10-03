@@ -1,3 +1,13 @@
+/**
+ * Blockly Cerebrum Implementation
+ * 
+ * FileHandler.js
+ *  - This is the only script that interacts directly with any file(s)
+ *  - Responsible for both file uploads @setUpFile and @allowUpload and downloads (all other functions)
+ * 
+ * Written by Adam Burich, Summer of 2022
+ * 
+ */
 
 import { parseArrToWorkspace } from './ParseFileContents.js'
 import { cerebrumGenerator } from '../Generator/CerebrumGenerator.mjs'

@@ -7,7 +7,6 @@ export function bindGameManagerCalls(generator) {
     generator['create'] = function (block) {
         var prefabName = generator.valueToCode(block, 'prefabName', Blockly.JavaScript.ORDER_ATOMIC).replaceAll("'", "");
         var objectName = generator.valueToCode(block, 'objectName', Blockly.JavaScript.ORDER_ATOMIC).replaceAll("'", "");
-
         return "Create " + prefabName + " " + objectName;
     }
 
@@ -16,15 +15,10 @@ export function bindGameManagerCalls(generator) {
         return "waitfor";
     }
 
-    generator['comment'] = function (block) {
-        var value_comment_val = generator.valueToCode(block, 'comment_val', Blockly.JavaScript.ORDER_ATOMIC);
-        // TODO: Assemble JavaScript into code variable.
-        var code = '####################\n' + "# " + value_comment_val.replaceAll("'", "") + '\n####################';
-        return code;
-    };
-
     generator['prompt'] = function (block) {
         var arg = generator.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
+        arg = arg.replace("(", "");
+        arg = arg.replace(")", "");
 
         return "prompt " + arg;
     }

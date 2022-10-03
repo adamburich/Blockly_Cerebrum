@@ -24,28 +24,28 @@ Blockly.common.defineBlocksWithJsonArray(custom_block_lib);
                   },
                 }
               },
-              {
-                'kind': 'block',
-                'type': 'do_return',
-                "inputs": {
-                  "fname":{
-                    "shadow":{
-                      "type": "procedures_callreturn"
-                    }
-                  },
-                }
-              },
-              {
-                'kind': 'block',
-                'type': 'do_noreturn',
-                "inputs": {
-                  "fname":{
-                    "shadow":{
-                      "type": "procedures_callnoreturn"
-                    }
-                  },
-                }
-              },
+              // {
+              //   'kind': 'block',
+              //   'type': 'do_return',
+              //   "inputs": {
+              //     "fname":{
+              //       "shadow":{
+              //         "type": "procedures_callreturn"
+              //       }
+              //     },
+              //   }
+              // },
+              // {
+              //   'kind': 'block',
+              //   'type': 'do_noreturn',
+              //   "inputs": {
+              //     "fname":{
+              //       "shadow":{
+              //         "type": "procedures_callnoreturn"
+              //       }
+              //     },
+              //   }
+              // },
               {
                 'kind': 'block',
                 'type': 'do_return',

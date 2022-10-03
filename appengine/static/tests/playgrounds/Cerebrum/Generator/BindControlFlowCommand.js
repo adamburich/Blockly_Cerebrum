@@ -8,8 +8,8 @@ export function bindControlFlowCommand(generator) {
         var name = block.getFieldValue("NAME");
         //console.log(block)
         var body = generator.statementToCode(block, "STACK");
-
-        return "\nLabel '" + name + "'\n" + body + "\nReturn";
+        var returnVal = generator.valueToCode(block, 'RETURN', Blockly.JavaScript.ORDER_NONE)
+        return "\nLabel '" + name + "'\n" + body + "\nReturn " + returnVal;
     }
 
     generator['procedures_defnoreturn'] = function (block) {
@@ -20,11 +20,29 @@ export function bindControlFlowCommand(generator) {
     }
 
     generator['procedures_callnoreturn'] = function (block) {
-        console.log(block)
-        var name = generator.statementToCode(block, 'extraState');
-
-        return name;
+        const funcName = block.getFieldValue('NAME');
+        const args = [];
+        const variables = block.getVars();
+        for (let i = 0; i < variables.length; i++) {
+          args[i] = generator.valueToCode(block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
+              'null';
+        }
+        const code = 'do ' + funcName + ' ' + args.join('  ') + ' ';
+        return code;
     }
+    
+    generator['procedures_callreturn'] = function(block) {
+        // Call a procedure with a return value.
+        const funcName = block.getFieldValue('NAME');
+        const args = [];
+        const variables = block.getVars();
+        for (let i = 0; i < variables.length; i++) {
+          args[i] = generator.valueToCode(block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
+              'null';
+        }
+        const code = 'do ' + funcName + ' ' + args.join('  ') + ' ';
+        return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
+    };
 
     generator['do_return'] = function (block) {
         var tt_block = block.childBlocks_[0];
@@ -124,11 +142,19 @@ export function bindControlFlowCommand(generator) {
     };
 
     generator['controls_if'] = function (block) {
+        //console.log(block);
         var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
         var body = generator.statementToCode(block, "DO0");
         var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Endif";
         return code;
     };
 
-    generator['controls_ifelse'] = generator['controls_if'];
+    generator['controls_ifelse'] = function (block) {
+        console.log(block);
+        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
+        var body = generator.statementToCode(block, "DO0");
+        var elseBody = generator.statementToCode(block, "ELSE");
+        var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Else\n" + elseBody + "\n" + "Endif";
+        return code;
+    };
 }

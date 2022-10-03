@@ -4,6 +4,7 @@ export function bindCleaners(generator) {
         code = code.replaceAll("TRUE", "true");
         code = code.replaceAll("FALSE", "false");
         code = code.replaceAll("  ", " ");
+        code = code.replaceAll("\\'", "");
 
         return code;
 

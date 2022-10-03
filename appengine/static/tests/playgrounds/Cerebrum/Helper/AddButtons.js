@@ -1,3 +1,13 @@
+/**
+ * Blockly Cerebrum Implementation
+ * 
+ * AddButtons.js
+ *  - This script adds all of the buttons for Download Code, Upload Code, and Force Single File Output
+ * 
+ * Written by Adam Burich, Summer of 2022
+ * 
+ */
+
 export function addButtons(){
     var spans = document.getElementsByTagName("span");
     var searchText = "Blockly Playground";

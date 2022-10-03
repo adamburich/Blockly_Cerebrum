@@ -1,3 +1,13 @@
+/**
+ * Blockly Cerebrum Implementation
+ * 
+ * Module file for all of the functions in the Helper directory
+ * This is here so we can just import portions of the module that we need in the HTML page instead of having a <script> tag for each
+ * 
+ * Written by Adam Burich, Summer of 2022
+ * 
+ */
+
 import { addButtons } from "./AddButtons.js";
 import {fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, parseExpression, fcall, objectMessageHandlerCall, varDecl} from "./ParseFileContents.js";
 import {buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './BuildBlocksFromCode.js';

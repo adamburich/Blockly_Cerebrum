@@ -1,4 +1,5 @@
 /**
+ * Blockly Cerebrum Implementation
  * Aggregate file for Cerebrum Generator
  * 
  * This file is a module and uses the Bind files in this directory to define how the
@@ -8,6 +9,8 @@
  * 
  * If you make a new Bind file you must also import it below and call its bind function 
  * with @cerebrumGenerator as param
+ * 
+ * Written by Adam Burich, Summer of 2022
  * 
  */
 

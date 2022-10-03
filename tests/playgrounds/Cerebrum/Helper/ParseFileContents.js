@@ -8,7 +8,7 @@
  * 
  */
 
-import {buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock, buildIfThenBlock} from './BuildBlocksFromCode.js'
+import {buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock, buildIfThenBlock} from './BuildBlocksFromCode.js'
 
 const SPECIAL_CHARS = ["#", "$"];
 const GAME_MANAGER_RWORDS = [
@@ -45,6 +45,7 @@ function varDecl(line){
     return [obj_name, payload_val];
 }
 
+
 /**
  * Parses array of lines and adds it to the workspace - calls several helper parsing and building functions
  * @param {*} arr 
@@ -65,10 +66,8 @@ function parseArrToWorkspace(arr, workspace){
             }
             lineArr.push(arr[i]);
             i++;
-
-            thisBlock = parseIfBlock(lineArr, workspace);
-
-            buildIfThenBlock(parseIfBlock(lineArr, workspace));
+            
+            thisBlock = buildIfThenBlock(parseIfBlock(lineArr, workspace), workspace);
         }
         else{
             thisBlock = parseLineToWorkspace(arr[i], workspace);
@@ -84,7 +83,9 @@ function parseArrToWorkspace(arr, workspace){
         else{
             parentBlock = null;
         }
+        newBlocks.push(thisBlock);
     }
+    return newBlocks;
     
 }
 
@@ -105,8 +106,10 @@ function parseLineToWorkspace(line, workspace){
     else if(line.charAt(0) == "#"){
         return buildCommentBlock(workspace, line);
     }
+    else if(line.indexOf("!=") != -1 || line.indexOf("==") != -1 || line.indexOf("<=") != -1 || line.indexOf(">=") != -1 || line.indexOf(">") != -1 || line.indexOf("<") != -1){
+        return buildLogicalExpressionBlock(workspace, line);
+    }
     else if(line.charAt(0) == "$"){
-        //If line contains equals it is trying to set a variable, if it doesn't then we know it's an ObjectMessageHandler call
         if(line.indexOf("=") != -1){
             return buildVariableSetBlock(workspace, varDecl(line));
         }
@@ -142,15 +145,15 @@ function objectMessageHandlerCall(line){
                 i++;
             }
             arg += chunks[i];
-            i++;
+            // i++;
             adjustedChunks.push(arg);
         }
         else{
             adjustedChunks.push(chunks[i]);
         }
     }
-    console.log("ADJUSTED CHUNKS");
-    console.log(adjustedChunks);
+    //console.log("ADJUSTED CHUNKS");
+    //console.log(adjustedChunks);
     let args = [];
     for(let i = 2; i < adjustedChunks.length; i++){
         args.push(adjustedChunks[i]);
@@ -165,8 +168,37 @@ function objectMessageHandlerCall(line){
  */
 function gameManagerCall(line){
     var chunks = line.trimStart(" ").split(" ");
+    let adjustedChunks = [];
+    for(let i = 0; i < chunks.length; i++){
+        if(chunks[i].charAt(0) == "'"){ 
+            let arg = "";
+            while(chunks[i].charAt(chunks[i].length-1) != "'"){
+                arg += chunks[i] + " ";
+                i++;
+            }
+            arg += chunks[i];
+            i++;
+            adjustedChunks.push(arg);
+        }
+        else{
+            adjustedChunks.push(chunks[i]);
+        }
+    }
+    // console.log("ADJUSTED CHUNKS");
+    // console.log(adjustedChunks);
     var callName = chunks[0];
-    let args = line.substring(line.indexOf(" "), line.length);
+    let lineMinusCallName = line.replace(callName, "");
+    // console.log("LINE WITHOUT CALL NAME")
+    // console.log(lineMinusCallName);
+    let args = [];
+    if(lineMinusCallName.indexOf("+") != -1){
+        args.push(lineMinusCallName.trim());
+    }
+    else{
+        for(let i = 1; i < adjustedChunks.length; i++){
+            args.push(adjustedChunks[i]);
+        }
+    }
 
     // console.log("Debug info for gameManagerCall("+line+")");
     // console.log("callName: " + callName);
@@ -194,20 +226,26 @@ function parseIfBlock(lineArray, workspace){
     let thenBody = [];
     let elseBody = [];
     
-    for(let i = 0; i < lineArray.length; i++){
-        lineArray[i] = lineArray[i].trim();
-    }
+    console.log(lineArray);
+    // for(let i = 0; i < lineArray.length; i++){
+    //     lineArray[i] = lineArray[i].trim();
+    // }
 
     let ifIndex = lineArray.indexOf("If");
     let thenIndex = lineArray.indexOf("Then");
     let elseIndex = lineArray.indexOf("Else");
     let endIndex = lineArray.indexOf("Endif");
+    let flexIndex = endIndex;
+    if(elseIndex != -1){
+        flexIndex = elseIndex;
+    }
+    console.log(ifIndex, thenIndex, elseIndex, endIndex);
     
     for(let i = 0; i < lineArray.length; i++){
         if(i > ifIndex && i < thenIndex){
             ifCond.push(lineArray[i]);
         }
-        else if(i > thenIndex && i < elseIndex){
+        else if(i > thenIndex && i < flexIndex){
             thenBody.push(lineArray[i]);
         }
         else if(elseIndex != -1 && (i > elseIndex && i < endIndex)){

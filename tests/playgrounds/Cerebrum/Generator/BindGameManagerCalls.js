@@ -17,6 +17,8 @@ export function bindGameManagerCalls(generator) {
 
     generator['prompt'] = function (block) {
         var arg = generator.valueToCode(block, "message", Blockly.JavaScript.ORDER_ATOMIC);
+        arg = arg.replace("(", "");
+        arg = arg.replace(")", "");
 
         return "prompt " + arg;
     }

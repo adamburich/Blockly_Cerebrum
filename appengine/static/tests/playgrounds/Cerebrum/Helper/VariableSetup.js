@@ -1,4 +1,14 @@
 
+/**
+ * Blockly Cerebrum Implementation
+ * 
+ * VariableSetup.js
+ * - Here we initialize some variables that are commonly used (commonly because these are required for patient creation and they will always be named the same)
+ * 
+ * Written by Adam Burich, Summer of 2022
+ * 
+ */
+
 export function populatePatientVars(workspace){
     workspace.createVariable("PatientName", "", "PatientName");
     workspace.createVariable("isEWS", "", "isEWS");
