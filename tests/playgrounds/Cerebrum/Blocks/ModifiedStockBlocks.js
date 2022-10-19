@@ -25,9 +25,8 @@ export let moddedBlocks = [
         ],
         'output': null,
         'inputsInline': true,
-        'style': 'math_blocks',
+        "colour": 230,
         'helpUrl': '%{BKY_MATH_ARITHMETIC_HELPURL}',
-        'extensions': ['math_op_tooltip'],
       },
       {
         'type': 'variables_set_dynamic_double',
