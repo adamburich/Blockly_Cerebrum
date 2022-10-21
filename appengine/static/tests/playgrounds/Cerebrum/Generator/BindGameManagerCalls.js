@@ -102,4 +102,10 @@ export function bindGameManagerCalls(generator) {
 
         return "pause " + arg;
     }
+
+    generator['wait'] = function (block) {
+        var arg = generator.valueToCode(block, "timeInSeconds", Blockly.JavaScript.ORDER_ATOMIC);
+
+        return "Wait " + arg;
+    }
 }

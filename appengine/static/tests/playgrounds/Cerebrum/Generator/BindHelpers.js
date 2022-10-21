@@ -4,7 +4,10 @@
  */
 
 export function bindHelpers(generator) {
-
+    generator['empty_line'] = function (block) {
+        return "";
+    };
+    
     generator['comment'] = function (block) {
         var value_comment_val = generator.valueToCode(block, 'comment_val', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
@@ -12,9 +15,16 @@ export function bindHelpers(generator) {
         return code;
     };
 
+    generator['multi_line_comment'] = function (block) {
+        var value_comment_val = block.getFieldValue("comment");
+        // TODO: Assemble JavaScript into code variable.
+        let code = "/*\n"+value_comment_val+"\n*/"
+        return code;
+    };
+
     generator['object_calling'] = function (block) {
         var object = block.getField("Object_Variable")
-        var object_string = "$" + object.selectedOption_[0]
+        var object_string = object.selectedOption_[0]
         var call_eval = " " + generator.statementToCode(block, "Params").trimStart();
         call_eval = call_eval.replace("  ", " ");
         var code = object_string + call_eval;

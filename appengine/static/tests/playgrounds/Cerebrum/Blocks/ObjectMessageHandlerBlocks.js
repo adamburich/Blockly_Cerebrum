@@ -17,6 +17,23 @@ export let objectMessageHandlerBlocks = [
     "previousStatement": null
   },
   {
+    "type": "getglobal",
+    "message0": "getGlobal %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
     "type": "follow",
     "message0": "Follow %1",
     "args0": [
@@ -53,6 +70,16 @@ export let objectMessageHandlerBlocks = [
   {
     "type": "clickable_reset",
     "message0": "clickable.reset",
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "reset",
+    "message0": "reset",
 
     "colour": 230,
     "tooltip": "",
@@ -249,15 +276,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "localrotatetox",
-    "message0": "LocalRotateToX %1 %2",
+    "message0": "LocalRotateToX %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -271,15 +295,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "localrotatetoy",
-    "message0": "LocalRotateToY %1 %2",
+    "message0": "LocalRotateToY %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -292,15 +313,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "localrotatetoz",
-    "message0": "LocalRotateToZ %1 %2",
+    "message0": "LocalRotateToZ %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -313,15 +331,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "localrotatex",
-    "message0": "LocalRotateX %1 %2",
+    "message0": "LocalRotateX %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -334,15 +349,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "localrotatey",
-    "message0": "LocalRotateY %1 %2",
+    "message0": "LocalRotateY %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -355,15 +367,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "localrotatez",
-    "message0": "LocalRotateZ %1 %2",
+    "message0": "LocalRotateZ %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -376,15 +385,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "rotatetox",
-    "message0": "RotateToX %1 %2",
+    "message0": "RotateToX %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -397,15 +403,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "rotatetoy",
-    "message0": "RotateToY %1 %2",
+    "message0": "RotateToY %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -418,15 +421,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "rotatetoz",
-    "message0": "RotateToZ %1 %2",
+    "message0": "RotateToZ %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -439,15 +439,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "rotatex",
-    "message0": "RotateX %1 %2",
+    "message0": "RotateX %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -460,15 +457,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "rotatey",
-    "message0": "RotateY %1 %2",
+    "message0": "RotateY %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -481,15 +475,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "rotatez",
-    "message0": "RotateZ %1 %2",
+    "message0": "RotateZ %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -502,15 +493,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "localmovex",
-    "message0": "LocalMoveX %1 %2",
+    "message0": "LocalMoveX %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -523,15 +511,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "localmovey",
-    "message0": "LocalMoveY %1 %2",
+    "message0": "LocalMoveY %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -544,15 +529,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "localmovez",
-    "message0": "LocalMoveZ %1 %2",
+    "message0": "LocalMoveZ %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -565,15 +547,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "movex",
-    "message0": "MoveX %1 %2",
+    "message0": "MoveX %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -586,15 +565,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "movey",
-    "message0": "MoveY %1 %2",
+    "message0": "MoveY %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -607,15 +583,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "movez",
-    "message0": "MoveZ %1 %2",
+    "message0": "MoveZ %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -628,15 +601,12 @@ export let objectMessageHandlerBlocks = [
   },
   {
     "type": "movex",
-    "message0": "MoveX %1 %2",
+    "message0": "MoveX %1",
     "args0": [
       {
-        "type": "input_value",
-        "name": "angle"
-      },
-      {
-        "type": "input_value",
-        "name": "duration"
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,
@@ -1018,7 +988,8 @@ export let objectMessageHandlerBlocks = [
     "args0": [
       {
         "type": "input_statement",
-        "name": "material",
+        "name": "Params",
+        "check": "Params"
       }
     ],
     "inputsInline": true,

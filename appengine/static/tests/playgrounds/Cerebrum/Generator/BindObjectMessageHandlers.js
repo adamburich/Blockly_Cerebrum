@@ -24,6 +24,12 @@ export function bindObjectMessageHandlersToGenerator(generator) {
         return code;
     };
 
+    generator['reset'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var code = 'reset';
+        return code;
+    };
+
     generator['localposition'] = function (block) {
         var xpos = generator.valueToCode(block, 'xpos', Blockly.JavaScript.ORDER_ATOMIC);
         var ypos = generator.valueToCode(block, 'ypos', Blockly.JavaScript.ORDER_ATOMIC);
@@ -74,7 +80,7 @@ export function bindObjectMessageHandlersToGenerator(generator) {
     generator['jump'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'jump ' + statements_params;
         return code;
     };
 
@@ -88,94 +94,70 @@ export function bindObjectMessageHandlersToGenerator(generator) {
     generator['on'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'on ' + statements_params;
         return code;
     };
 
     generator['off'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'off ' + statements_params;
         return code;
     };
 
     generator['delete'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'delete ' + statements_params;
         return code;
     };
 
     generator['exists'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'exists ' + statements_params;
         return code;
     };
 
     generator['localrotatetox'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'localrotatetox ' + value_angle + " " + value_duration;
+        var code = 'localrotatetox ' + statements_params;
         return code;
     };
 
     generator['localrotatex'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'localrotatex ' + value_angle + " " + value_duration;
+        var code = 'localrotatex ' + statements_params;
         return code;
     };
 
     generator['rotatetox'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'rotatetox ' + value_angle + " " + value_duration;
+        var code = 'rotatetox ' + statements_params;
         return code;
     };
 
     generator['rotatex'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'rotatex ' + value_angle + " " + value_duration;
+        var code = 'rotatex ' + statements_params;
         return code;
     };
 
     generator['localmovex'] = function (block) {
-        var value_distance = generator.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'localmovex ' + value_distance + " " + value_duration;
+        var code = 'localmovex ' + statements_params;
         return code;
     };
 
     generator['movex'] = function (block) {
-        var value_distance = generator.valueToCode(block, 'Distance', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'movex ' + value_distance + " " + value_duration;
+        var code = 'movex ' + statements_params;
         return code;
     };
 
@@ -257,134 +239,98 @@ export function bindObjectMessageHandlersToGenerator(generator) {
     };
 
     generator['localrotatetoy'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'localrotatetoy ' + value_angle + " " + value_duration;
+        var code = 'localrotatetoy ' + statements_params;
         return code;
     };
 
     generator['localrotatey'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'localrotatey ' + value_angle + " " + value_duration;
+        var code = 'localrotatey ' + statements_params;
         return code;
     };
 
     generator['rotatetoy'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'rotatetoy ' + value_angle + " " + value_duration;
+        var code = 'rotatetoy ' + statements_params;
         return code;
     };
 
     generator['rotatey'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'rotatey ' + value_angle + " " + value_duration;
+        var code = 'rotatey ' + statements_params;
         return code;
     };
 
     generator['localmovey'] = function (block) {
-        var value_distance = generator.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'localmovey ' + value_distance + " " + value_duration;
+        var code = 'localmovey ' + statements_params;
         return code;
     };
 
     generator['movey'] = function (block) {
-        var value_distance = generator.valueToCode(block, 'Distance', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'movey ' + value_distance + " " + value_duration;
+        var code = 'movey ' + statements_params;
         return code;
     };
 
     generator['localrotatetoz'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'localrotatetoz ' + value_angle + " " + value_duration;
+        var code = 'localrotatetoz ' + statements_params;
         return code;
     };
 
     generator['localrotatez'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'localrotatez ' + value_angle + " " + value_duration;
+        var code = 'localrotatez ' + statements_params;
         return code;
     };
 
     generator['rotatetoz'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'rotatetoz ' + value_angle + " " + value_duration;
+        var code = 'rotatetoz ' + statements_params;
         return code;
     };
 
     generator['rotatez'] = function (block) {
-        var value_angle = generator.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'rotatez ' + value_angle + " " + value_duration;
+        var code = 'rotatez ' + statements_params;
         return code;
     };
 
     generator['localmovez'] = function (block) {
-        var value_distance = generator.valueToCode(block, 'distance', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'localmovez' + value_distance + " " + value_duration;
+        var code = 'localmovez' + statements_params;
         return code;
     };
 
     generator['movez'] = function (block) {
-        var value_distance = generator.valueToCode(block, 'Distance', Blockly.JavaScript.ORDER_ATOMIC);
-        var value_duration = generator.valueToCode(block, 'duration', Blockly.JavaScript.ORDER_ATOMIC);
-        if (value_duration == "0") {
-            value_duration = "";
-        }
+        
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = 'movez ' + value_distance + " " + value_duration;
+        var code = 'movez ' + statements_params;
         return code;
     };
 
@@ -523,6 +469,14 @@ export function bindObjectMessageHandlersToGenerator(generator) {
         // TODO: Assemble JavaScript into code variable.
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         var code = " setglobal " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['getglobal'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " getGlobal " + statements_params;
         //console.log("." + statements_params)
         return code;
     };

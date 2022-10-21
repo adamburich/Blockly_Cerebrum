@@ -1,6 +1,7 @@
 
 import { parseLineToWorkspace } from "./ParseFileContents.js";
 import { buildLogicalExpressionBlock } from "./BuildBlocksFromCode.js";
+import { mlc } from "./MultiLineComment.js";
 
 /**
  * Parse If
@@ -27,6 +28,7 @@ function f0(arr, ind, workspace){
     let thenBlock = f2_out.block;
     //now index of else or endif
     adjusted_index = f2_out.index;
+   //console.log(conditionBlock)
 
     if(arr[adjusted_index].trim() === "Else"){
         adjusted_index++;
@@ -61,6 +63,7 @@ function f1(arr, ind, workspace){
     let condition_line = arr[ind];
 
     let block = buildLogicalExpressionBlock(workspace, condition_line);
+   //console.log("F1 BLOCK: ", block);
 
     return {"block":block, "index":ind+1}
 }
@@ -87,11 +90,19 @@ function f2(arr, ind, workspace){
             blockFromLine = f0_out.block;
             i = f0_out.index;
             blockList.push(blockFromLine);
-        }else if(arr[i].trim() != "Endif"){
+        }
+        else if(arr[i].trim() === "/*"){
+            let multi_line_comment = mlc(arr, i, workspace);
+            i = multi_line_comment.index;
+            blockFromLine = multi_line_comment.block;
+            blockList.push(blockFromLine);
+        }
+        else if(arr[i].trim() != "Endif"){
             if(arr[i].trim() === "Else"){
                 break;
             }
             blockFromLine = parseLineToWorkspace(arr[i], workspace);
+            //console.log("BLOCKFROMLINE: ", blockFromLine);
             if(blockFromLine == null){
                 //console.log("PARSE LINE TO WORKSPACE GENERATED A NULL BLOCK");
             }
@@ -123,6 +134,8 @@ function attachCondition(baseBlock, condBlock){
     let if_cond_connection = baseBlock.inputList[0].connection;
     let if_cond = condBlock.outputConnection;
     if_cond_connection.connect(if_cond);
+
+   //console.log(condBlock);
 }
 
 function attachElseBody(baseBlock, elseBodyBlock){
@@ -144,4 +157,4 @@ function connectBlocksAB(blockA, blockB){
  * - we parse the condition (f1)
  */
 
-export { f0 }
+export { f0, connectBlocksAB }
