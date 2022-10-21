@@ -1,6 +1,7 @@
 
 import { parseLineToWorkspace } from "./ParseFileContents.js";
 import { buildLogicalExpressionBlock } from "./BuildBlocksFromCode.js";
+import { mlc } from "./MultiLineComment.js";
 
 /**
  * Parse If
@@ -89,7 +90,14 @@ function f2(arr, ind, workspace){
             blockFromLine = f0_out.block;
             i = f0_out.index;
             blockList.push(blockFromLine);
-        }else if(arr[i].trim() != "Endif"){
+        }
+        else if(arr[i].trim() === "/*"){
+            let multi_line_comment = mlc(arr, i, workspace);
+            i = multi_line_comment.index;
+            blockFromLine = multi_line_comment.block;
+            blockList.push(blockFromLine);
+        }
+        else if(arr[i].trim() != "Endif"){
             if(arr[i].trim() === "Else"){
                 break;
             }
@@ -149,4 +157,4 @@ function connectBlocksAB(blockA, blockB){
  * - we parse the condition (f1)
  */
 
-export { f0 }
+export { f0, connectBlocksAB }

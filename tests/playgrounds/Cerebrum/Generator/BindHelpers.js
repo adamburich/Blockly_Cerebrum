@@ -7,11 +7,18 @@ export function bindHelpers(generator) {
     generator['empty_line'] = function (block) {
         return "";
     };
-
+    
     generator['comment'] = function (block) {
         var value_comment_val = generator.valueToCode(block, 'comment_val', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
         let code = value_comment_val.slice(1, -1).replaceAll("\\", "");
+        return code;
+    };
+
+    generator['multi_line_comment'] = function (block) {
+        var value_comment_val = block.getFieldValue("comment");
+        // TODO: Assemble JavaScript into code variable.
+        let code = "/*\n"+value_comment_val+"\n*/"
         return code;
     };
 

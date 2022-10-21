@@ -1,86 +1,101 @@
 export let controlFlowBlocks = [
-    {
-        "type": "gotolabelreturn",
-        "message0": "GoTo %1",
-        "args0": [
-          {
-            "type": "input_value",
-            "name": "label",
-          }
-        ],
-        "inputsInline": true,
-        "colour": 230,
-        "tooltip": "Label returns a value",
-        "helpUrl": "",
-        "nextStatement": null,
-        "previousStatement": null
-      },
+  {
+    "type": "multi_line_comment",
+    "message0": "Multi Line Comment: %1",
+    "args0": [
       {
-        "type": "gotolabelnoreturn",
-        "message0": "GoTo %1",
-        "args0": [
-          {
-            "type": "input_statement",
-            "name": "noreturn"
-          }
-        ],
-        "colour": 230,
-        "tooltip": "Label does not return a value",
-        "helpUrl": "",
-        "nextStatement": null,
-        "previousStatement": null
-      },
+        "type": "field_multilinetext",
+        "name": "comment",
+        "text": "",
+        "spellcheck": false
+      }
+    ],
+    "colour": 75,
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "gotolabelreturn",
+    "message0": "GoTo %1",
+    "args0": [
       {
-        "type": "label",
-        "message0": "Label %1",
-        "args0": [
-          {
-            "type": "input_value",
-            "name": "fname",
-          },
-        ],
-    
-        "inputsInline": true,
-        "colour": 230,
-        "tooltip": "",
-        "helpUrl": "",
-        "nextStatement": null,
-        "previousStatement": null
-      },
+        "type": "input_value",
+        "name": "label",
+      }
+    ],
+    "inputsInline": true,
+    "colour": 230,
+    "tooltip": "Label returns a value",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "gotolabelnoreturn",
+    "message0": "GoTo %1",
+    "args0": [
       {
-        "type": "do_noreturn",
-        "message0": "Do %1",
-        "args0": [
-          {
-            "type": "input_statement",
-            "name": "fname"
-          }
-        ],
-        "inputsInline": true,
-    
-    
-        "colour": 230,
-        "tooltip": "Do no return",
-        "helpUrl": "",
-        "nextStatement": null,
-        "previousStatement": null
-      },
+        "type": "input_statement",
+        "name": "noreturn"
+      }
+    ],
+    "colour": 230,
+    "tooltip": "Label does not return a value",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "label",
+    "message0": "Label %1",
+    "args0": [
       {
-        "type": "do_return",
-        "message0": "Do %1",
-        "args0": [
-          {
-            "type": "input_value",
-            "name": "fname"
-          },
-        ],
-        "inputsInline": true,
-    
-    
-        "colour": 230,
-        "tooltip": "Do & return",
-        "helpUrl": "",
-        "nextStatement": null,
-        "previousStatement": null
+        "type": "input_value",
+        "name": "fname",
       },
+    ],
+
+    "inputsInline": true,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "do_noreturn",
+    "message0": "Do %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "fname"
+      }
+    ],
+    "inputsInline": true,
+
+
+    "colour": 230,
+    "tooltip": "Do no return",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "do_return",
+    "message0": "Do %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "fname"
+      },
+    ],
+    "inputsInline": true,
+
+
+    "colour": 230,
+    "tooltip": "Do & return",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
 ];

@@ -9,7 +9,7 @@
  */
 
 import {buildGlobalBlock, buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './BuildBlocksFromCode.js';
-// import { parseIfAndBuild, buildIf, giveIfBlockBackToParser } from './ParseIf.js';
+import { mlc } from './MultiLineComment.js';
 import { f0 } from './BuildIf.js';
 
 const SPECIAL_CHARS = ["#", "$"];
@@ -73,7 +73,12 @@ function parseArrToWorkspace(arr, workspace){
     let newBlocks = [];
     for(let i = 0; i < arr.length; i++){
         let thisBlock;
-        if(arr[i].trim() == "If"){
+        if(arr[i].trim() === "/*"){
+            let multi_line_comment = mlc(arr, i, workspace);
+            thisBlock = multi_line_comment.block;
+            i = multi_line_comment.index;
+        }
+        if(arr[i].trim() === "If"){
             let f0_out = f0(arr, i, workspace);
             thisBlock = f0_out.block;
             i = f0_out.index;
@@ -94,12 +99,12 @@ function parseArrToWorkspace(arr, workspace){
             console.log("Line was: ", arr[i])
             continue;
         }
-        if(parentBlock != null && thisBlock != null && thisBlock != "SKIP"){
+        if(parentBlock != null && thisBlock != null){
             //console.log(parentBlock);
             parentBlock.previousConnection.connect(thisBlock.previousConnection.targetConnection);
             parentBlock.nextConnection.connect(thisBlock.previousConnection);
         }
-        if(thisBlock != "SKIP" && thisBlock != null){
+        if(thisBlock != null){
             parentBlock = thisBlock;
         }
         else{
@@ -124,7 +129,7 @@ function parseLineToWorkspace(line, workspace){
     //console.log(line);
     line = line.trimStart(" ");
     if(line == ""){
-        return "SKIP";
+        return workspace.newBlock("empty_line");
     }
     else if(line.charAt(0) == "#"){
         return buildCommentBlock(workspace, line);
