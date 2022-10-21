@@ -168,16 +168,16 @@ function buildBlockFromInfix(workspace, infix){
     let postfix = InfixtoPostfix(infix);
     let blockstack = [];
     let expstack = [];
-    //console.log(postfix)
+    console.log(postfix)
     for(let i = 0; i < postfix.length; i++){
         if(!isOp(postfix[i])){
-            //console.log(postfix[i]);
+            console.log(postfix[i]);
             // //stack.push(postfix[i]);
             let block = buildValBlocks(workspace, [postfix[i]]);
             // //val to block
             blockstack.push(block);
         }else{
-            //console.log("IS OP", postfix[i]);
+            console.log("IS OP", postfix[i]);
             let right = blockstack.pop();
             if(isOp(right)){
                 right = expstack.pop();
@@ -190,13 +190,12 @@ function buildBlockFromInfix(workspace, infix){
             }
             let op = postfix[i];
             let block = buildExpressionBlockFromPostfix(workspace, left, right, op);
-            //console.log("POPULATING expstack WITH: ", block)
+            console.log("POPULATING expstack WITH: ", block)
             expstack.push(block);
             blockstack.push(op);
         }
     }
-    //console.log(blockstack)
-    //console.log(expstack)
-    //workspace.render();
+    console.log(blockstack)
+    console.log(expstack)
     return expstack.pop();
 }

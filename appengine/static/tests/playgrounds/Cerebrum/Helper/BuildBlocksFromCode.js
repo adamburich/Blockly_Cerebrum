@@ -13,17 +13,18 @@
 
 import { custom_block_lib } from "../Blocks/CustomBlockLibrary.mjs";
 import { parseArrToWorkspace } from "./ParseFileContents.js";
+import { buildBlockFromInfix } from "./ExpressionParser.js";
 
 const simpleObjectMessageHandlerCalls = "setmaterial switchtoscene clickable says playsound localrotatetox localrotatetoy localrotatetoz localrotatex localrotatey localrotatez rotatetox rotatetoy rotatetoz rotatey rotatex rotatez movex movey movez localmovez localmovex localmovey setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
 
-function buildIfThenBlock(ifParts, workspace){
+function buildIfThenBlock(ifParts, workspace) {
     let ifCond = ifParts[0][0];
-    console.log(ifCond)
-    console.log(ifParts)
+    //console.log(ifCond)
+    //console.log(ifParts)
     let thenBod = ifParts[1];
     let elseBod = ifParts[2];
 
-    console.log(ifCond)
+    //console.log(ifCond)
 
     let condBlock = buildLogicalExpressionBlock(workspace, ifCond);
     let bodBlock = parseArrToWorkspace(thenBod, workspace)[0];
@@ -36,17 +37,17 @@ function buildIfThenBlock(ifParts, workspace){
     condBlock.initSvg();
 
     let elseBlock = null;
-    if(elseBod.length > 0){
+    if (elseBod.length > 0) {
         elseBlock = parseArrToWorkspace(elseBod, workspace)[0];
         elseBlock.setEnabled(true);
         elseBlock.initSvg();
     }
-    
+
     let baseBlock;
-    if(elseBlock == null){
+    if (elseBlock == null) {
         baseBlock = workspace.newBlock("controls_if");
-    } 
-    else{
+    }
+    else {
         baseBlock = workspace.newBlock("controls_ifelse");
         let else_bod_connection = baseBlock.inputList[2].connection;
         let else_bod = elseBlock.previousConnection;
@@ -54,7 +55,7 @@ function buildIfThenBlock(ifParts, workspace){
     }
     let if_cond_connection = baseBlock.inputList[0].connection;
     let if_cond = condBlock.outputConnection;
-    console.log(condBlock);
+    //console.log(condBlock);
     if_cond_connection.connect(if_cond);
     let if_bod_connection = baseBlock.inputList[1].connection;
     let if_bod = bodBlock.previousConnection;
@@ -65,44 +66,107 @@ function buildIfThenBlock(ifParts, workspace){
 
     baseBlock.initSvg();
 
+    return baseBlock;
+
 }
 
-function buildLogicalExpressionBlock(workspace, expression){
+function buildExpressionBlock(workspace, expression) {
+    let op = "";
     let chunks;
-    let op =  "";
-    if(expression.indexOf("!=") != -1){
+    if (expression.indexOf("+") != -1) {
+        chunks = expression.split("+");
+        op = "ADD";
+    }
+    else if (expression.indexOf("-") != -1) {
+        chunks = expression.split("-");
+        op = "MINUS";
+    }
+    else if (expression.indexOf("/") != -1) {
+        chunks = expression.split("/");
+        op = "DIVIDE";
+    }
+    else if (expression.indexOf("*") != -1) {
+        chunks = expression.split("*");
+        op = "MULTIPLY";
+    }
+
+    let chunkA = chunks[0].trim();
+    let chunkB = chunks[1].trim();
+
+    //console.log("chunkA", chunkA)
+    //console.log("chunkB",chunkB)
+
+    let valBlocks = buildValBlocks(workspace, [chunkA, chunkB]);
+
+    //console.log("ValBlocks", valBlocks)
+
+    let blockA = valBlocks[0];
+    let blockB = valBlocks[1];
+
+    let baseBlock = workspace.newBlock("expression_arithmetic");
+    baseBlock.setFieldValue(op, "OP");
+
+    //console.log(baseBlock)
+
+    let root_blockA_conn = baseBlock.inputList[0].connection;
+    let blockA_conn = blockA.outputConnection;
+    root_blockA_conn.connect(blockA_conn);
+
+    let root_blockB_conn = baseBlock.inputList[1].connection;
+    let blockB_conn = blockB.outputConnection;
+    root_blockB_conn.connect(blockB_conn);
+
+    baseBlock.setEnabled(true);
+    blockA.setEnabled(true);
+    blockB.setEnabled(true);
+    //valBlock.setEnabled(true);
+
+    baseBlock.initSvg();
+    blockA.initSvg();
+    blockB.initSvg();
+    //rerenderWorkspace(workspace);
+    //console.log(baseBlock)
+
+    return baseBlock;
+}
+
+function buildLogicalExpressionBlock(workspace, expression) {
+    //console.log("EXPRESSION FROM BUILDLOGICAL: ", expression);
+    let chunks;
+    let op = "";
+    if (expression.indexOf("!=") != -1) {
         chunks = expression.split("!=");
         op = "NEQ";
     }
-    else if(expression.indexOf("==") != -1){
+    else if (expression.indexOf("==") != -1) {
         chunks = expression.split("==");
         op = "EQ";
     }
-    else if(expression.indexOf("=") != -1){
+    else if (expression.indexOf("=") != -1) {
         chunks = expression.split("=");
         op = "EQ";
     }
-    else if(expression.indexOf("<") != -1){
+    else if (expression.indexOf("<") != -1) {
         chunks = expression.split("<");
         op = "LT";
     }
-    else if(expression.indexOf("<=") != -1){
+    else if (expression.indexOf("<=") != -1) {
         chunks = expression.split("<=");
         op = "LTE";
     }
-    else if(expression.indexOf(">=") != -1){
+    else if (expression.indexOf(">=") != -1) {
         chunks = expression.split(">=");
         op = "GTE";
     }
-    else if(expression.indexOf(">") != -1){
+    else if (expression.indexOf(">") != -1) {
         chunks = expression.split(">");
         op = "GT";
     }
-    else{
+    else {
         return;
     }
-    //console.log("LOGICAL EXPRESSION CHUNKS")
-    //console.log(chunks)
+    ////console.log("LOGICAL EXPRESSION CHUNKS")
+    ////console.log(chunks)
     let chunkA = chunks[0].trim();
     let chunkB = chunks[1].trim();
 
@@ -136,43 +200,53 @@ function buildLogicalExpressionBlock(workspace, expression){
     return baseBlock;
 }
 
-function buildVariableSetBlock(workspace, declarationValues){
-    //console.log(declarationValues)
+function buildVariableSetBlock(workspace, declarationValues) {
+    ////console.log(declarationValues)
     let obj = declarationValues[0];
     let payload = declarationValues[1];
-    
+
+    ////console.log(declarationValues)
+
     let setBlock = workspace.newBlock("variables_set");
     workspace.createVariable(obj, "", obj);
     setBlock.setFieldValue(obj, "VAR");
 
     let valBlock;
-    if(payload == "true"){
+    if (payload == "true") {
         valBlock = workspace.newBlock("logic_boolean")
         valBlock.setFieldValue(true, "BOOL");
     }
-    else if(payload == "false"){
+    else if (payload == "false") {
         valBlock = workspace.newBlock("logic_boolean")
         valBlock.setFieldValue(false, "BOOL");
     }
-    else if(!isNaN(payload)){
+    else if ((payload.indexOf("+") != -1 || payload.indexOf("-") != -1 || payload.indexOf(" / ") != -1 || payload.indexOf("*") != -1) && (payload.trim().charAt(0) != "'" && payload.trim().charAt(payload.trim().length - 1) != "'")) {
+        console.log("PAYLOAD: ", payload)
+        console.log(payload.trim().charAt(0))
+        console.log(payload.trim().charAt(payload.trim().length - 1))
+        //console.log("*********************** EXPRESSION BLOCK ***********************")
+        valBlock = buildBlockFromInfix(workspace, payload);
+        //console.log(valBlock)
+    }
+    else if (!isNaN(payload)) {
         valBlock = workspace.newBlock("math_number")
         valBlock.setFieldValue(payload, "NUM");
     }
-    else if(payload && payload.charAt(0) == "$"){
-        // console.log("VARIABLE ASSIGNMENT HAPPENING NOW")
+    else if (payload && payload.charAt(0) == "$") {
+        // //console.log("VARIABLE ASSIGNMENT HAPPENING NOW")
         let varId = payload.substring(1, payload.length);
-        if(!workspace.getAllVariableNames().includes(varId)){
+        if (!workspace.getAllVariableNames().includes(varId)) {
             workspace.createVariable(varId, "", varId);
         }
-        //console.log(workspace.getAllVariableNames());
+        ////console.log(workspace.getAllVariableNames());
         // workspace.createVariable(varId, "", varId);
         // workspace.render();
-        // console.log(workspace.getPotentialVariableMap())
+        // //console.log(workspace.getPotentialVariableMap())
         valBlock = workspace.newBlock("variables_get");
         valBlock.setFieldValue(varId, "VAR");
-        // console.log("VARIABLE ASSIGNMENT OVER NOW")
+        // //console.log("VARIABLE ASSIGNMENT OVER NOW")
     }
-    else{
+    else {
         valBlock = workspace.newBlock("text")
         valBlock.setFieldValue(payload, "TEXT");
     }
@@ -186,7 +260,7 @@ function buildVariableSetBlock(workspace, declarationValues){
 
     setBlock.initSvg();
     valBlock.initSvg();
-    workspace.render();
+    //workspace.render();
     //rerenderWorkspace(workspace);
 
     return setBlock;
@@ -194,39 +268,39 @@ function buildVariableSetBlock(workspace, declarationValues){
 
 
 
-function buildObjectMessageHandlerBlock(workspace, callerCallingArgs){
+function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
     let caller = callerCallingArgs[0];
     let call = callerCallingArgs[1];
     let args = callerCallingArgs[2];
-    // console.log("buildObjectMessageHandlerBlock called with:\n\t"+caller+"\n\t"+call+"\n\t"+args);
-    // console.log(callerCallingArgs)
+    // //console.log("buildObjectMessageHandlerBlock called with:\n\t"+caller+"\n\t"+call+"\n\t"+args);
+    // //console.log(callerCallingArgs)
     let callBlock = buildCallBlock(workspace, [call, args.join(" ")], false);
-    //console.log(callBlock)
+    ////console.log(callBlock)
     let callerBlock = workspace.newBlock("object_calling");
     let callerId = caller.substring(1, caller.length);
     callerBlock.setFieldValue(callerId, "Object_Variable");
-    
+
     //should rename the thing that makes us reference "Params" here, this isn't actually a param block its the call block with parent object calling
     let parentConnection = callerBlock.getInput("Params").connection;
     let childConnection = callBlock.previousConnection;
     parentConnection.connect(childConnection);
-    
+
     callerBlock.setEnabled(true);
 
-    //console.log(workspace)
-    //console.log(args)
+    ////console.log(workspace)
+    ////console.log(args)
 
     //If the type of ObjectMessageHandler Call we're looking at doesn't require a param block but just some typed inputs we don't want to use buildParamBlocks(workspace, args), so instead we use buildValBlocks which is a helper to buildParamBlocks
-    if(simpleObjectMessageHandlerCalls.includes(call)){
+    if (simpleObjectMessageHandlerCalls.includes(call)) {
         let argBlocks = buildValBlocks(workspace, args);
-        for(let i = 0; i < argBlocks.length; i++){
+        for (let i = 0; i < argBlocks.length; i++) {
             let callConnection = callBlock.inputList[i].connection;
             let argConnection = argBlocks[i].outputConnection;
             callConnection.connect(argConnection);
         }
     }
-    else{
-        if(args.length > 0){
+    else {
+        if (args.length > 0) {
             let paramBlock = buildParamBlocks(workspace, args);
             //let callConnection = callBlock.getInput("Params").connection;
             let callConnection = callBlock.inputList[0].connection;
@@ -241,17 +315,19 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs){
     return callerBlock;
 }
 
-function buildCommentBlock(workspace, comment){
+function buildCommentBlock(workspace, comment) {
+    console.log(comment);
     let commentBlock = workspace.newBlock("comment")
     //comment = comment.replace("#", "");
-    //console.log(buildValBlocks(workspace, [comment]))
-    let commentValBlock = buildValBlocks(workspace, [comment])[0];
+    ////console.log(buildValBlocks(workspace, [comment]))
+    let valBlock = workspace.newBlock("text")
+    valBlock.setFieldValue(comment, "TEXT");
     let parentConnection = commentBlock.getInput("comment_val").connection;
-    let childConnection = commentValBlock.outputConnection;
+    let childConnection = valBlock.outputConnection;
     parentConnection.connect(childConnection);
 
     commentBlock.initSvg();
-    commentValBlock.initSvg();
+    valBlock.initSvg();
     workspace.render();
 
     return commentBlock;
@@ -262,46 +338,41 @@ function buildCommentBlock(workspace, comment){
  * @param {*} args 
  * @returns 
  */
-function buildValBlocks(workspace, args){
+function buildValBlocks(workspace, args) {
     let argBlocks = [];
-    for(let i = 0; i < args.length; i++){
+    for (let i = 0; i < args.length; i++) {
         let valBlock;
         let payload = args[i];
-        console.log(payload)
-        if(payload.indexOf("+") != -1){
-            console.log("Printing payload of buildValBlocks")
-            console.log(payload)
-            let chunks = payload.split("+");
-            let argA = buildValBlocks(workspace, [chunks[0].trim()]);
-            let argB = buildValBlocks(workspace, [chunks[1].trim()]);
-            valBlock = workspace.newBlock("expression_arithmetic");
-            let parent_connectionA = valBlock.getInput("A").connection;
-            let parent_connectionB = valBlock.getInput("B").connection;
-            let argA_conn = argA[0].outputConnection;
-            let argB_conn = argB[0].outputConnection;
-            parent_connectionA.connect(argA_conn);
-            parent_connectionB.connect(argB_conn);
-        }
-        else if(payload == "true" || payload == "false"){
+        ////console.log(payload)
+        if (payload == "true" || payload == "false") {
             valBlock = workspace.newBlock("logic_boolean")
             valBlock.setFieldValue(payload === 'true', "BOOL");
         }
-        else if(payload.charAt(0) == "$"){
+        else if (payload.indexOf("$") == 0) {
             valBlock = workspace.newBlock("variables_get");
             let varId = payload.substring(1, payload.length);
-            if(!workspace.getAllVariableNames().includes(varId)){
+            if (!workspace.getAllVariableNames().includes(varId)) {
                 workspace.createVariable(varId, "", varId);
             }
             valBlock.setFieldValue(varId, "VAR");
         }
-        else{
-            if(!isNaN(payload)){
+        else {
+            if (!isNaN(payload)) {
                 valBlock = workspace.newBlock("math_number")
                 valBlock.setFieldValue(payload, "NUM");
-            }else{
-                valBlock = workspace.newBlock("text")
-                let payload_val = payload.substring(0, payload.length);
-                valBlock.setFieldValue(payload_val, "TEXT");
+            } else {
+                if (payload.indexOf("'") == -1) {
+                    valBlock = workspace.newBlock("variables_get");
+                    let varId = payload;
+                    if (!workspace.getAllVariableNames().includes(varId)) {
+                        workspace.createVariable(varId, "", varId);
+                    }
+                    valBlock.setFieldValue(varId, "VAR");
+                } else {
+                    valBlock = workspace.newBlock("text")
+                    let payload_val = payload.substring(0, payload.length);
+                    valBlock.setFieldValue(payload_val, "TEXT");
+                }
             }
         }
         argBlocks.push(valBlock);
@@ -310,24 +381,24 @@ function buildValBlocks(workspace, args){
     return argBlocks;
 }
 
-function buildParamBlocks(workspace, args){
+function buildParamBlocks(workspace, args) {
     let paramBlocks = [];
     let argBlocks = buildValBlocks(workspace, args);
-    for(let i = 0; i < args.length; i++){
+    for (let i = 0; i < args.length; i++) {
         paramBlocks.push(workspace.newBlock("param"));
     }
-    //console.log(inputs);
-    for(let i = 0; i < argBlocks.length; i++){
-        // console.log(inputs[i]);
-        // console.log(argBlocks[i]);
+    ////console.log(inputs);
+    for (let i = 0; i < argBlocks.length; i++) {
+        // //console.log(inputs[i]);
+        // //console.log(argBlocks[i]);
         paramBlocks[i].setEnabled(true);
         paramBlocks[i].initSvg();
         let parentConnection = paramBlocks[i].getInput("param_val").connection;
         let childConnection = argBlocks[i].outputConnection;
         parentConnection.connect(childConnection);
     }
-    for(let i = 1; i < paramBlocks.length; i++){
-        let parentConnection = paramBlocks[i-1].nextConnection;
+    for (let i = 1; i < paramBlocks.length; i++) {
+        let parentConnection = paramBlocks[i - 1].nextConnection;
         let childConnection = paramBlocks[i].previousConnection;
         parentConnection.connect(childConnection);
     }
@@ -335,20 +406,20 @@ function buildParamBlocks(workspace, args){
 }
 
 
-function buildCallBlock(workspace, callAndArgs, isGameManagerCall){
-    //console.log(callAndArgs);
+function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
+    ////console.log(callAndArgs);
     let call = callAndArgs[0].toLowerCase();
     let args = callAndArgs[1];
     let args_arr = args;
-    //console.log(call)
+    ////console.log(call)
 
     //Handle some special cases - our gamemanager's ison and isoff calls can't be named those things since they're in use by default blockly so our calls are is_on and is_off - this is fine we just have to catch it and translate
-    if(call == "do"){
+    if (call == "do") {
         call = "do_return";
-        //console.log("Identified Do call with args " + args_arr)
-    }else if(call == "ison"){
+        ////console.log("Identified Do call with args " + args_arr)
+    } else if (call == "ison") {
         call = "is_on";
-    }else if(call == "isoff"){
+    } else if (call == "isoff") {
         call = "is_off";
     }
 
@@ -356,35 +427,35 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall){
 
     var result = custom_block_lib.filter(obj => {
         return obj.type === call
-      })
-    console.log(result);
-    if(result.length == 0){
-        console.log("Call type not found in custom block library.")
+    })
+    //console.log(result);
+    if (result.length == 0) {
+        //console.log("Call type not found in custom block library.")
         return null;
     }
 
     let init_block = workspace.newBlock(call);
-    console.log("GameManagerCall For '"+call+"' Has Constructed Base Block:");
-    console.log(init_block);
+    //console.log("GameManagerCall For '"+call+"' Has Constructed Base Block:");
+    //console.log(init_block);
 
     let required_args = result[0].args0;
-    //console.log(init_block.getConnections_());
+    ////console.log(init_block.getConnections_());
 
     let inputs = init_block.inputList;
-    //console.log(inputs);
-    console.log("\tRequired args:\n\t\t" + required_args);
-    if(required_args != undefined){
-        //console.log("\n\tOffered args:\n\t\t" + args);
-        let argBlocks = buildValBlocks(workspace, args_arr);
-        for(let i = 0; i < argBlocks.length; i++){
-            // console.log(inputs[i]);
-            // console.log(argBlocks[i]);
-            if(!isGameManagerCall && argBlocks[i].getConnections_().length == 0){
-                console.log(argBlocks[i].getConnections_());
+    ////console.log(inputs);
+    //console.log("\tRequired args:\n\t\t" + required_args);
+    if (required_args != undefined) {
+        ////console.log("\n\tOffered args:\n\t\t" + args);
+        let argBlocks = buildValBlocks(workspace, [args_arr]);
+        for (let i = 0; i < argBlocks.length; i++) {
+            // //console.log(inputs[i]);
+            // //console.log(argBlocks[i]);
+            if (!isGameManagerCall && argBlocks[i].getConnections_().length == 0) {
+                ////console.log(argBlocks[i].getConnections_());
                 let del = new Blockly.Events.BlockDelete(argBlocks[i]);
                 del.run(true);
             }
-            if(inputs[i] != undefined){
+            if (inputs[i] != undefined) {
                 let parentConnection = init_block.getInput(inputs[i].name).connection;
                 let childConnection = argBlocks[i].outputConnection;
                 parentConnection.connect(childConnection);
@@ -403,4 +474,4 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall){
 
 
 
-export {buildLogicalExpressionBlock, buildIfThenBlock, buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock}
+export { buildLogicalExpressionBlock, buildIfThenBlock, buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock }

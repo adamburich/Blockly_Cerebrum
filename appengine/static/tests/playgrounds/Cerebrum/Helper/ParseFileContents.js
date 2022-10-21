@@ -8,7 +8,9 @@
  * 
  */
 
-import {buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock, buildIfThenBlock} from './BuildBlocksFromCode.js'
+import {buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock, buildIfThenBlock} from './BuildBlocksFromCode.js';
+import { parseIfAndBuild, buildIf, giveIfBlockBackToParser } from './ParseIf.js';
+import { f0 } from './BuildIf.js';
 
 const SPECIAL_CHARS = ["#", "$"];
 const GAME_MANAGER_RWORDS = [
@@ -36,11 +38,11 @@ function varDecl(line){
     let obj_name = var_name.substring(var_name.indexOf("$")+1, var_name.length).trimEnd(" ");
     let payload_val;
     if(exp){
-        payload_val = exp.replaceAll("'", "").trimStart(" ");
+        payload_val = exp.trimStart(" ");
     }
-    else{
-        console.log(line);
-    }
+    // else{
+    //     //console.log(line);
+    // }
 
     return [obj_name, payload_val];
 }
@@ -58,22 +60,15 @@ function parseArrToWorkspace(arr, workspace){
     for(let i = 0; i < arr.length; i++){
         let thisBlock;
         if(arr[i].trim() == "If"){
-            let lineArr = [arr[i]];
-            i++;
-            while(arr[i].trim() != "Endif"){
-                lineArr.push(arr[i]);
-                i++;
-            }
-            lineArr.push(arr[i]);
-            i++;
-            
-            thisBlock = buildIfThenBlock(parseIfBlock(lineArr, workspace), workspace);
+            let f0_out = f0(arr, i, workspace);
+            thisBlock = f0_out.block;
+            i = f0_out.index;
         }
         else{
             thisBlock = parseLineToWorkspace(arr[i], workspace);
         }
         if(parentBlock != null && thisBlock != null && thisBlock != "SKIP"){
-            console.log(parentBlock);
+            //console.log(parentBlock);
             parentBlock.previousConnection.connect(thisBlock.previousConnection.targetConnection);
             parentBlock.nextConnection.connect(thisBlock.previousConnection);
         }
@@ -97,8 +92,9 @@ function parseArrToWorkspace(arr, workspace){
  */
 function parseLineToWorkspace(line, workspace){
     // for(let i = 0; i < line.length; i++){
-    //     console.log(line.charAt(i));
+    //     //console.log(line.charAt(i));
     // }
+    //console.log(line);
     line = line.trimStart(" ");
     if(line == ""){
         return "SKIP";
@@ -152,8 +148,8 @@ function objectMessageHandlerCall(line){
             adjustedChunks.push(chunks[i]);
         }
     }
-    //console.log("ADJUSTED CHUNKS");
-    //console.log(adjustedChunks);
+    ////console.log("ADJUSTED CHUNKS");
+    ////console.log(adjustedChunks);
     let args = [];
     for(let i = 2; i < adjustedChunks.length; i++){
         args.push(adjustedChunks[i]);
@@ -184,12 +180,12 @@ function gameManagerCall(line){
             adjustedChunks.push(chunks[i]);
         }
     }
-    // console.log("ADJUSTED CHUNKS");
-    // console.log(adjustedChunks);
+    // //console.log("ADJUSTED CHUNKS");
+    // //console.log(adjustedChunks);
     var callName = chunks[0];
     let lineMinusCallName = line.replace(callName, "");
-    // console.log("LINE WITHOUT CALL NAME")
-    // console.log(lineMinusCallName);
+    // //console.log("LINE WITHOUT CALL NAME")
+    // //console.log(lineMinusCallName);
     let args = [];
     if(lineMinusCallName.indexOf("+") != -1){
         args.push(lineMinusCallName.trim());
@@ -200,10 +196,10 @@ function gameManagerCall(line){
         }
     }
 
-    // console.log("Debug info for gameManagerCall("+line+")");
-    // console.log("callName: " + callName);
-    // console.log("args: " + args);
-    // console.log("End debug information for gameManagerCall");
+    // //console.log("Debug info for gameManagerCall("+line+")");
+    // //console.log("callName: " + callName);
+    // //console.log("args: " + args);
+    // //console.log("End debug information for gameManagerCall");
     return [callName, args];
 }
 
@@ -221,12 +217,12 @@ function fcallFromObject(line){
  * @returns an array of length 3 as [ifCondition, thenBody, elseBody]
  *                                                          elseBody may be empty if the if block has no else attached.
  */
-function parseIfBlock(lineArray, workspace){
+function parseIfBlock(lineArray){
     let ifCond = [];
     let thenBody = [];
     let elseBody = [];
     
-    console.log(lineArray);
+    //console.log(lineArray);
     // for(let i = 0; i < lineArray.length; i++){
     //     lineArray[i] = lineArray[i].trim();
     // }
@@ -239,7 +235,7 @@ function parseIfBlock(lineArray, workspace){
     if(elseIndex != -1){
         flexIndex = elseIndex;
     }
-    console.log(ifIndex, thenIndex, elseIndex, endIndex);
+    //console.log(ifIndex, thenIndex, elseIndex, endIndex);
     
     for(let i = 0; i < lineArray.length; i++){
         if(i > ifIndex && i < thenIndex){

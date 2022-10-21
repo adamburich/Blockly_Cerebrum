@@ -74,7 +74,7 @@ export function bindObjectMessageHandlersToGenerator(generator) {
     generator['jump'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'jump ' + statements_params;
         return code;
     };
 
@@ -88,28 +88,28 @@ export function bindObjectMessageHandlersToGenerator(generator) {
     generator['on'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'on ' + statements_params;
         return code;
     };
 
     generator['off'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'off ' + statements_params;
         return code;
     };
 
     generator['delete'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'delete ' + statements_params;
         return code;
     };
 
     generator['exists'] = function (block) {
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = statements_params;
+        var code = 'exists ' + statements_params;
         return code;
     };
 
@@ -523,6 +523,14 @@ export function bindObjectMessageHandlersToGenerator(generator) {
         // TODO: Assemble JavaScript into code variable.
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         var code = " setglobal " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['getglobal'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " getGlobal " + statements_params;
         //console.log("." + statements_params)
         return code;
     };

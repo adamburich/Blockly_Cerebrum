@@ -17,6 +17,23 @@ export let objectMessageHandlerBlocks = [
     "previousStatement": null
   },
   {
+    "type": "getglobal",
+    "message0": "getGlobal %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
     "type": "follow",
     "message0": "Follow %1",
     "args0": [

@@ -45,12 +45,15 @@ export function bindMisc(generator) {
         // Comparison operator.
         const OPERATORS =
             { 'EQ': '==', 'NEQ': '!=', 'LT': '<', 'LTE': '<=', 'GT': '>', 'GTE': '>=' };
-        const operator = OPERATORS[block.getFieldValue('OP')];
+        let operator = OPERATORS[block.getFieldValue('OP')];
         const order = (operator === '==' || operator === '!=') ?
             Blockly.JavaScript.ORDER_EQUALITY :
             Blockly.JavaScript.ORDER_RELATIONAL;
         const argument0 = generator.valueToCode(block, 'A', order) || '0';
         const argument1 = generator.valueToCode(block, 'B', order) || '0';
+        if(operator == "=="){
+            operator = "=";
+        }
         const code = argument0 + ' ' + operator + ' ' + argument1;
         return [code, order];
     };

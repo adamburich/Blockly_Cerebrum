@@ -75,8 +75,8 @@ function handleSelected(e) {
     let selectedFile = fileInput.files[0];
     if (selectedFile) {
         addListeners(reader);
-        console.log((reader.readAsText(selectedFile)));
-        console.log(reader.result);
+        //console.log((reader.readAsText(selectedFile)));
+        //console.log(reader.result);
     }
 }
 
@@ -103,8 +103,8 @@ function setUpFile(workspace) {
             // This is a regular expression to identify carriage
             // Returns and line breaks
             const lines = file.split(/\r\n|\n/);
-            console.log(workspace)
-            console.log(lines)
+            //console.log(workspace)
+            //console.log(lines)
             return parseArrToWorkspace(lines, workspace);
             //textarea.value = lines.join('\n');
 
@@ -126,7 +126,7 @@ function updateCodeAndDownload(workspace) {
     let singleFile = document.getElementById("single-output").checked;
 
     if (singleFile) {
-        console.log(code);
+        //console.log(code);
         var a = document.createElement("a");
         a.href = window.URL.createObjectURL(new Blob([code], { type: "text/plain" }));
         a.download = "code";

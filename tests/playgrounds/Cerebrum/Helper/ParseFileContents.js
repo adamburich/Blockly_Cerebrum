@@ -8,17 +8,31 @@
  * 
  */
 
-import {buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock, buildIfThenBlock} from './BuildBlocksFromCode.js';
-import { parseIfAndBuild, buildIf, giveIfBlockBackToParser } from './ParseIf.js';
+import {buildGlobalBlock, buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './BuildBlocksFromCode.js';
+// import { parseIfAndBuild, buildIf, giveIfBlockBackToParser } from './ParseIf.js';
 import { f0 } from './BuildIf.js';
 
 const SPECIAL_CHARS = ["#", "$"];
 const GAME_MANAGER_RWORDS = [
     "if", "else", "then", "dochoice", "endif", "pause", "waitfor", "ison", "isoff",
-    "turnon", "goto", "label", "do", "return", "create", "destroy", "debug.on", "debug.off", 
+    "turnon", "turnoff", "goto", "label", "do", "return", "create", "destroy", "debug.on", "debug.off", 
     "debugCanvas", "debugcanvas.off", "debugcanvas.on", "debug.delay", "game.delay", "prompt", 
-    "speaker1", "speaker2"
+    "speaker1", "speaker2", "wait"
 ];
+const OMH_CALLS = [
+    'follow', 'switchtoscene', 'clickable_reset', 'localposition', 'clickable.ispressed',
+    'clickable.resetpressed', 'clickable', 'playsound', 'stopsound', 'play', 'jump',
+    'says', 'on', 'off', 'delete', 'exists', 'localrotatetox', 'localrotatex',
+    'rotatetox', 'rotatex', 'localmovex', 'movex', 'matchrotation', 'parentto',
+    'attachto', 'outline', 'outline.on', 'outline.off', 'outline.color',
+    'outline.check', 'param', 'math.number', 'params', 'localrotatetoy',
+    'localrotatey', 'rotatetoy', 'rotatey', 'localmovey', 'movey', 'localrotatetoz',
+    'localrotatez', 'rotatetoz', 'rotatez', 'localmovez', 'movez', 'menu.choice',
+    'menu.result', 'menu.done', 'menu.choices', 'menu.question', 'menu.on', 
+    'setitemdatetime', 'setitemtext', 'setitemdate', 'setmaterial', 'scale', 
+    'align', 'orient', 'grab', 'release', 'lookat', 'lookatme',
+];
+const GLOBALS = ['setglobal', 'getGlobal'];
 
 function parseExpression(expression){
     
@@ -64,8 +78,21 @@ function parseArrToWorkspace(arr, workspace){
             thisBlock = f0_out.block;
             i = f0_out.index;
         }
+        else if(arr[i].trim().split(" ")[0] === "Label"){
+            i++;
+            let funcArr = [];
+            while(arr[i] != "Return"){
+                funcArr.push(arr[i]);
+            }
+            console.log(parseArrToWorkspace(funcArr, workspace))
+        }
         else{
             thisBlock = parseLineToWorkspace(arr[i], workspace);
+        }
+        if(thisBlock == -1){
+            console.log("Error producing block at index: ", i)
+            console.log("Line was: ", arr[i])
+            continue;
         }
         if(parentBlock != null && thisBlock != null && thisBlock != "SKIP"){
             //console.log(parentBlock);
@@ -105,16 +132,20 @@ function parseLineToWorkspace(line, workspace){
     else if(line.indexOf("!=") != -1 || line.indexOf("==") != -1 || line.indexOf("<=") != -1 || line.indexOf(">=") != -1 || line.indexOf(">") != -1 || line.indexOf("<") != -1){
         return buildLogicalExpressionBlock(workspace, line);
     }
-    else if(line.charAt(0) == "$"){
-        if(line.indexOf("=") != -1){
-            return buildVariableSetBlock(workspace, varDecl(line));
-        }
-        else{
-            return buildObjectMessageHandlerBlock(workspace, objectMessageHandlerCall(line));
-        }
+    else if(line.charAt(0) == "$" && line.indexOf("=") != -1){
+        return buildVariableSetBlock(workspace, varDecl(line));
+    }
+    else if(lineHasGameManagerCall(line)){
+        return buildCallBlock(workspace, gameManagerCall(line), true);
+    }
+    else if(lineHasOMH(line)){
+        return buildObjectMessageHandlerBlock(workspace, objectMessageHandlerCall(line));
+    }
+    else if(lineHasGlobal(line)){
+        return buildGlobalBlock(workspace, objectMessageHandlerCall(line))
     }
     else{
-        return buildCallBlock(workspace, gameManagerCall(line), true);
+        return -1;
     }
 }
 
@@ -196,10 +227,10 @@ function gameManagerCall(line){
         }
     }
 
-    // //console.log("Debug info for gameManagerCall("+line+")");
-    // //console.log("callName: " + callName);
-    // //console.log("args: " + args);
-    // //console.log("End debug information for gameManagerCall");
+    console.log("Debug info for gameManagerCall("+line+")");
+    console.log("callName: " + callName);
+    console.log("args: " + args);
+    console.log("End debug information for gameManagerCall");
     return [callName, args];
 }
 
@@ -209,47 +240,40 @@ function fcallFromObject(line){
     fcall(remaining_line)
 }
 
-/**
- * 
- * @param {*} lineArray 
- * @param {*} workspace 
- * 
- * @returns an array of length 3 as [ifCondition, thenBody, elseBody]
- *                                                          elseBody may be empty if the if block has no else attached.
- */
-function parseIfBlock(lineArray){
-    let ifCond = [];
-    let thenBody = [];
-    let elseBody = [];
-    
-    //console.log(lineArray);
-    // for(let i = 0; i < lineArray.length; i++){
-    //     lineArray[i] = lineArray[i].trim();
-    // }
+function lineHasGameManagerCall(line){
+    line = line.toLowerCase().trim();
+    let arr = line.split(" ");
+    let call = arr[0];
+    for(let i = 0; i < GAME_MANAGER_RWORDS.length; i++){
+        if(call === GAME_MANAGER_RWORDS[i].toLowerCase()){
+            return true;
+        }
+    }
+    return false;
+}
 
-    let ifIndex = lineArray.indexOf("If");
-    let thenIndex = lineArray.indexOf("Then");
-    let elseIndex = lineArray.indexOf("Else");
-    let endIndex = lineArray.indexOf("Endif");
-    let flexIndex = endIndex;
-    if(elseIndex != -1){
-        flexIndex = elseIndex;
-    }
-    //console.log(ifIndex, thenIndex, elseIndex, endIndex);
-    
-    for(let i = 0; i < lineArray.length; i++){
-        if(i > ifIndex && i < thenIndex){
-            ifCond.push(lineArray[i]);
-        }
-        else if(i > thenIndex && i < flexIndex){
-            thenBody.push(lineArray[i]);
-        }
-        else if(elseIndex != -1 && (i > elseIndex && i < endIndex)){
-            elseBody.push(lineArray[i]);
+function lineHasOMH(line){
+    line = line.toLowerCase().trim();
+    let arr = line.split(" ");
+    let call = arr[1];
+    for(let i = 0; i < OMH_CALLS.length; i++){
+        if(call === OMH_CALLS[i].toLowerCase()){
+            return true;
         }
     }
-    
-    return [ifCond, thenBody, elseBody];
+    return false;
+}
+
+function lineHasGlobal(line){
+    line = line.toLowerCase().trim();
+    let arr = line.split(" ");
+    let call = arr[1];
+    for(let i = 0; i < GLOBALS.length; i++){
+        if(call === GLOBALS[i].toLowerCase()){
+            return true;
+        }
+    }
+    return false;
 }
 
 export {fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, parseExpression, fcall, objectMessageHandlerCall, varDecl}
