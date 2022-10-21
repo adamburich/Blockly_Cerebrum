@@ -11,27 +11,11 @@
 import {buildGlobalBlock, buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './BuildBlocksFromCode.js';
 import { mlc } from './MultiLineComment.js';
 import { f0 } from './BuildIf.js';
+import { OMH_CALLS } from "./OMH_Calls.js";
+import { GAME_MANAGER_RWORDS } from './GameManager_RWORDS.js';
 
 const SPECIAL_CHARS = ["#", "$"];
-const GAME_MANAGER_RWORDS = [
-    "if", "else", "then", "dochoice", "endif", "pause", "waitfor", "ison", "isoff",
-    "turnon", "turnoff", "goto", "label", "do", "return", "create", "destroy", "debug.on", "debug.off", 
-    "debugCanvas", "debugcanvas.off", "debugcanvas.on", "debug.delay", "game.delay", "prompt", 
-    "speaker1", "speaker2", "wait"
-];
-const OMH_CALLS = [
-    'follow', 'switchtoscene', 'clickable_reset', 'localposition', 'clickable.ispressed',
-    'clickable.resetpressed', 'clickable', 'playsound', 'stopsound', 'play', 'jump',
-    'says', 'on', 'off', 'delete', 'exists', 'localrotatetox', 'localrotatex',
-    'rotatetox', 'rotatex', 'localmovex', 'movex', 'matchrotation', 'parentto',
-    'attachto', 'outline', 'outline.on', 'outline.off', 'outline.color',
-    'outline.check', 'param', 'math.number', 'params', 'localrotatetoy',
-    'localrotatey', 'rotatetoy', 'rotatey', 'localmovey', 'movey', 'localrotatetoz',
-    'localrotatez', 'rotatetoz', 'rotatez', 'localmovez', 'movez', 'menu.choice',
-    'menu.result', 'menu.done', 'menu.choices', 'menu.question', 'menu.on', 
-    'setitemdatetime', 'setitemtext', 'setitemdate', 'setmaterial', 'scale', 
-    'align', 'orient', 'grab', 'release', 'lookat', 'lookatme',
-];
+
 const GLOBALS = ['setglobal', 'getGlobal'];
 
 function parseExpression(expression){
@@ -89,7 +73,7 @@ function parseArrToWorkspace(arr, workspace){
             while(arr[i] != "Return"){
                 funcArr.push(arr[i]);
             }
-            console.log(parseArrToWorkspace(funcArr, workspace))
+           //console.log(parseArrToWorkspace(funcArr, workspace))
         }
         else{
             thisBlock = parseLineToWorkspace(arr[i], workspace);
@@ -232,10 +216,10 @@ function gameManagerCall(line){
         }
     }
 
-    console.log("Debug info for gameManagerCall("+line+")");
-    console.log("callName: " + callName);
-    console.log("args: " + args);
-    console.log("End debug information for gameManagerCall");
+   //console.log("Debug info for gameManagerCall("+line+")");
+   //console.log("callName: " + callName);
+   //console.log("args: " + args);
+   //console.log("End debug information for gameManagerCall");
     return [callName, args];
 }
 

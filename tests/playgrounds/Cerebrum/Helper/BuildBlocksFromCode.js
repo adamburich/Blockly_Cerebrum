@@ -14,8 +14,7 @@
 import { custom_block_lib } from "../Blocks/CustomBlockLibrary.mjs";
 import { parseArrToWorkspace } from "./ParseFileContents.js";
 import { buildBlockFromInfix } from "./ExpressionParser.js";
-
-const simpleObjectMessageHandlerCalls = "setmaterial switchtoscene clickable says playsound localrotatetox localrotatetoy localrotatetoz localrotatex localrotatey localrotatez rotatetox rotatetoy rotatetoz rotatey rotatex rotatez movex movey movez localmovez localmovex localmovey setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
+const simpleObjectMessageHandlerCalls = " reset setmaterial switchtoscene clickable says playsound setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
 
 function buildLogicalExpressionBlock(workspace, expression) {
     //console.log("EXPRESSION FROM BUILDLOGICAL: ", expression);
@@ -108,9 +107,9 @@ function buildVariableSetBlock(workspace, declarationValues) {
         valBlock.setFieldValue('FALSE', "BOOL");
     }
     else if ((payload.indexOf("+") != -1 || payload.indexOf("-") != -1 || payload.indexOf(" / ") != -1 || payload.indexOf("*") != -1) && (payload.trim().charAt(0) != "'" && payload.trim().charAt(payload.trim().length - 1) != "'")) {
-        console.log("PAYLOAD: ", payload)
-        console.log(payload.trim().charAt(0))
-        console.log(payload.trim().charAt(payload.trim().length - 1))
+       //console.log("PAYLOAD: ", payload)
+       //console.log(payload.trim().charAt(0))
+       //console.log(payload.trim().charAt(payload.trim().length - 1))
         //console.log("*********************** EXPRESSION BLOCK ***********************")
         valBlock = buildBlockFromInfix(workspace, payload);
         //console.log(valBlock)
@@ -159,8 +158,8 @@ function buildGlobalBlock(workspace, callerCallingArgs) {
 
     let call = callerCallingArgs[1];
     let args = callerCallingArgs[2];
-    console.log("buildObjectMessageHandlerBlock called with:\n\t" + caller + "\n\t" + call + "\n\t" + args);
-    console.log(callerCallingArgs)
+   //console.log("buildObjectMessageHandlerBlock called with:\n\t" + caller + "\n\t" + call + "\n\t" + args);
+   //console.log(callerCallingArgs)
     let callBlock = buildCallBlock(workspace, [call, args], false);
     ////console.log(callBlock)
 
@@ -198,8 +197,8 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
 
     let call = callerCallingArgs[1];
     let args = callerCallingArgs[2];
-    console.log("buildObjectMessageHandlerBlock called with:\n\t" + caller + "\n\t" + call + "\n\t" + args);
-    console.log(callerCallingArgs)
+   //console.log("buildObjectMessageHandlerBlock called with:\n\t" + caller + "\n\t" + call + "\n\t" + args);
+   //console.log(callerCallingArgs)
     let callBlock = buildCallBlock(workspace, [call, args.join(" ")], false);
     ////console.log(callBlock)
 
@@ -222,6 +221,7 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
 
     //If the type of ObjectMessageHandler Call we're looking at doesn't require a param block but just some typed inputs we don't want to use buildParamBlocks(workspace, args), so instead we use buildValBlocks which is a helper to buildParamBlocks
     if (simpleObjectMessageHandlerCalls.includes(call)) {
+       //console.log("SIMPLE OBJECT MESSAGE HANDLER CALL: ", call)
         let argBlocks = buildValBlocks(workspace, args);
         for (let i = 0; i < argBlocks.length; i++) {
             let callConnection = callBlock.inputList[i].connection;
@@ -246,7 +246,7 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
 }
 
 function buildCommentBlock(workspace, comment) {
-    console.log(comment);
+   //console.log(comment);
     let commentBlock = workspace.newBlock("comment")
     //comment = comment.replace("#", "");
     ////console.log(buildValBlocks(workspace, [comment]))
@@ -270,11 +270,11 @@ function buildCommentBlock(workspace, comment) {
  */
 function buildValBlocks(workspace, args) {
     let argBlocks = [];
-    console.log(args);
+   //console.log(args);
     for (let i = 0; i < args.length; i++) {
         let valBlock;
         let payload = args[i];
-        console.log(payload)
+       //console.log(payload)
         if (payload.indexOf("+") != -1) {
             ////console.log("Printing payload of buildValBlocks")
             ////console.log(payload)
@@ -390,8 +390,8 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
     }
 
     let init_block = workspace.newBlock(call);
-    console.log("GameManagerCall For '" + call + "' Has Constructed Base Block:");
-    console.log(init_block);
+   //console.log("GameManagerCall For '" + call + "' Has Constructed Base Block:");
+   //console.log(init_block);
 
     let required_args = result[0].args0;
     ////console.log(init_block.getConnections_());
@@ -400,12 +400,12 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
     ////console.log(inputs);
     //console.log("\tRequired args:\n\t\t" + required_args);
     if (required_args != undefined) {
-        console.log("\n\tOffered args:\n\t\t" + args);
+       //console.log("\n\tOffered args:\n\t\t" + args);
         let argBlocks = buildValBlocks(workspace, args_arr);
-        console.log("DO WE MAKE IT THIS FAR");
+       //console.log("DO WE MAKE IT THIS FAR");
         for (let i = 0; i < argBlocks.length; i++) {
             // //console.log(inputs[i]);
-            console.log(argBlocks[i]);
+           //console.log(argBlocks[i]);
             if (!isGameManagerCall && argBlocks[i].getConnections_().length == 0) {
                 ////console.log(argBlocks[i].getConnections_());
                 let del = new Blockly.Events.BlockDelete(argBlocks[i]);
