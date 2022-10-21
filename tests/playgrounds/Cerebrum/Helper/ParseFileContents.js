@@ -67,14 +67,6 @@ function parseArrToWorkspace(arr, workspace){
             thisBlock = f0_out.block;
             i = f0_out.index;
         }
-        else if(arr[i].trim().split(" ")[0] === "Label"){
-            i++;
-            let funcArr = [];
-            while(arr[i] != "Return"){
-                funcArr.push(arr[i]);
-            }
-           //console.log(parseArrToWorkspace(funcArr, workspace))
-        }
         else{
             thisBlock = parseLineToWorkspace(arr[i], workspace);
         }
