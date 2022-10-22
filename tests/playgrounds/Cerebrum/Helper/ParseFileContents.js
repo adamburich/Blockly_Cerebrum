@@ -53,6 +53,9 @@ function varDecl(line){
  * 
  */
 function parseArrToWorkspace(arr, workspace){
+    //We have to call this or the workspace will update constantly and the page will run out of memory and crash
+    Blockly.Events.disable();
+
     let parentBlock = null;
     let newBlocks = [];
     for(let i = 0; i < arr.length; i++){
@@ -62,7 +65,7 @@ function parseArrToWorkspace(arr, workspace){
             thisBlock = multi_line_comment.block;
             i = multi_line_comment.index;
         }
-        if(arr[i].trim() === "If"){
+        else if(arr[i].trim() === "If"){
             let f0_out = f0(arr, i, workspace);
             thisBlock = f0_out.block;
             i = f0_out.index;
@@ -88,6 +91,10 @@ function parseArrToWorkspace(arr, workspace){
         }
         newBlocks.push(thisBlock);
     }
+    
+    //Run this since we disabled events at the top of the function
+    Blockly.Events.enable();
+
     return newBlocks;
     
 }

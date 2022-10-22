@@ -20,7 +20,7 @@ export function mlc(arr, ind, workspace){
 
     block.initSvg();
     block.setEnabled(true);
-    workspace.render();
+    //workspace.render();
 
     return {"block":block, "index":adjusted_index};
 }

@@ -80,7 +80,7 @@ function buildLogicalExpressionBlock(workspace, expression) {
     baseBlock.initSvg();
     blockA.initSvg();
     blockB.initSvg();
-    workspace.render();
+    //workspace.render();
     //rerenderWorkspace(workspace);
 
     return baseBlock;
@@ -187,7 +187,7 @@ function buildGlobalBlock(workspace, callerCallingArgs) {
 
     callBlock.initSvg();
     callerBlock.initSvg();
-    workspace.render();
+    //workspace.render();
     return callerBlock;
 }
 
@@ -241,7 +241,7 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
 
     callBlock.initSvg();
     callerBlock.initSvg();
-    workspace.render();
+    //workspace.render();
     return callerBlock;
 }
 
@@ -258,7 +258,7 @@ function buildCommentBlock(workspace, comment) {
 
     commentBlock.initSvg();
     valBlock.initSvg();
-    workspace.render();
+    //workspace.render();
 
     return commentBlock;
 }
@@ -422,7 +422,7 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
     //valBlock.setEnabled(true);
 
     init_block.initSvg();
-    workspace.render();
+    //workspace.render();
 
 
     return init_block;
