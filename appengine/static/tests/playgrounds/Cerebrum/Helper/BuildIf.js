@@ -28,7 +28,7 @@ function f0(arr, ind, workspace){
     let thenBlock = f2_out.block;
     //now index of else or endif
     adjusted_index = f2_out.index;
-   //console.log(conditionBlock)
+    //console.log(conditionBlock)
 
     if(arr[adjusted_index].trim() === "Else"){
         adjusted_index++;
@@ -63,7 +63,7 @@ function f1(arr, ind, workspace){
     let condition_line = arr[ind];
 
     let block = buildLogicalExpressionBlock(workspace, condition_line);
-   //console.log("F1 BLOCK: ", block);
+    //console.log("F1 BLOCK: ", block);
 
     return {"block":block, "index":ind+1}
 }
@@ -135,7 +135,7 @@ function attachCondition(baseBlock, condBlock){
     let if_cond = condBlock.outputConnection;
     if_cond_connection.connect(if_cond);
 
-   //console.log(condBlock);
+    //console.log(condBlock);
 }
 
 function attachElseBody(baseBlock, elseBodyBlock){

@@ -105,7 +105,9 @@ function setUpFile(workspace) {
             const lines = file.split(/\r\n|\n/);
             //console.log(workspace)
             //console.log(lines)
-            return parseArrToWorkspace(lines, workspace);
+            let ret = parseArrToWorkspace(lines, workspace);
+            workspace.render();
+            return ret;
             //textarea.value = lines.join('\n');
 
         };
