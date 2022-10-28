@@ -91,6 +91,12 @@ function f2(arr, ind, workspace){
             i = f0_out.index;
             blockList.push(blockFromLine);
         }
+        else if(arr[i].trim().toLowerCase().split(" ")[0] === "label"){
+            let label_output = parseLabel(arr, i, workspace);
+            blockFromLine = label_output.block;
+            i = label_output.index;
+            blockList.push(blockFromLine);
+        }
         else if(arr[i].trim() === "/*"){
             let multi_line_comment = mlc(arr, i, workspace);
             i = multi_line_comment.index;
@@ -145,9 +151,11 @@ function attachElseBody(baseBlock, elseBodyBlock){
 }
 
 function connectBlocksAB(blockA, blockB){
-    let parentConnection = blockA.nextConnection;
-    let childConnection = blockB.previousConnection;
-    parentConnection.connect(childConnection);
+    if(blockA != null && blockB != null){
+        let parentConnection = blockA.nextConnection;
+        let childConnection = blockB.previousConnection;
+        parentConnection.connect(childConnection);
+    }
 }
 
 /**
@@ -157,4 +165,4 @@ function connectBlocksAB(blockA, blockB){
  * - we parse the condition (f1)
  */
 
-export { f0, connectBlocksAB }
+export { f0, connectBlocksAB, attachCondition, attachThenBody }

@@ -356,7 +356,7 @@ function buildParamBlocks(workspace, args) {
 
 
 function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
-    ////console.log(callAndArgs);
+    console.log(callAndArgs);
     let call = callAndArgs[0].toLowerCase();
     let args = callAndArgs[1];
     let args_arr;
@@ -390,8 +390,8 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
     }
 
     let init_block = workspace.newBlock(call);
-   //console.log("GameManagerCall For '" + call + "' Has Constructed Base Block:");
-   //console.log(init_block);
+    //console.log("GameManagerCall For '" + call + "' Has Constructed Base Block:");
+    //console.log(init_block);
 
     let required_args = result[0].args0;
     ////console.log(init_block.getConnections_());

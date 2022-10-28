@@ -33,6 +33,22 @@ export let gameManagerCallBlocks = [
     "previousStatement": null
   },
   {
+    "type": "goto",
+    "message0": "Goto %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "label_name"
+      }
+    ],
+    "inputsInline": true,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
     "type": "waitfor",
     "message0": "waitfor",
     'previousStatement': null,

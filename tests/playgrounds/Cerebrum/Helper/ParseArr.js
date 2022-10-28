@@ -9,7 +9,7 @@ import { parseLineToWorkspace } from './ParseFileContents.js'
  * @param {*} workspace 
  * 
  */
-function parseArrToWorkspace(arr, ind, workspace){
+function parseArrToBlock(arr, ind, workspace){
     //We have to call this or the workspace will update constantly and the page will run out of memory and crash
     Blockly.Events.disable();
 
@@ -21,13 +21,19 @@ function parseArrToWorkspace(arr, ind, workspace){
             thisBlock = multi_line_comment.block;
             i = multi_line_comment.index;
         }
-        else if(arr[i].trim() === "If"){
+        else if(arr[i].trim().toLowerCase() === "if"){
             let f0_out = f0(arr, i, workspace);
             thisBlock = f0_out.block;
             i = f0_out.index;
         }
+        else if(arr[i].trim().toLowerCase() === "label"){
+        }
         else{
-            thisBlock = parseLineToWorkspace(arr[i], workspace);
+            try {
+                thisBlock = parseLineToWorkspace(arr[i], workspace);
+            } catch (error) {
+                thisBlock = -1;
+            }
         }
         if(thisBlock == -1){
             console.log("Error producing block at index: ", i)
@@ -47,5 +53,58 @@ function parseArrToWorkspace(arr, ind, workspace){
     Blockly.Events.enable();
 
     return {"block":newBlocks[0], "index":arr.length};
+    
+}
+
+/**
+ * Parses array of lines and adds it to the workspace - calls several helper parsing and building functions
+ * @param {*} arr 
+ * @param {*} workspace 
+ * 
+ */
+ function parseArrToWorkspace(arr, workspace){
+    //We have to call this or the workspace will update constantly and the page will run out of memory and crash
+    Blockly.Events.disable();
+
+    let parentBlock = null;
+    let newBlocks = [];
+    for(let i = 0; i < arr.length; i++){
+        let thisBlock;
+        if(arr[i].trim() === "/*"){
+            let multi_line_comment = mlc(arr, i, workspace);
+            thisBlock = multi_line_comment.block;
+            i = multi_line_comment.index;
+        }
+        else if(arr[i].trim() === "If"){
+            let f0_out = f0(arr, i, workspace);
+            thisBlock = f0_out.block;
+            i = f0_out.index;
+        }
+        else{
+            thisBlock = parseLineToWorkspace(arr[i], workspace);
+        }
+        if(thisBlock == -1){
+            console.log("Error producing block at index: ", i)
+            console.log("Line was: ", arr[i])
+            continue;
+        }
+        if(parentBlock != null && thisBlock != null){
+            //console.log(parentBlock);
+            parentBlock.previousConnection.connect(thisBlock.previousConnection.targetConnection);
+            parentBlock.nextConnection.connect(thisBlock.previousConnection);
+        }
+        if(thisBlock != null){
+            parentBlock = thisBlock;
+        }
+        else{
+            parentBlock = null;
+        }
+        newBlocks.push(thisBlock);
+    }
+    
+    //Run this since we disabled events at the top of the function
+    Blockly.Events.enable();
+
+    return newBlocks;
     
 }
