@@ -30,7 +30,7 @@ function popp() {
 
 function isOp(op) {
     if (op === '+' || op === '-' ||
-        op === '^' || op === '*' ||
+        op === '^' || op === '*' || 
         op === '/' || op === '(' ||
         op === ')') {
         return true;
@@ -57,6 +57,8 @@ function precedence(op) {
 }
  
 function InfixtoPostfix(expression) {
+    // console.log("INFIX TO POSTFIX:")
+    // console.log(expression)
  
     // Postfix array created
     var postfix = [];
@@ -94,10 +96,28 @@ function InfixtoPostfix(expression) {
                 push(el);
             }
         }
+        else if(el === "'"){
+            let innards = "'";
+            for(let j = i+1; j < expression.length; j++){
+                if(expression[j] != "'"){
+                    innards += expression[j];
+                }
+                else{
+                    innards += expression[j];
+                    j++;
+                    i = j;
+                    break;
+                }
+            }
+            // console.log(innards);
+            postfix[temp++] = innards;
+        }
         else {
             postfix[temp++] = el;
         }
     }
+
+    // console.log("POSTFIX:", postfix)
  
     // Adding character until stackarr[topp] is @
     while (stackarr[topp] != '@') {
@@ -111,8 +131,9 @@ function InfixtoPostfix(expression) {
     st = st.replaceAll("+", " +")
     st = st.replaceAll("-", " -")
     st = st.replaceAll("*", " *")
-    st = st.replaceAll("/", " /")
+    st = st.replaceAll("/", "/")
     st = st.replaceAll("  ", " ");
+    // console.log(st)
     let out = st.split(" ");
     // To print postfix expression in HTML
     return out;
@@ -166,9 +187,12 @@ function buildExpressionBlockFromPostfix(workspace, blockA, blockB, op){
 
 function buildBlockFromInfix(workspace, infix){
     let postfix = InfixtoPostfix(infix);
+    // console.log(postfix)
     let blockstack = [];
     let expstack = [];
-    //console.log(postfix)
+    // console.log("buildExpression Debug")
+    // console.log(infix)
+    // console.log(postfix)
     for(let i = 0; i < postfix.length; i++){
         if(!isOp(postfix[i])){
             //console.log(postfix[i]);
@@ -195,8 +219,8 @@ function buildBlockFromInfix(workspace, infix){
             blockstack.push(op);
         }
     }
-    //console.log(blockstack)
-    //console.log(expstack)
+    // console.log(blockstack)
+    // console.log(expstack)
     //workspace.render();
     return expstack.pop();
 }

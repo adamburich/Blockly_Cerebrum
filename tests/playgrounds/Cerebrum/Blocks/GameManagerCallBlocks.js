@@ -93,7 +93,7 @@ export let gameManagerCallBlocks = [
   },
   {
     "type": "turnon",
-    "message0": "ison %1",
+    "message0": "turnon %1",
     "args0": [
       {
         "type": "input_value",

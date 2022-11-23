@@ -9,9 +9,9 @@
  */
 
 import { addButtons } from "./AddButtons.js";
-import {fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, fcall, objectMessageHandlerCall, varDecl} from "./ParseFileContents.js";
-import {buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './BuildBlocksFromCode.js';
-import {prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload} from './FileHandler.js';
+import {fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, fcall, objectMessageHandlerCall, varDecl} from "./Builders/ParseFileContents.js";
+import {buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './Builders/BuildBlocksFromCode.js';
+import {prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload} from './Builders/FileHandler.js';
 import { hideUnusedGenerators } from "./Prettify.js";
 import { populatePatientVars } from "./VariableSetup.js";
 

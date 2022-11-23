@@ -9,14 +9,14 @@ export function bindControlFlowCommand(generator) {
         //console.log(block)
         var body = generator.statementToCode(block, "STACK");
         var returnVal = generator.valueToCode(block, 'RETURN', Blockly.JavaScript.ORDER_NONE)
-        return "\nLabel '" + name + "'\n" + body + "\nReturn " + returnVal;
+        return body;
     }
 
     generator['procedures_defnoreturn'] = function (block) {
         var name = block.getFieldValue("NAME");
         var body = generator.statementToCode(block, "STACK");
 
-        return "Label '" + name + "'\n" + body + "\nReturn";
+        return body;
     }
 
     generator['procedures_callnoreturn'] = function (block) {

@@ -149,324 +149,216 @@ export let objectMessageHandlerCat = {
         'kind': 'block',
         'type': 'localrotatetox',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'localrotatex',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'rotatetox',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'rotatex',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'localmovex',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'movex',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'localrotatetoy',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'localrotatey',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'rotatetoy',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'rotatey',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'localmovey',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'movey',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'localrotatetoz',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'localrotatez',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'rotatetoz',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'rotatez',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'localmovez',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {
         'kind': 'block',
         'type': 'movez',
         "inputs": {
-          "angle": {
+          "Params": {
             "shadow": {
-              "type": "math_number",
+              "type": "param",
               
-            }
+            },
           },
-          "duration": {
-            "shadow": {
-              "type": "math_number",
-              
-            }
-          }
         }
       },
       {

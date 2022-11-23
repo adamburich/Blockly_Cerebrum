@@ -10,7 +10,8 @@
  */
 
 import { parseArrToWorkspace } from './ParseFileContents.js'
-import { cerebrumGenerator } from '../Generator/CerebrumGenerator.mjs'
+import { cerebrumGenerator } from '../../Generator/CerebrumGenerator.mjs'
+import {attachThenBody} from './BuildIf.js'
 
 function codeToFiles(code) {
     let lines = code.split("\n");
@@ -100,12 +101,21 @@ function setUpFile(workspace) {
         reader.onload = (e) => {
             const file = e.target.result;
 
+            let fname = input.files[0].name.split(".")[0]
+            let fblock = workspace.newBlock("procedures_defnoreturn");
+            fblock.setFieldValue(fname, "NAME");
+            fblock.initSvg();
+            fblock.setEnabled(true);
+
             // This is a regular expression to identify carriage
             // Returns and line breaks
             const lines = file.split(/\r\n|\n/);
-            //console.log(workspace)
-            //console.log(lines)
+
             let ret = parseArrToWorkspace(lines, workspace);
+            let fileBlock = ret.block;
+
+            attachThenBody(fblock, fileBlock);
+
             workspace.render();
             return ret;
             //textarea.value = lines.join('\n');

@@ -8,7 +8,7 @@
  * 
  */
 
-import {buildGlobalBlock, buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './BuildBlocksFromCode.js';
+import {buildGlobalBlock, buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock, buildEmpty} from './BuildBlocksFromCode.js';
 import { mlc } from './MultiLineComment.js';
 import { f0, connectBlocksAB } from './BuildIf.js';
 import { parseLabel } from './ParseLabel.js';
@@ -110,9 +110,9 @@ function parseLineToWorkspace(line, workspace){
     //     //console.log(line.charAt(i));
     // }
     //console.log(line);
-    line = line.trimStart(" ");
+    line = line.trim();
     if(line == ""){
-        return workspace.newBlock("empty_line");
+        return buildEmpty(workspace);
     }
     else if(line.charAt(0) == "#"){
         return buildCommentBlock(workspace, line);

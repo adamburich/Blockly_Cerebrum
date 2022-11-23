@@ -3,6 +3,8 @@
  * @param {*} generator 
  */
 
+import { GAME_MANAGER_RWORDS } from "../Helper/Builders/GameManager_RWORDS.js";
+
 export function bindHelpers(generator) {
     generator['empty_line'] = function (block) {
         return "";
@@ -48,12 +50,23 @@ export function bindHelpers(generator) {
         const argument0 = generator.valueToCode(
             block, 'VALUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
         const varName = block.inputList[0].fieldRow[1].selectedOption_[0];
-        return "$" + varName + ' = ' + argument0 + '';
+        let code = "$" + varName + ' = ' + argument0 + '';
+        if(code.indexOf("'") != -1){
+            code = code.replaceAll("(", "");
+            code = code.replaceAll(")", "");
+        }
+        return code;
     }
 
     generator['variables_get'] = function (block) {
         //console.log(block.inputList[0].fieldRow[0].selectedOption_[0]);
-        var code = "$" + block.inputList[0].fieldRow[0].selectedOption_[0];
+        //console.log(block);
+        let code = "";
+        if(block.parentBlock_.type === "param" || GAME_MANAGER_RWORDS.indexOf(block.parentBlock_.type) != -1){
+            code = "$" + block.inputList[0].fieldRow[0].selectedOption_[0];
+        }else{
+            code = block.inputList[0].fieldRow[0].selectedOption_[0];
+        }
         return [code, Blockly.JavaScript.ORDER_ATOMIC]
     }
 
