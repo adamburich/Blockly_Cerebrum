@@ -8,15 +8,25 @@ export function bindControlFlowCommand(generator) {
         var name = block.getFieldValue("NAME");
         //console.log(block)
         var body = generator.statementToCode(block, "STACK");
+        let bodArray = body.split("\n");
+        for(let i = 0; i < bodArray.length; i++){
+            bodArray[i] = bodArray[i].trimStart(" ");
+        }
+        body = bodArray.join("\n")
         var returnVal = generator.valueToCode(block, 'RETURN', Blockly.JavaScript.ORDER_NONE)
-        return "\nLabel '" + name + "'\n" + body + "\nReturn " + returnVal;
+        return body;
     }
 
     generator['procedures_defnoreturn'] = function (block) {
         var name = block.getFieldValue("NAME");
         var body = generator.statementToCode(block, "STACK");
+        let bodArray = body.split("\n");
+        for(let i = 0; i < bodArray.length; i++){
+            bodArray[i] = bodArray[i].trimStart(" ");
+        }
+        body = bodArray.join("\n")
 
-        return "Label '" + name + "'\n" + body + "\nReturn";
+        return body;
     }
 
     generator['procedures_callnoreturn'] = function (block) {
@@ -150,7 +160,7 @@ export function bindControlFlowCommand(generator) {
     };
 
     generator['controls_ifelse'] = function (block) {
-        console.log(block);
+        //console.log(block);
         var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
         var body = generator.statementToCode(block, "DO0");
         var elseBody = generator.statementToCode(block, "ELSE");

@@ -85,13 +85,13 @@ export function bindGameManagerCalls(generator) {
         return "turnon " + arg;
     }
 
-    generator['ison'] = function (block) {
+    generator['is_on'] = function (block) {
         var arg = generator.valueToCode(block, "objectName", Blockly.JavaScript.ORDER_ATOMIC);
 
         return "ison " + arg;
     }
 
-    generator['isoff'] = function (block) {
+    generator['is_off'] = function (block) {
         var arg = generator.valueToCode(block, "objectName", Blockly.JavaScript.ORDER_ATOMIC);
 
         return "isoff " + arg;

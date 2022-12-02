@@ -11,7 +11,7 @@
  * 
  */
 
-import { custom_block_lib } from "../Blocks/CustomBlockLibrary.mjs";
+import { custom_block_lib } from "../../Blocks/CustomBlockLibrary.mjs";
 import { parseArrToWorkspace } from "./ParseFileContents.js";
 import { buildBlockFromInfix } from "./ExpressionParser.js";
 const simpleObjectMessageHandlerCalls = " reset setmaterial switchtoscene clickable says playsound setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
@@ -106,7 +106,7 @@ function buildVariableSetBlock(workspace, declarationValues) {
         valBlock = workspace.newBlock("logic_boolean")
         valBlock.setFieldValue('FALSE', "BOOL");
     }
-    else if ((payload.indexOf("+") != -1 || payload.indexOf("-") != -1 || payload.indexOf(" / ") != -1 || payload.indexOf("*") != -1) && (payload.trim().charAt(0) != "'" && payload.trim().charAt(payload.trim().length - 1) != "'")) {
+    else if ((obj != "BloodType" && (payload.indexOf("+") != -1 || payload.indexOf("-") != -1 || payload.indexOf(" / ") != -1 || payload.indexOf("*") != -1))/** && (payload.trim().charAt(0) != "'" && payload.trim().charAt(payload.trim().length - 1) != "'")*/) {
        //console.log("PAYLOAD: ", payload)
        //console.log(payload.trim().charAt(0))
        //console.log(payload.trim().charAt(payload.trim().length - 1))
@@ -150,6 +150,13 @@ function buildVariableSetBlock(workspace, declarationValues) {
     //rerenderWorkspace(workspace);
 
     return setBlock;
+}
+
+function buildEmpty(workspace){
+    let block = workspace.newBlock("empty_line");
+    block.initSvg();
+    block.setEnabled(true);
+    return block;
 }
 
 function buildGlobalBlock(workspace, callerCallingArgs) {
@@ -275,9 +282,13 @@ function buildValBlocks(workspace, args) {
         let valBlock;
         let payload = args[i];
        //console.log(payload)
+        /**
+         * This absolutely has to go, this isn't remotely close to a viable way to know whether or not the payload has an expression
+         * 
+         */
         if (payload.indexOf("+") != -1) {
-            ////console.log("Printing payload of buildValBlocks")
-            ////console.log(payload)
+            // console.log("Printing payload of buildValBlocks")
+            // console.log(payload)
             let chunks = payload.split("+");
             let argA = buildValBlocks(workspace, [chunks[0].trim()]);
             let argB = buildValBlocks(workspace, [chunks[1].trim()]);
@@ -356,7 +367,7 @@ function buildParamBlocks(workspace, args) {
 
 
 function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
-    ////console.log(callAndArgs);
+    // console.log(callAndArgs);
     let call = callAndArgs[0].toLowerCase();
     let args = callAndArgs[1];
     let args_arr;
@@ -390,8 +401,8 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
     }
 
     let init_block = workspace.newBlock(call);
-   //console.log("GameManagerCall For '" + call + "' Has Constructed Base Block:");
-   //console.log(init_block);
+    //console.log("GameManagerCall For '" + call + "' Has Constructed Base Block:");
+    //console.log(init_block);
 
     let required_args = result[0].args0;
     ////console.log(init_block.getConnections_());
@@ -430,4 +441,4 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
 
 
 
-export { buildGlobalBlock, buildLogicalExpressionBlock, buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock }
+export { buildGlobalBlock, buildLogicalExpressionBlock, buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock, buildEmpty }

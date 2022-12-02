@@ -8,19 +8,16 @@
  * 
  */
 
-import {buildGlobalBlock, buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './BuildBlocksFromCode.js';
+import {buildGlobalBlock, buildCallBlock, buildLogicalExpressionBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock, buildEmpty} from './BuildBlocksFromCode.js';
 import { mlc } from './MultiLineComment.js';
-import { f0 } from './BuildIf.js';
+import { f0, connectBlocksAB } from './BuildIf.js';
+import { parseLabel } from './ParseLabel.js';
 import { OMH_CALLS } from "./OMH_Calls.js";
 import { GAME_MANAGER_RWORDS } from './GameManager_RWORDS.js';
 
 const SPECIAL_CHARS = ["#", "$"];
 
 const GLOBALS = ['setglobal', 'getGlobal'];
-
-function parseExpression(expression){
-    
-}
 
 /**
  * Parses variable declaration and returns an array of [object_name, assignment_value]
@@ -56,7 +53,6 @@ function parseArrToWorkspace(arr, workspace){
     //We have to call this or the workspace will update constantly and the page will run out of memory and crash
     Blockly.Events.disable();
 
-    let parentBlock = null;
     let newBlocks = [];
     for(let i = 0; i < arr.length; i++){
         let thisBlock;
@@ -65,37 +61,41 @@ function parseArrToWorkspace(arr, workspace){
             thisBlock = multi_line_comment.block;
             i = multi_line_comment.index;
         }
-        else if(arr[i].trim() === "If"){
+        else if(arr[i].trim().toLowerCase() === "if"){
             let f0_out = f0(arr, i, workspace);
             thisBlock = f0_out.block;
             i = f0_out.index;
         }
+        else if(arr[i].trim().toLowerCase().split(" ")[0] === "label"){
+            let label_output = parseLabel(arr, i, workspace);
+            thisBlock = label_output.block;
+            i = label_output.index;
+        }
         else{
-            thisBlock = parseLineToWorkspace(arr[i], workspace);
+            try {
+                thisBlock = parseLineToWorkspace(arr[i], workspace);
+            } catch (error) {
+                thisBlock = -1;
+            }
         }
         if(thisBlock == -1){
             console.log("Error producing block at index: ", i)
             console.log("Line was: ", arr[i])
             continue;
         }
-        if(parentBlock != null && thisBlock != null){
-            //console.log(parentBlock);
-            parentBlock.previousConnection.connect(thisBlock.previousConnection.targetConnection);
-            parentBlock.nextConnection.connect(thisBlock.previousConnection);
-        }
-        if(thisBlock != null){
-            parentBlock = thisBlock;
-        }
-        else{
-            parentBlock = null;
-        }
         newBlocks.push(thisBlock);
+    }
+
+    if(newBlocks.length > 1){
+        for(let i = 1; i < newBlocks.length; i++){
+            connectBlocksAB(newBlocks[i-1], newBlocks[i]);
+        }
     }
     
     //Run this since we disabled events at the top of the function
     Blockly.Events.enable();
 
-    return newBlocks;
+    return {"block":newBlocks[0], "index":arr.length}
     
 }
 
@@ -110,9 +110,9 @@ function parseLineToWorkspace(line, workspace){
     //     //console.log(line.charAt(i));
     // }
     //console.log(line);
-    line = line.trimStart(" ");
+    line = line.trim();
     if(line == ""){
-        return workspace.newBlock("empty_line");
+        return buildEmpty(workspace);
     }
     else if(line.charAt(0) == "#"){
         return buildCommentBlock(workspace, line);
@@ -264,5 +264,5 @@ function lineHasGlobal(line){
     return false;
 }
 
-export {fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, parseExpression, fcall, objectMessageHandlerCall, varDecl}
+export {fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, fcall, objectMessageHandlerCall, varDecl}
 

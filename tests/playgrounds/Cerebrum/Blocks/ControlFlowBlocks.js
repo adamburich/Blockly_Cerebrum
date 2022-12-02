@@ -47,20 +47,23 @@ export let controlFlowBlocks = [
   },
   {
     "type": "label",
-    "message0": "Label %1",
+    "message0": "Label %1 %2",
     "args0": [
       {
         "type": "input_value",
-        "name": "fname",
+        "name": "label_name"
       },
+      {
+        "type": "input_statement",
+        "name": "label_body"
+      }
     ],
-
     "inputsInline": true,
+    "previousStatement": null,
+    "nextStatement": null,
     "colour": 230,
     "tooltip": "",
-    "helpUrl": "",
-    "nextStatement": null,
-    "previousStatement": null
+    "helpUrl": ""
   },
   {
     "type": "do_noreturn",
