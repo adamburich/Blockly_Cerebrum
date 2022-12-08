@@ -22,8 +22,8 @@ export function addButtons(){
     }
 
     var target = found.nextSibling;
-    target.style.maxHeight = "20%";
-    target.nextSibling.style.maxHeight = "80%";
+    target.style.maxHeight = "30%";
+    target.nextSibling.style.maxHeight = "70%";
     // target.appendChild(downloaddiv); 
 
     let input = document.createElement("input");
