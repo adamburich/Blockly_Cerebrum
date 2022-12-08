@@ -56,69 +56,37 @@ export function bindControlFlowCommand(generator) {
 
     generator['do_return'] = function (block) {
         var tt_block = block.childBlocks_[0];
-        var tt = "";
-        var name = "";
-        if (tt_block != null) {
-            if (tt_block.type == "text") {
-                name = generator.valueToCode(block, "fname", Blockly.JavaScript.ORDER_NONE);
+        if(tt_block != undefined){
+            // Call a procedure with a return value.
+            const funcName = tt_block.getFieldValue('NAME');
+            const args = [];
+            const variables = tt_block.getVars();
+            for (let i = 0; i < variables.length; i++) {
+              args[i] = generator.valueToCode(tt_block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
+                  'null';
             }
-            else {
-                tt = tt_block.tooltip;
-                name = tt.substring(tt.indexOf('"') + 1, tt.lastIndexOf('"'))
-                name = "'" + name + "'";
-            }
+            const code = 'Do ' + "'" + funcName + "' " + args.join('  ') + ' ';
+            return code;
         }
-        var fname = name;
-        var paramblock = null;
-        if (block.nextConnection.targetConnection != null) {
-            paramblock = block.nextConnection.targetConnection.sourceBlock_;
-        }
-        var params = "";
-        if (paramblock != null) {
-            params = generator.valueToCode(paramblock, "param_val", Blockly.JavaScript.ORDER_ATOMIC);
-            while (paramblock != null && paramblock.nextConnection.targetConnection != null) {
-                paramblock = paramblock.nextConnection.targetConnection.sourceBlock_;
-                params += " " + generator.valueToCode(paramblock, "param_val", Blockly.JavaScript.ORDER_ATOMIC);
-
-            }
-            params = params.replace("\n", " ");
-        }
-        // TODO: Assemble JavaScript into code variable.
-        var code = "Do " + fname.trimStart() + " " + params;
-        return code;
+        else return "Do "
     };
 
     generator['do_noreturn'] = function (block) {
         //console.log(block);
         var tt_block = block.childBlocks_[0];
-        var tt = "";
-        var name = "";
-        if (tt_block != null) {
-            if (tt_block.type == "text") {
-                name = tt_block.getFieldValue("NAME");
+        if(tt_block != undefined){
+            // Call a procedure with a return value.
+            const funcName = tt_block.getFieldValue('NAME');
+            const args = [];
+            const variables = tt_block.getVars();
+            for (let i = 0; i < variables.length; i++) {
+              args[i] = generator.valueToCode(tt_block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
+                  'null';
             }
-            else {
-                tt = tt_block.tooltip;
-                name = tt.substring(tt.indexOf('"') + 1, tt.lastIndexOf('"'))
-            }
+            const code = 'Do ' + "'" + funcName + "' " + args.join('  ') + ' ';
+            return code;
         }
-        var fname = "'" + name + "'";
-        var paramblock = null;
-        if (block.nextConnection.targetConnection != null) {
-            paramblock = block.nextConnection.targetConnection.sourceBlock_;
-        }
-        var params = "";
-        if (paramblock != null) {
-            params = generator.valueToCode(paramblock, "param_val", Blockly.JavaScript.ORDER_ATOMIC);
-            while (paramblock != null && paramblock.nextConnection.targetConnection != null) {
-                paramblock = paramblock.nextConnection.targetConnection.sourceBlock_;
-                params += " " + generator.valueToCode(paramblock, "param_val", Blockly.JavaScript.ORDER_ATOMIC);
-
-            }
-            params = params.replace("\n", " ");
-        }
-        var code = "Do " + fname.trimStart() + " " + params;
-        return code;
+        else return "Do "
     };
 
     generator['gotolabelreturn'] = function (block) {

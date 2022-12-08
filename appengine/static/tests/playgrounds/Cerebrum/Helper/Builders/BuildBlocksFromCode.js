@@ -118,9 +118,13 @@ function buildVariableSetBlock(workspace, declarationValues) {
         valBlock = workspace.newBlock("math_number")
         valBlock.setFieldValue(payload, "NUM");
     }
-    else if (payload && payload.charAt(0) == "$") {
+    else if ((payload && payload.charAt(0) == "$") || payload.charAt(0) != "'") {
         // //console.log("VARIABLE ASSIGNMENT HAPPENING NOW")
-        let varId = payload.substring(1, payload.length);
+        let offset = 0;
+        if(payload.charAt(0) == "$"){
+            offset = 1;
+        }
+        let varId = payload.substring(offset, payload.length);
         if (!workspace.getAllVariableNames().includes(varId)) {
             workspace.createVariable(varId, "", varId);
         }

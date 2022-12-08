@@ -35,6 +35,16 @@ export function addButtons(){
     input.style.marginLeft = "5px";
     inputTitle.style.marginLeft = "5px";
 
+    let flist = document.createElement("input");
+    flist.setAttribute("name", "upload-flist");
+    flist.setAttribute("type", "file");
+    flist.setAttribute("id", "upload-flist");
+    let flistLabel = document.createElement("h3");
+    flistLabel.innerText = "Upload function list";
+    flist.style.marginLeft = "5px";
+    flistLabel.style.marginLeft = "5px";
+    flistLabel.style.marginTop = "25px";
+
     let dl = document.createElement("input");
     dl.setAttribute("name", "download-code");
     dl.setAttribute("type", "button");
@@ -67,6 +77,8 @@ export function addButtons(){
 
     target.appendChild(inputTitle);
     target.appendChild(input);
+    target.appendChild(flistLabel);
+    target.appendChild(flist);
     target.appendChild(dlTitle);
     target.appendChild(dl);
     target.appendChild(container);
