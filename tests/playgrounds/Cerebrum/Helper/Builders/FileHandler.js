@@ -83,6 +83,7 @@ function handleSelected(e) {
 
 function setUpFile(workspace) {
     let input = document.getElementById('upload-code')
+    console.log(input);
     input.addEventListener('change', () => {
         let files = input.files;
 
@@ -128,6 +129,50 @@ function setUpFile(workspace) {
     });
 }
 
+function uploadFileList(workspace){
+    let input = document.getElementById('upload-flist')
+    console.log(input)
+    input.addEventListener('change', () => {
+        let files = input.files;
+
+        if (files.length == 0) return;
+
+        const file = files[0];
+
+        let reader = new FileReader();
+
+        reader.onload = (e) => {
+            const file = e.target.result;
+
+            // This is a regular expression to identify carriage
+            // Returns and line breaks
+            
+            Blockly.Events.disable();
+            const lines = file.split(/\r\n|\n/);
+            for(let i = 0; i < lines.length; i++){
+                if(lines[i].trim().length > 1){
+                    let adjusted_name = lines[i].replaceAll("\\", "/");
+                    let fblock = workspace.newBlock("procedures_defnoreturn");
+                    fblock.setFieldValue(adjusted_name, "NAME");
+                    fblock.setEnabled(false);
+                    fblock.setEditable(false);
+                    fblock.setCollapsed(true);
+                    //fblock.setMovable(false);
+                }
+            }
+            Blockly.Events.enable();
+            //workspace.render();
+            return;
+            //textarea.value = lines.join('\n');
+
+        };
+
+        reader.onerror = (e) => alert(e.target.error.name);
+
+        reader.readAsText(file);
+    });
+}
+
 function prepareFileText() {
     return file_text.split("\n");
 }
@@ -158,6 +203,7 @@ function updateCodeAndDownload(workspace) {
 
 function allowUpload(workspace) {
     setUpFile(workspace);
+    uploadFileList(workspace);
 }
 
-export { prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }
+export { uploadFileList, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }
