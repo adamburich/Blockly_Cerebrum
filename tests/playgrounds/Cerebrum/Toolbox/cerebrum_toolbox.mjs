@@ -29,9 +29,11 @@ Blockly.common.defineBlocksWithJsonArray(custom_block_lib);
                 'type': 'do_return',
                 "inputs": {
                   "fname":{
+                    /**
                     "shadow":{
                       "type": "procedures_callreturn"
                     }
+                    */
                   },
                 }
               },
@@ -40,9 +42,11 @@ Blockly.common.defineBlocksWithJsonArray(custom_block_lib);
                 'type': 'do_noreturn',
                 "inputs": {
                   "fname":{
+                    /**
                     "shadow":{
                       "type": "procedures_callnoreturn"
                     }
+                    */
                   },
                 }
               },
@@ -63,9 +67,9 @@ Blockly.common.defineBlocksWithJsonArray(custom_block_lib);
                 'type': 'gotolabelreturn',
                 "inputs":{
                   "label":{
-                     "shadow":{
-                      "type":"procedures_callreturn"
-                     }
+                    //  "shadow":{
+                    //   "type":"procedures_callreturn"
+                    //  }
                   }
                 }
               },
@@ -74,9 +78,9 @@ Blockly.common.defineBlocksWithJsonArray(custom_block_lib);
                 'type': 'gotolabelnoreturn',
                 "inputs":{
                   "noreturn":{
-                     "shadow":{
-                      "type":"procedures_callnoreturn"
-                     }
+                    //  "shadow":{
+                    //   "type":"procedures_callnoreturn"
+                    //  }
                   }
                 }
               }

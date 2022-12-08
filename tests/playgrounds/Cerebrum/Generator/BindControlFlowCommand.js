@@ -37,7 +37,7 @@ export function bindControlFlowCommand(generator) {
           args[i] = generator.valueToCode(block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
               'null';
         }
-        const code = 'do ' + funcName + ' ' + args.join('  ') + ' ';
+        const code = 'Do ' + "'" + funcName + "' " + args.join('  ') + ' ';
         return code;
     }
     
@@ -50,7 +50,7 @@ export function bindControlFlowCommand(generator) {
           args[i] = generator.valueToCode(block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
               'null';
         }
-        const code = 'do ' + funcName + ' ' + args.join('  ') + ' ';
+        const code = 'Do ' + "'" + funcName + "' " + args.join('  ') + ' ';
         return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
     };
 
