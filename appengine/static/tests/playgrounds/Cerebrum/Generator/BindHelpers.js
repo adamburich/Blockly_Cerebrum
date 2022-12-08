@@ -14,7 +14,7 @@ export function bindHelpers(generator) {
         var value_comment_val = generator.valueToCode(block, 'comment_val', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
         let code = value_comment_val.slice(1, -1).replaceAll("\\", "");
-        return code;
+        return "# " + code;
     };
 
     generator['multi_line_comment'] = function (block) {

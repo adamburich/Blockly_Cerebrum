@@ -11,19 +11,8 @@ Blockly.common.defineBlocksWithJsonArray(custom_block_lib);
           //Procedures category
           {
             'kind':'category',
-            'name':'Procedures',
+            'name':'Do',
             "contents":[
-              {
-                'kind': 'block',
-                'type': 'comment',
-                "inputs": {
-                  "comment_val":{
-                    "shadow":{
-                      "type": "text"
-                    }
-                  },
-                }
-              },
               {
                 'kind': 'block',
                 'type': 'do_return',
@@ -84,6 +73,29 @@ Blockly.common.defineBlocksWithJsonArray(custom_block_lib);
                   }
                 }
               }
+            ]
+          },
+          {
+            'kind':'category',
+            'name':'Comment',
+            "contents":[
+              {
+                'kind': 'block',
+                'type': 'comment',
+                "inputs": {
+                  "comment_val":{
+                    "shadow":{
+                      "type": "text"
+                    }
+                  },
+                }
+              },
+              {
+                'kind': 'block',
+                'type': 'multi_line_comment',
+                "inputs": {
+                }
+              },
             ]
           },
           //Logic category

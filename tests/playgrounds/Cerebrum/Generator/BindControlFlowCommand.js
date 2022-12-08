@@ -90,8 +90,16 @@ export function bindControlFlowCommand(generator) {
     };
 
     generator['gotolabelreturn'] = function (block) {
-        var label = block.getField("label").selectedOption_[0];
-        var code = "Goto '" + label + "'\n";
+        //console.log(block);
+        var tt_block = block.childBlocks_[0];
+        var tt = "";
+        var name = "";
+        if (tt_block != null) {
+            tt = tt_block.tooltip;
+            name = tt.substring(tt.indexOf('"') + 1, tt.lastIndexOf('"'))
+        }
+        //var label = block.childBlocks_[0].tooltip;
+        var code = "Goto '" + name + "'\n";
         return code;
     };
 
