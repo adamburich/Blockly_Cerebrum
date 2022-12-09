@@ -467,6 +467,8 @@ blocks['procedures_defnoreturn'] = {
       this.setCommentText(Msg['PROCEDURES_DEFNORETURN_COMMENT']);
     }
     this.setStyle('procedure_blocks');
+    this.setPreviousStatement('null');
+    this.setNextStatement('null');
     this.setTooltip(Msg['PROCEDURES_DEFNORETURN_TOOLTIP']);
     this.setHelpUrl(Msg['PROCEDURES_DEFNORETURN_HELPURL']);
     this.arguments_ = [];
@@ -515,6 +517,8 @@ blocks['procedures_defreturn'] = {
     this.setStyle('procedure_blocks');
     this.setTooltip(Msg['PROCEDURES_DEFRETURN_TOOLTIP']);
     this.setHelpUrl(Msg['PROCEDURES_DEFRETURN_HELPURL']);
+    this.setPreviousStatement('null');
+    this.setNextStatement('null');
     this.arguments_ = [];
     this.argumentVarModels_ = [];
     this.setStatements_(true);
