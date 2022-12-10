@@ -375,18 +375,19 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
     let call = callAndArgs[0].toLowerCase();
     let args = callAndArgs[1];
     let args_arr;
+
+    //Since JS will turn an array of length 1 to a single object of its type
     if(args instanceof Array){
         args_arr = args;
     }
     else{
         args_arr = args.split(" ");
     }
-    ////console.log(call)
+    //console.log(call)
 
     //Handle some special cases - our gamemanager's ison and isoff calls can't be named those things since they're in use by default blockly so our calls are is_on and is_off - this is fine we just have to catch it and translate
     if (call == "do") {
         call = "do_return";
-        ////console.log("Identified Do call with args " + args_arr)
     } else if (call == "ison") {
         call = "is_on";
     } else if (call == "isoff") {

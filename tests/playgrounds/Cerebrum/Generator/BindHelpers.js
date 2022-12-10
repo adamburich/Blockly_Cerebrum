@@ -80,4 +80,8 @@ export function bindHelpers(generator) {
         return [code, Blockly.JavaScript.ORDER_ATOMIC];
     };
 
+    generator['fblob'] = function (block) {
+        return "";
+    };
+
 }

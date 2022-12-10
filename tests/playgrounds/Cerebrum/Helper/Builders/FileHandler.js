@@ -9,7 +9,7 @@
  * 
  */
 
-import { parseArrToWorkspace } from './ParseFileContents.js'
+import { parseArrToWorkspace, fblob_consolidate } from './ParseFileContents.js'
 import { cerebrumGenerator } from '../../Generator/CerebrumGenerator.mjs'
 import { attachThenBody } from './BuildIf.js'
 
@@ -83,7 +83,7 @@ function handleSelected(e) {
 
 function setUpFile(workspace) {
     let input = document.getElementById('upload-code')
-    console.log(input);
+    //console.log(input);
     input.addEventListener('change', () => {
         let files = input.files;
 
@@ -108,6 +108,7 @@ function setUpFile(workspace) {
             fblock.initSvg();
             fblock.setEnabled(true);
 
+
             // This is a regular expression to identify carriage
             // Returns and line breaks
             const lines = file.split(/\r\n|\n/);
@@ -116,6 +117,8 @@ function setUpFile(workspace) {
             let fileBlock = ret.block;
 
             attachThenBody(fblock, fileBlock);
+
+            fblob_consolidate(fname, workspace);
 
             workspace.render();
             return ret;
@@ -131,7 +134,7 @@ function setUpFile(workspace) {
 
 function uploadFileList(workspace){
     let input = document.getElementById('upload-flist')
-    console.log(input)
+    //console.log(input)
     input.addEventListener('change', () => {
         let files = input.files;
 

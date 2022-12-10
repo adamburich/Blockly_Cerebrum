@@ -85,5 +85,18 @@ export let helperBlocks = [
     "nextStatement": null,
     "previousStatement": null
   },
+  {
+    "type": "fblob",
+    "message0": "Imported Functions %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "imports"
+      }
+    ],
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": ""
+  }
 
 ]
