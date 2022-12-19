@@ -6,6 +6,23 @@ handlers:
 - url: /blockly/.*
   static_files: redirect.html
   upload: redirect.html
+  
+- url: /static/tests/playgrounds/Cerebrum/Blocks
+  mime_type: text/javascript
+  static_dir: static/tests/playgrounds/Cerebrum/Blocks
+  
+- url: /static/tests/playgrounds/Cerebrum/Generator
+  mime_type: text/javascript
+  static_dir: static/tests/playgrounds/Cerebrum/Generator
+  
+- url: /static/tests/playgrounds/Cerebrum/Helper
+  mime_type: text/javascript
+  static_dir: static/tests/playgrounds/Cerebrum/Helper
+  
+- url: /static/tests/playgrounds/Cerebrum/Toolbox
+  mime_type: text/javascript
+  static_dir: static/tests/playgrounds/Cerebrum/Toolbox
+
 # Code, Maze and Turtle moved from demos on 29 Dec 2012.
 - url: /static/demos/(maze|turtle)/.*
   static_files: redirect.html
@@ -50,4 +67,7 @@ handlers:
 - url: /.*
   script: auto
   secure: always
-  
+
+
+
+
