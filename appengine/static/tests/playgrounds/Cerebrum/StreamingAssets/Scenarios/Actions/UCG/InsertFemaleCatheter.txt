@@ -1,0 +1,106 @@
+#InsertFemaleCatheter
+
+If
+	Do 'AnswerIsNo' 'Insert Catheter?'
+Then
+	Return
+Endif
+
+Player align $UrinaryProcPos 0.5
+Wait 0.5
+
+ZoomSpot Menu.Question 'Where to insert?'
+ZoomSpot Menu.Choices 'Urethra','Vagina'
+ZoomSpot Menu.on ZoomSpot
+WaitFor
+	ZoomSpot Menu.Done
+Wait .1
+
+If
+	ZoomSpot menu.result 'Urethra'
+Then
+	$CatheterInsertedCorrectly = true
+Endif
+
+######### SPREAD LABIA ###########
+#Move close and grab if not grabbed already
+#Do 'Actions/UCG/SpreadLabia' $OtherHand
+
+######### CREATE AND ALIGN CATHETER TO DISH
+$TempCatheter = 'CatheterBalloon'
+$UCLocator = $Patient + '/UCLocator'
+$CatheterPort = $TempCatheter + '/Handle/Port'
+$CatheterTubeEnd = $TempCatheter + '/Handle'
+$CatheterEndEffector = TempCatheter + '/EndEffector'
+
+Create $TempCatheter $TempCatheter
+Wait 0
+$TempCatheter align $CatheterBalloon 0
+Wait 0
+
+turnOff $CatheterBalloon
+#wait .1
+$TempCatheter localmovey .01 0
+wait 0.5
+
+######### Grab catheter with active hand
+$Grab = 'grab' + ActiveHand
+Do 'SetGripSize' $ActiveHand 0.2
+$PlayerNurse $Grab $TempCatheter 1 'dip' 'default' 
+Wait 1
+
+######### Move catheter into urethra
+$TempCatheter orient $UCLocator 0.1
+Wait 0.1
+$TempCatheter movebehind $UCLocator -0.1 1
+Wait 1
+
+#Align to urethra opening
+$TempCatheter align $UCLocator 0.5
+wait 1
+#$TempCatheter localmovez .01 1
+#Wait 1
+
+##########INSERT PATIENT STRUGGLE###########
+$ScenarioStruggle = UCStruggle
+#	$GlobalVar getglobal 'PatientStruggle'
+
+$IsStruggling =	(DirtyHand == 'DirtyHand')
+$IsStruggling =	$(IsStruggling || ScenarioStruggle)
+
+#Prompt 'Struggle bool = ' + IsStruggling
+#Wait 5
+If
+	$IsStruggling
+Then
+	Do 'Actions/UCG/PatientStruggle'
+	Return
+Else
+	#Slowly insert catheter all the way
+	$TempCatheter localmovez .1 2
+	wait 2
+
+	$TempCatheter attachto $UCLocator
+	
+	######## Create urine drips ############
+	Do 'Actions/UCG/StartUrineDrip'
+Endif
+
+#Release both hands
+Do 'Actions/UCG/ReleaseGenitals' $DirtyHand
+
+
+$Release = 'release' + ActiveHand
+$PlayerNurse $Release 1 'dip'
+wait 1.5
+
+Player align $UrinaryProcPos 0.5
+wait 0.5
+
+
+
+########### INFLATION #################
+Do 'Actions/UCG/InflateCatheterBalloon'
+
+Player align $PlayerStart 1
+

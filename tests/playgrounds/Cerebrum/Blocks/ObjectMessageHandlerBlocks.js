@@ -1123,4 +1123,22 @@ export let objectMessageHandlerBlocks = [
     "nextStatement": null,
     "previousStatement": null
   },
+  {
+    "type": "setimagecolor",
+    "message0": "setimagecolor %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
 ]

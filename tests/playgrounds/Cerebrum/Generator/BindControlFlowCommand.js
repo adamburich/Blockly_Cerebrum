@@ -55,38 +55,42 @@ export function bindControlFlowCommand(generator) {
     };
 
     generator['do_return'] = function (block) {
-        var tt_block = block.childBlocks_[0];
-        if(tt_block != undefined){
-            // Call a procedure with a return value.
-            const funcName = tt_block.getFieldValue('NAME');
-            const args = [];
-            const variables = tt_block.getVars();
-            for (let i = 0; i < variables.length; i++) {
-              args[i] = generator.valueToCode(tt_block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
-                  'null';
-            }
-            const code = 'Do ' + "'" + funcName + "' " + args.join('  ') + ' ';
-            return code;
-        }
-        else return "Do "
+        // var tt_block = block.childBlocks_[0];
+        // if(tt_block != undefined){
+        //     // Call a procedure with a return value.
+        //     const funcName = tt_block.getFieldValue('NAME');
+        //     const args = [];
+        //     const variables = tt_block.getVars();
+        //     for (let i = 0; i < variables.length; i++) {
+        //       args[i] = generator.valueToCode(tt_block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
+        //           'null';
+        //     }
+        //     const code = 'Do ' + "'" + funcName + "' " + args.join('  ') + ' ';
+        //     return code;
+        // }
+        // else return "Do "
+        let call = block.childBlocks_[0].getFieldValue("TEXT");
+        console.log(block.childBlocks_, call);
+        return ["Do " + call, Blockly.JavaScript.ORDER_NONE]
     };
 
     generator['do_noreturn'] = function (block) {
-        //console.log(block);
-        var tt_block = block.childBlocks_[0];
-        if(tt_block != undefined){
-            // Call a procedure with a return value.
-            const funcName = tt_block.getFieldValue('NAME');
-            const args = [];
-            const variables = tt_block.getVars();
-            for (let i = 0; i < variables.length; i++) {
-              args[i] = generator.valueToCode(tt_block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
-                  'null';
-            }
-            const code = 'Do ' + "'" + funcName + "' " + args.join('  ') + ' ';
-            return code;
-        }
-        else return "Do "
+        // //console.log(block);
+        // var tt_block = block.childBlocks_[0];
+        // if(tt_block != undefined){
+        //     // Call a procedure with a return value.
+        //     const funcName = tt_block.getFieldValue('NAME');
+        //     const args = [];
+        //     const variables = tt_block.getVars();
+        //     for (let i = 0; i < variables.length; i++) {
+        //       args[i] = generator.valueToCode(tt_block, 'ARG' + i, Blockly.JavaScript.ORDER_NONE) ||
+        //           'null';
+        //     }
+        //     const code = 'Do ' + "'" + funcName + "' " + args.join('  ') + ' ';
+        //     return code;
+        // }
+        // else return "Do "
+        return generator.statementToCode(block, "fname")
     };
 
     generator['gotolabelreturn'] = function (block) {
@@ -103,17 +107,18 @@ export function bindControlFlowCommand(generator) {
         return code;
     };
 
-    generator['gotolabelnoreturn'] = function (block) {
+    generator['goto'] = function (block) {
         //console.log(block);
-        var tt_block = block.childBlocks_[0];
-        var tt = "";
-        var name = "";
-        if (tt_block != null) {
-            tt = tt_block.tooltip;
-            name = tt.substring(tt.indexOf('"') + 1, tt.lastIndexOf('"'))
-        }
+        // var tt_block = block.childBlocks_[0];
+        // var tt = "";
+        // var name = "";
+        // if (tt_block != null) {
+        //     tt = tt_block.tooltip;
+        //     name = tt.substring(tt.indexOf('"') + 1, tt.lastIndexOf('"'))
+        // }
         //var label = block.childBlocks_[0].tooltip;
-        var code = "Goto '" + name + "'\n";
+        let call = block.childBlocks_[0].getFieldValue("TEXT");
+        var code = "Goto " + call;
         //var code = label;
         return code;
     };
@@ -130,8 +135,11 @@ export function bindControlFlowCommand(generator) {
     generator['controls_if'] = function (block) {
         //console.log(block);
         var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
+        cond = cond.replace("(", "");
+        cond = cond.replace(")", "");
+        console.log(cond);
         var body = generator.statementToCode(block, "DO0");
-        var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Endif";
+        var code = "If\n  " + "\t" + cond + "\n" + "Then\n" + "\t" + body + "\n" + "Endif";
         return code;
     };
 
@@ -140,7 +148,13 @@ export function bindControlFlowCommand(generator) {
         var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
         var body = generator.statementToCode(block, "DO0");
         var elseBody = generator.statementToCode(block, "ELSE");
-        var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Else\n" + elseBody + "\n" + "Endif";
+        var code = "If\n  " + "\t" + cond + "\n" + "Then\n" + "\t" + body + "\n" + "Else\n" + "\t" + elseBody + "\n" + "Endif";
         return code;
     };
+
+    generator['label'] = function (block) {
+        var name = "Label " + generator.valueToCode(block, "label_name", Blockly.JavaScript.ORDER_NONE)
+        var body = generator.statementToCode(block, "label_body");
+        return name + "\n" + body;
+    }
 }

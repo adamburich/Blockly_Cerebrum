@@ -1,0 +1,29 @@
+#CleanLabia.txt
+#Do 'CleanLabia'  [SideDistance]
+
+
+If
+    $param[0] > 0
+Then
+    $SideDistance = param[1]        #Distance from center (inner vs. outer)
+    #Prompt 'Has Param:' + param[1]
+Else
+    #Prompt 'No param:' + param[1]
+Endif 
+
+
+$Forceps align $PatientGenitals 0
+wait 0
+$Forceps localmovez .06 0
+wait 0
+$Forceps localRotateX -110 0
+Wait 0
+
+#Clean the genitals by wiping each side down then up
+#clean labia
+$Forceps movecirclez $SideDistance 2
+wait 2
+
+
+Prompt ''
+

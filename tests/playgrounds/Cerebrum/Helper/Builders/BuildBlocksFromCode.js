@@ -12,12 +12,12 @@
  */
 
 import { custom_block_lib } from "../../Blocks/CustomBlockLibrary.mjs";
-import { parseArrToWorkspace } from "./ParseFileContents.js";
+import { parseArrToWorkspace, buildDoReturnCall } from "./ParseFileContents.js";
 import { buildBlockFromInfix } from "./ExpressionParser.js";
 const simpleObjectMessageHandlerCalls = " reset setmaterial switchtoscene clickable says playsound setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
 
 function buildLogicalExpressionBlock(workspace, expression) {
-    //console.log("EXPRESSION FROM BUILDLOGICAL: ", expression);
+    console.log("EXPRESSION FROM BUILDLOGICAL: ", expression);
     let chunks;
     let op = "";
     if (expression.indexOf("!=") != -1) {
@@ -47,6 +47,20 @@ function buildLogicalExpressionBlock(workspace, expression) {
     else if (expression.indexOf(">") != -1) {
         chunks = expression.split(">");
         op = "GT";
+    }
+    else if (expression.indexOf("$") != -1){
+        let block = buildValBlocks(workspace, [expression])[0]
+        //console.log(block)
+        block.initSvg();
+        block.setEnabled(true);
+        return block;
+    }
+    else if (expression.indexOf("Do") != -1){
+        let block = buildDoReturnCall(expression, workspace)
+        block.initSvg();
+        block.setEnabled(true);
+        //console.log(block);
+        return block;
     }
     else {
         return;
@@ -259,7 +273,7 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
 function buildCommentBlock(workspace, comment) {
    //console.log(comment);
     let commentBlock = workspace.newBlock("comment")
-    //comment = comment.replace("#", "");
+    comment = comment.replace("#", "");
     ////console.log(buildValBlocks(workspace, [comment]))
     let valBlock = workspace.newBlock("text")
     valBlock.setFieldValue(comment, "TEXT");

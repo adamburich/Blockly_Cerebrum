@@ -13,7 +13,7 @@
 
 import { cerebrumToolbox } from './Cerebrum/Toolbox/cerebrum_toolbox.mjs'
 import { custom_block_lib } from './Cerebrum/Blocks/CustomBlockLibrary.mjs'
-import { addButtons, updateCodeAndDownload, hideUnusedGenerators, allowUpload, populatePatientVars } from './Cerebrum/Helper/Helpers.mjs'
+import { addButtons, updateCodeAndDownload, hideUnusedGenerators, allowUpload, populatePatientVars, importDefaultFunctions } from './Cerebrum/Helper/Helpers.mjs'
 import { cerebrumGenerator } from './Cerebrum/Generator/CerebrumGenerator.mjs'
 
 import Blockly from './blockly.mjs';
@@ -27,8 +27,12 @@ function start() {
   initPlayground();
   addButtons();
   var download = document.getElementById("download-code");
+  var import_flist = document.getElementById("upload-flist");
   download.onclick = function(){
     updateCodeAndDownload(wspace);
+  };
+  import_flist.onclick = function(){
+    importDefaultFunctions(wspace);
   };
   setTimeout(hideUnusedGenerators, 125);
   setTimeout(hideUnusedGenerators, 5000);
