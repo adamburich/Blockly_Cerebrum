@@ -1,0 +1,23 @@
+#GrabGenitals.txt
+
+If
+    $param[0] > 0
+Then
+    $CurrentHand = param[1]
+Else
+    $CurrentHand = ActiveHand
+Endif
+
+
+		If
+			$GenitalsGrabbed = false
+		Then
+			$GenitalsGrabbed = true
+			If
+				$PatientGender = 'Female'
+			Then
+				Do 'Actions/UCG/SpreadLabia' $CurrentHand
+			Else
+				Do 'Actions/UCG/GrabPenis' $CurrentHand
+			Endif
+		Endif

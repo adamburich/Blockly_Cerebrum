@@ -1,0 +1,144 @@
+#########################################
+#  UCG Cart - Stage 4
+#########################################
+
+If
+	$DrapePackage pressed
+Then
+	$DrapePackage reset
+	Do 'Actions/UCG/Drape.txt'
+Endif
+
+If
+	$UCGKidneyDish pressed
+Then
+	$UCGKidneyDish reset
+	Prompt 'Kidney Dish'
+	wait .3
+	Prompt ''
+
+	$KidneyDishPos = $Bed + '/KidneyDishPos'
+
+	$Item = $UCGKidneyDish
+	$Grab = 'grab' + ActiveHand
+	$ItemHoldSpot = $Item + '/' + ActiveHand + 'Rotator'
+	Do 'SetGripSize' $ActiveHand 0.2
+	$PlayerNurse $Grab $ItemHoldSpot 1 'dip' 'default' 
+	Wait 2
+	Do 'Actions/UCG/MoveWithPackage' $Item $PlayerStart
+	wait 1
+	$PlayerNurse localMoveY 0.4 0
+	wait 0
+	$PlayerNurse play LeanIn
+	wait .4
+
+	$UCGKidneyDish moveAbove $KidneyDishPos .3 .6
+	Wait 0.6
+	$UCGKidneyDish align $KidneyDishPos .2
+	wait 0.2
+
+	$UCGKidneyDish clickable false
+	wait .1
+	$Release = 'release' + ActiveHand
+	$PlayerNurse $Release 1 'dip'
+	Do 'SetGripSize' $ActiveHand 0.5
+	Wait 2
+	$PlayerNurse localMoveY -0.4 0
+	wait 0
+
+	$CatheterBalloon detach
+	$Syringe detach
+
+	$CatheterBalloon clickable true
+Endif
+
+
+If
+	$UrineBag pressed
+Then
+	$UrineBag reset
+
+	If
+		UrineBagLocation == 'Bed'
+	Then
+		Do 'Actions/UCG/AttachUrineBagCatheter.txt'
+	Else	
+		Do 'Actions/UCG/AttachUrineBagBed.txt'
+	Endif
+Endif
+
+If
+	$Tape pressed
+Then
+	$Tape reset
+	Do 'Actions/UCG/DetachTape.txt'
+Endif
+
+If
+	$DetachedTape pressed
+Then
+	$DetachedTape reset
+	Do 'Actions/UCG/TapeCatheter.txt'
+Endif
+
+If
+	$CottonBalls pressed
+Then
+	$CottonBalls reset
+
+	If
+		$PatientGender = 'Female'
+	Then
+		ZoomSpot Menu.Question 'Which part of the genitalia to clean?'
+		ZoomSpot Menu.Choices 'Labia Majora','Labia Minora','Exit'
+		ZoomSpot Menu.on ZoomSpot
+		WaitFor
+			ZoomSpot Menu.Done
+		Wait .1
+		If
+			ZoomSpot menu.result 'Labia Majora'
+		Then
+			Player align $UrinaryProcPos 1
+			Wait 1
+#			Prompt 'lookAt'
+#			Player lookAt $PatientGenitals -0.05 0.2 .05 1
+#			Wait 1
+
+
+			Do 'Actions/UCG/CleanGenitalia' $whichHand 0.03 3
+
+			Player align $CartLook 1
+		Endif
+
+		If
+			ZoomSpot menu.result 'Labia Minora'
+		Then
+			Player align $UrinaryProcPos 1
+			Wait 1
+			#			Prompt 'lookAt'
+			#			Player lookAt $PatientGenitals -0.05 0.2 .05 1
+			#			Wait 1
+
+			#$whichHand = 'right' 
+			Do 'Actions/UCG/CleanGenitalia' $whichHand 0.01 3
+
+			Player align $CartLook 1
+		Endif
+
+		If
+			ZoomSpot menu.result 'Exit'
+		Then
+			Player align $CartLook 1
+		Endif
+
+
+	Else     #Male
+		Player align $UrinaryProcPos 1
+		Wait 1
+		#	Player lookAt $PatientGenitals -0.05 0.2 .05 1
+		#	Wait 1
+
+		Do 'Actions/UCG/CleanGenitalia' $whichHand 0.05 3
+	Endif
+
+Endif  #CottonBalls

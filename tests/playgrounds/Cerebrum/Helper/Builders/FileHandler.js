@@ -12,6 +12,7 @@
 import { parseArrToWorkspace, fblob_consolidate } from './ParseFileContents.js'
 import { cerebrumGenerator } from '../../Generator/CerebrumGenerator.mjs'
 import { attachThenBody } from './BuildIf.js'
+import { flist } from './default_flist.js'
 
 function codeToFiles(code) {
     let lines = code.split("\n");
@@ -118,7 +119,8 @@ function setUpFile(workspace) {
 
             attachThenBody(fblock, fileBlock);
 
-            fblob_consolidate(fname, workspace);
+            let blob = fblob_consolidate(fname, workspace);
+            blob.setCollapsed(true);
 
             workspace.render();
             return ret;
@@ -204,9 +206,24 @@ function updateCodeAndDownload(workspace) {
 
 }
 
-function allowUpload(workspace) {
-    setUpFile(workspace);
-    uploadFileList(workspace);
+function importDefaultFunctions(workspace){
+    Blockly.Events.disable();
+    for(let i = 0; i < flist.length; i++){
+        let fblock = workspace.newBlock("procedures_defnoreturn");
+                    fblock.setFieldValue(flist[i].fname, "NAME");
+                    fblock.setEnabled(true);
+                    fblock.setEditable(false);
+                    fblock.setCollapsed(true);
+    }
+    let blob = fblob_consolidate("", workspace);
+    blob.setCollapsed(true);
+    workspace.render();
+    Blockly.Events.enable();
 }
 
-export { uploadFileList, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }
+function allowUpload(workspace) {
+    setUpFile(workspace);
+    //uploadFileList(workspace);
+}
+
+export { importDefaultFunctions, uploadFileList, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }

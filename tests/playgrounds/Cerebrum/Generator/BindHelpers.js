@@ -14,7 +14,7 @@ export function bindHelpers(generator) {
         var value_comment_val = generator.valueToCode(block, 'comment_val', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
         let code = value_comment_val.slice(1, -1).replaceAll("\\", "");
-        return "# " + code;
+        return "#" + code;
     };
 
     generator['multi_line_comment'] = function (block) {
@@ -27,7 +27,7 @@ export function bindHelpers(generator) {
     generator['object_calling'] = function (block) {
         var object = block.getField("Object_Variable")
         var object_string = object.selectedOption_[0]
-        var call_eval = " " + generator.statementToCode(block, "Params").trimStart();
+        var call_eval = " " + generator.statementToCode(block, "Params").trimStart(" ");
         call_eval = call_eval.replace("  ", " ");
         var code = object_string + call_eval;
         return code;
@@ -77,6 +77,7 @@ export function bindHelpers(generator) {
 
     generator['text'] = function (block) {
         const code = Blockly.JavaScript.quote_(block.getFieldValue('TEXT'));
+        console.log("TEXT PARSE", code)
         return [code, Blockly.JavaScript.ORDER_ATOMIC];
     };
 

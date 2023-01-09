@@ -480,4 +480,12 @@ export function bindObjectMessageHandlersToGenerator(generator) {
         //console.log("." + statements_params)
         return code;
     };
+
+    generator['setimagecolor'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " setimagecolor " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
 }

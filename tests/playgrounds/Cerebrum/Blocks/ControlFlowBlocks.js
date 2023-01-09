@@ -99,6 +99,7 @@ export let controlFlowBlocks = [
     "tooltip": "Do & return",
     "helpUrl": "",
     "nextStatement": null,
-    "previousStatement": null
+    "previousStatement": null,
+    "output": null,
   },
 ];
