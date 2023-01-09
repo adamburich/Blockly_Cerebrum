@@ -37,10 +37,11 @@ export function addButtons(){
 
     let flist = document.createElement("input");
     flist.setAttribute("name", "upload-flist");
-    flist.setAttribute("type", "file");
+    flist.setAttribute("type", "button");
     flist.setAttribute("id", "upload-flist");
+    flist.setAttribute("value", "Import Defaults")
     let flistLabel = document.createElement("h3");
-    flistLabel.innerText = "Upload function list";
+    flistLabel.innerText = "Import Default Functions";
     flist.style.marginLeft = "5px";
     flistLabel.style.marginLeft = "5px";
     flistLabel.style.marginTop = "25px";

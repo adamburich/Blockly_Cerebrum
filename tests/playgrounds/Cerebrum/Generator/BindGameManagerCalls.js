@@ -108,4 +108,10 @@ export function bindGameManagerCalls(generator) {
 
         return "Wait " + arg;
     }
+
+    generator['gamespeed'] = function (block) {
+        var arg = generator.valueToCode(block, "gamespeed_int", Blockly.JavaScript.ORDER_ATOMIC);
+
+        return "GameSpeed " + arg;
+    }
 }

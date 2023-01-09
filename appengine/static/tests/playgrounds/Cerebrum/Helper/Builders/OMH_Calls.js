@@ -9,5 +9,5 @@ export const OMH_CALLS = [
     'localrotatez', 'rotatetoz', 'rotatez', 'localmovez', 'movez', 'menu.choice',
     'menu.result', 'menu.done', 'menu.choices', 'menu.question', 'menu.on', 
     'setitemdatetime', 'setitemtext', 'setitemdate', 'setmaterial', 'scale', 
-    'align', 'orient', 'grab', 'release', 'lookat', 'lookatme', 'reset'
+    'align', 'orient', 'grab', 'release', 'lookat', 'lookatme', 'reset', "setimagecolor"
 ];

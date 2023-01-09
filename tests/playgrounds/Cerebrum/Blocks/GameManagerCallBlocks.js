@@ -325,4 +325,20 @@ export let gameManagerCallBlocks = [
     "nextStatement": null,
     "previousStatement": null
   },
+  {
+    "type": "gamespeed",
+    "message0": "GameSpeed %1",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "gamespeed_int"
+      }
+    ],
+    "inputsInline": true,
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
 ]

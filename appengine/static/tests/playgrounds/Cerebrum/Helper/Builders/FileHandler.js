@@ -9,9 +9,10 @@
  * 
  */
 
-import { parseArrToWorkspace } from './ParseFileContents.js'
+import { parseArrToWorkspace, fblob_consolidate } from './ParseFileContents.js'
 import { cerebrumGenerator } from '../../Generator/CerebrumGenerator.mjs'
 import { attachThenBody } from './BuildIf.js'
+import { flist } from './default_flist.js'
 
 function codeToFiles(code) {
     let lines = code.split("\n");
@@ -83,7 +84,7 @@ function handleSelected(e) {
 
 function setUpFile(workspace) {
     let input = document.getElementById('upload-code')
-    console.log(input);
+    //console.log(input);
     input.addEventListener('change', () => {
         let files = input.files;
 
@@ -108,6 +109,7 @@ function setUpFile(workspace) {
             fblock.initSvg();
             fblock.setEnabled(true);
 
+
             // This is a regular expression to identify carriage
             // Returns and line breaks
             const lines = file.split(/\r\n|\n/);
@@ -116,6 +118,9 @@ function setUpFile(workspace) {
             let fileBlock = ret.block;
 
             attachThenBody(fblock, fileBlock);
+
+            let blob = fblob_consolidate(fname, workspace);
+            blob.setCollapsed(true);
 
             workspace.render();
             return ret;
@@ -131,7 +136,7 @@ function setUpFile(workspace) {
 
 function uploadFileList(workspace){
     let input = document.getElementById('upload-flist')
-    console.log(input)
+    //console.log(input)
     input.addEventListener('change', () => {
         let files = input.files;
 
@@ -201,9 +206,24 @@ function updateCodeAndDownload(workspace) {
 
 }
 
-function allowUpload(workspace) {
-    setUpFile(workspace);
-    uploadFileList(workspace);
+function importDefaultFunctions(workspace){
+    Blockly.Events.disable();
+    for(let i = 0; i < flist.length; i++){
+        let fblock = workspace.newBlock("procedures_defnoreturn");
+                    fblock.setFieldValue(flist[i].fname, "NAME");
+                    fblock.setEnabled(true);
+                    fblock.setEditable(false);
+                    fblock.setCollapsed(true);
+    }
+    let blob = fblob_consolidate("", workspace);
+    blob.setCollapsed(true);
+    workspace.render();
+    Blockly.Events.enable();
 }
 
-export { uploadFileList, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }
+function allowUpload(workspace) {
+    setUpFile(workspace);
+    //uploadFileList(workspace);
+}
+
+export { importDefaultFunctions, uploadFileList, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }

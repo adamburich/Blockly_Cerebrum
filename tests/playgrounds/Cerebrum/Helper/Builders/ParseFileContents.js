@@ -259,6 +259,44 @@ function buildDoCall(line, workspace) {
     //console.log("Identified Do call with args " + args_arr)
 }
 
+
+function buildDoReturnCall(line, workspace) {
+    // TODO:
+    // - Build this function out, hook it into @parseLineToWorkspace 
+    let dblock = workspace.newBlock("do_return");
+    dblock.initSvg();
+
+    let arr = line.split(" '");
+    let call = arr[0];
+    let fname = "'" + arr[1];
+    let args = [];
+    if(arr.length > 2){
+        args = arr.slice(2, arr.length)
+    }
+    for(let i = 0; i < args.length; i++){
+        args[i] = "'" + args[i];
+    }
+    //console.log(call, fname, args)
+    let fblock = workspace.newBlock("text");
+    fblock.setFieldValue(fname + " " + args.join(" "), "TEXT")
+    //fname = fname.replaceAll("'", "");
+    // fblock.inputList[0].fieldRow[0].value_ = fname;
+    // let fdefblock = workspace.newBlock("procedures_defreturn");
+    // fdefblock.setFieldValue(fname, "NAME");
+    // fdefblock.initSvg();
+    // fdefblock.setEnabled(true);
+    //console.log(fblock)
+    //console.log(args)
+    fblock.initSvg();
+    fblock.setEnabled(true);
+
+    let parent_connection = dblock.getInput("fname").connection;
+    let child_connection = fblock.outputConnection;
+    parent_connection.connect(child_connection);
+    return dblock;
+    //console.log("Identified Do call with args " + args_arr)
+}
+
 function fblob_consolidate(name, workspace){
     let squish = [];
     let fdefs = workspace.getBlocksByType("procedures_defnoreturn");
@@ -273,7 +311,12 @@ function fblob_consolidate(name, workspace){
     for(let i = 1; i < squish.length; i++){
         connectBlocksAB(squish[i-1], squish[i]);
     }
-    let blob = workspace.newBlock("fblob");
+    let blobExists = workspace.getBlocksByType("fblob");
+    var blob;
+    if(blobExists.length > 0){
+        blob = blobExists[0];
+    }
+    else blob = workspace.newBlock("fblob");
     let parent_connection = blob.getInput("imports").connection;
     let child_connection = squish[0].previousConnection;
     parent_connection.connect(child_connection);
@@ -281,6 +324,7 @@ function fblob_consolidate(name, workspace){
     //blob.setEnabled(false);
     blob.initSvg();
     workspace.render();
+    return blob;
 }
 
 function fcallFromObject(line) {
@@ -335,5 +379,5 @@ function lineHasGlobal(line) {
     return false;
 }
 
-export { fblob_consolidate, fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, fcall, objectMessageHandlerCall, varDecl }
+export { fblob_consolidate, fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, fcall, objectMessageHandlerCall, varDecl, buildDoReturnCall }
 

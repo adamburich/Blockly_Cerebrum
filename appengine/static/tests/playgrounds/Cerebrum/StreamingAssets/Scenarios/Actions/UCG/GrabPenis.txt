@@ -1,0 +1,34 @@
+#Do 'GrabPenis' ['right'|'left']
+
+
+
+Player align $UrinaryProcPos 0.5
+Wait 0.5
+$NursePlayer localMoveY 0.3 0
+#wait 0
+
+
+If
+    $param[0] > 0
+Then
+    $whichHand_GP = param[1]
+Else
+    $whichHand_GP = ActiveHand
+Endif
+
+
+If
+    $whichHand_GP == 'Left'
+Then
+    $PlayerNurse grabLeft.elbowout $PatientGenitals .1  'L_grip' 'default'
+Else
+    $PlayerNurse grabRight.elbowout $PatientGenitals .1  'R_grip' 'default'
+Endif
+Wait .1
+
+$DirtyHand = whichHand_GP
+
+#Raise penis
+$PatientGenitals localRotateX -85 1
+$Patient setbodyblendshape 0 100.0 1
+Wait 1.1

@@ -2,7 +2,7 @@
 import { parseLineToWorkspace } from "./ParseFileContents.js";
 import { buildLogicalExpressionBlock } from "./BuildBlocksFromCode.js";
 import { mlc } from "./MultiLineComment.js";
-
+import { parseLabel } from "./ParseLabel.js";
 /**
  * Parse If
  * 
@@ -137,6 +137,8 @@ function attachThenBody(baseBlock, bodyBlock){
 }
 
 function attachCondition(baseBlock, condBlock){
+    //console.log("BaseBlock", baseBlock)
+    //console.log("CondBlock", condBlock)
     let if_cond_connection = baseBlock.inputList[0].connection;
     let if_cond = condBlock.outputConnection;
     if_cond_connection.connect(if_cond);
@@ -154,7 +156,9 @@ function connectBlocksAB(blockA, blockB){
     if(blockA != null && blockB != null){
         let parentConnection = blockA.nextConnection;
         let childConnection = blockB.previousConnection;
-        parentConnection.connect(childConnection);
+        if(parentConnection && childConnection){
+            parentConnection.connect(childConnection);
+        }
     }
 }
 
