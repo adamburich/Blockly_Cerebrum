@@ -9,9 +9,6 @@ export function bindControlFlowCommand(generator) {
         //console.log(block)
         var body = generator.statementToCode(block, "STACK");
         let bodArray = body.split("\n");
-        for(let i = 0; i < bodArray.length; i++){
-            bodArray[i] = bodArray[i].trimStart(" ");
-        }
         body = bodArray.join("\n")
         var returnVal = generator.valueToCode(block, 'RETURN', Blockly.JavaScript.ORDER_NONE)
         return body;
@@ -21,9 +18,6 @@ export function bindControlFlowCommand(generator) {
         var name = block.getFieldValue("NAME");
         var body = generator.statementToCode(block, "STACK");
         let bodArray = body.split("\n");
-        for(let i = 0; i < bodArray.length; i++){
-            bodArray[i] = bodArray[i].trimStart(" ");
-        }
         body = bodArray.join("\n")
 
         return body;
@@ -70,7 +64,7 @@ export function bindControlFlowCommand(generator) {
         // }
         // else return "Do "
         let call = block.childBlocks_[0].getFieldValue("TEXT");
-        console.log(block.childBlocks_, call);
+        // console.log(block.childBlocks_, call);
         return ["Do " + call, Blockly.JavaScript.ORDER_NONE]
     };
 
@@ -137,9 +131,10 @@ export function bindControlFlowCommand(generator) {
         var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
         cond = cond.replace("(", "");
         cond = cond.replace(")", "");
-        console.log(cond);
+        // console.log(cond);
         var body = generator.statementToCode(block, "DO0");
         var code = "If\n  " + "\t" + cond + "\n" + "Then\n" + "\t" + body + "\n" + "Endif";
+        console.log(code)
         return code;
     };
 

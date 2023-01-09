@@ -77,7 +77,7 @@ export function bindHelpers(generator) {
 
     generator['text'] = function (block) {
         const code = Blockly.JavaScript.quote_(block.getFieldValue('TEXT'));
-        console.log("TEXT PARSE", code)
+        // console.log("TEXT PARSE", code)
         return [code, Blockly.JavaScript.ORDER_ATOMIC];
     };
 
