@@ -206,14 +206,28 @@ function updateCodeAndDownload(workspace) {
 
 }
 
+function isDuplicate(workspace, fname){
+    let list = workspace.getBlocksByType("procedures_defnoreturn", true);
+    for(let i = 0; i < list.length; i++){
+        console.log(fname, list[i].getFieldValue("NAME"))
+        if(fname === list[i].getFieldValue("NAME")){
+            return true
+        }
+    }
+    return false;
+}
+
 function importDefaultFunctions(workspace){
     Blockly.Events.disable();
     for(let i = 0; i < flist.length; i++){
-        let fblock = workspace.newBlock("procedures_defnoreturn");
+        if(!isDuplicate(workspace, flist[i].fname)){
+            let fblock = workspace.newBlock("procedures_defnoreturn");
                     fblock.setFieldValue(flist[i].fname, "NAME");
                     fblock.setEnabled(true);
                     fblock.setEditable(false);
                     fblock.setCollapsed(true);
+            
+        }
     }
     let blob = fblob_consolidate("", workspace);
     blob.setCollapsed(true);
@@ -226,4 +240,4 @@ function allowUpload(workspace) {
     //uploadFileList(workspace);
 }
 
-export { importDefaultFunctions, uploadFileList, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }
+export { isDuplicate, importDefaultFunctions, uploadFileList, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }

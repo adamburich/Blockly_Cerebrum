@@ -14,6 +14,7 @@ import { f0, connectBlocksAB } from './BuildIf.js';
 import { parseLabel } from './ParseLabel.js';
 import { OMH_CALLS } from "./OMH_Calls.js";
 import { GAME_MANAGER_RWORDS } from './GameManager_RWORDS.js';
+import { isDuplicate } from './FileHandler.js';
 
 const SPECIAL_CHARS = ["#", "$"];
 
@@ -242,11 +243,13 @@ function buildDoCall(line, workspace) {
     }
     let fblock = workspace.newBlock("procedures_callnoreturn");
     fname = fname.replaceAll("'", "");
-    fblock.inputList[0].fieldRow[0].value_ = fname;
-    let fdefblock = workspace.newBlock("procedures_defnoreturn");
-    fdefblock.setFieldValue(fname, "NAME");
-    fdefblock.initSvg();
-    fdefblock.setEnabled(true);
+    fblock.setFieldValue(fname, "NAME");
+    if(!isDuplicate(workspace, fname)){
+        let fdefblock = workspace.newBlock("procedures_defnoreturn");
+        fdefblock.setFieldValue(fname, "NAME");
+        fdefblock.initSvg();
+        fdefblock.setEnabled(true);
+    }
     //console.log(fblock)
     //console.log(args)
     fblock.initSvg();

@@ -62,10 +62,12 @@ export function bindHelpers(generator) {
         //console.log(block.inputList[0].fieldRow[0].selectedOption_[0]);
         //console.log(block);
         let code = "";
-        if(block.parentBlock_.type === "param" || GAME_MANAGER_RWORDS.indexOf(block.parentBlock_.type) != -1){
-            code = "$" + block.inputList[0].fieldRow[0].selectedOption_[0];
-        }else{
-            code = block.inputList[0].fieldRow[0].selectedOption_[0];
+        if(block.parentBlock_ != null){
+            if(block.parentBlock_.type === "param" || GAME_MANAGER_RWORDS.indexOf(block.parentBlock_.type) != -1){
+                code = "$" + block.inputList[0].fieldRow[0].selectedOption_[0];
+            }else{
+                code = block.inputList[0].fieldRow[0].selectedOption_[0];
+            }
         }
         return [code, Blockly.JavaScript.ORDER_ATOMIC]
     }
@@ -77,7 +79,7 @@ export function bindHelpers(generator) {
 
     generator['text'] = function (block) {
         const code = Blockly.JavaScript.quote_(block.getFieldValue('TEXT'));
-        console.log("TEXT PARSE", code)
+        //console.log("TEXT PARSE", code)
         return [code, Blockly.JavaScript.ORDER_ATOMIC];
     };
 

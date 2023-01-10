@@ -133,8 +133,8 @@ export function bindControlFlowCommand(generator) {
         cond = cond.replace(")", "");
         // console.log(cond);
         var body = generator.statementToCode(block, "DO0");
-        var code = "If\n  " + "\t" + cond + "\n" + "Then\n" + "\t" + body + "\n" + "Endif";
-        console.log(code)
+        var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Endif";
+        //console.log(code)
         return code;
     };
 
@@ -143,7 +143,7 @@ export function bindControlFlowCommand(generator) {
         var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
         var body = generator.statementToCode(block, "DO0");
         var elseBody = generator.statementToCode(block, "ELSE");
-        var code = "If\n  " + "\t" + cond + "\n" + "Then\n" + "\t" + body + "\n" + "Else\n" + "\t" + elseBody + "\n" + "Endif";
+        var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Else\n" + elseBody + "\n" + "Endif";
         return code;
     };
 

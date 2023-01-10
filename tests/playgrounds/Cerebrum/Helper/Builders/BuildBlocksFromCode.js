@@ -17,7 +17,7 @@ import { buildBlockFromInfix } from "./ExpressionParser.js";
 const simpleObjectMessageHandlerCalls = " reset setmaterial switchtoscene clickable says playsound setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
 
 function buildLogicalExpressionBlock(workspace, expression) {
-    console.log("EXPRESSION FROM BUILDLOGICAL: ", expression);
+    //console.log("EXPRESSION FROM BUILDLOGICAL: ", expression);
     let chunks;
     let op = "";
     if (expression.indexOf("!=") != -1) {

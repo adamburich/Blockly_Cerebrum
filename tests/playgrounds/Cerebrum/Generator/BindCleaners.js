@@ -4,7 +4,7 @@ export function bindCleaners(generator) {
         code = code.replaceAll("FALSE", "false");
         code = code.replaceAll("  ", " ");
         code = code.replaceAll("\\'", "");
-        generator.INDENT = "   ";
+        //generator.INDENT = "   ";
         return code;
 
     }
@@ -26,7 +26,7 @@ export function bindCleaners(generator) {
             }
         }
         //code = code.trimStart("\n");
-        console.log(code);
+        //console.log(code);
         return code;
         //return code;
     };
