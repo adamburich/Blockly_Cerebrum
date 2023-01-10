@@ -21,19 +21,22 @@ function codeToFiles(code) {
     let mainFile = [];
 
     for (let i = 0; i < lines.length; i++) {
-        if (lines[i].split(" ")[0] == "Label") {
+        lines[i] = lines[i].substring(1, lines[i].length);
+        lines[i] = lines[i].replaceAll("\t", " ");
+        /**if (lines[i].split(" ")[0] == "Label") {
             let func = [];
+            
             let fname = lines[i].split(" ")[1].replaceAll("'", "");
             i++;
-            while (lines[i] != "Return") {
+            while (lines[i] != "Return" && lines[i] != undefined) {
                 func.push(lines[i].trim());
                 i++;
             }
             i++;
             let funcText = func.join("\n");
             files.push({ fname, funcText });
-        }
-        else if (lines[i].split(" ")[0] == "Do") {
+        }*/
+        if (lines[i].split(" ")[0] == "Do") {
             let fCallText = lines[i].split(" ")[1].replaceAll("'", "");
             let fCallTextFile = "'" + fCallText + "'"
             let newLine = "Do " + fCallTextFile;

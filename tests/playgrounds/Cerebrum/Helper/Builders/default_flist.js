@@ -1,6 +1,6 @@
 export var flist = [
   {
-    "fname": "Action/UCG/UnfoldCloth",
+    "fname": "Actions/UCG/UnfoldCloth",
     "args": "0",
   },
   {

@@ -51,9 +51,10 @@ export function bindObjectMessageHandlersToGenerator(generator) {
     };
 
     generator['clickable'] = function (block) {
-        var value_clickable_bool = generator.valueToCode(block, 'clickable_bool', Blockly.JavaScript.ORDER_ATOMIC);
+        var value_clickable_bool = generator.valueToCode(block, 'logic_boolean', Blockly.JavaScript.ORDER_ATOMIC);
+        //console.log(block.getChildren())
         // TODO: Assemble JavaScript into code variable.
-        var code = "clickable " + value_clickable_bool;
+        var code = "clickable " + block.getChildren()[0].getFieldValue("BOOL").toLowerCase();
         return code;
     };
 
@@ -485,6 +486,13 @@ export function bindObjectMessageHandlersToGenerator(generator) {
         // TODO: Assemble JavaScript into code variable.
         var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
         var code = " setimagecolor " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['pressed'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var code = " pressed";
         //console.log("." + statements_params)
         return code;
     };

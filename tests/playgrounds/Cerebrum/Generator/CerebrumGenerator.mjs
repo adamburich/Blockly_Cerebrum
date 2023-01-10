@@ -23,7 +23,7 @@ import { bindCleaners } from "./BindCleaners.js";
 
 var cerebrumGenerator = new Blockly.Generator('JSON');
 
-//cerebrumGenerator.INDENT = "   ";
+cerebrumGenerator.INDENT = " ";
 
 bindHelpers(cerebrumGenerator);
 bindMisc(cerebrumGenerator);

@@ -1141,4 +1141,15 @@ export let objectMessageHandlerBlocks = [
     "nextStatement": null,
     "previousStatement": null
   },
+  {
+    "type": "pressed",
+    "message0": "pressed",
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
 ]

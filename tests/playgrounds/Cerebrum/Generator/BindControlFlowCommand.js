@@ -9,6 +9,9 @@ export function bindControlFlowCommand(generator) {
         //console.log(block)
         var body = generator.statementToCode(block, "STACK");
         let bodArray = body.split("\n");
+        // for(let i = 0; i < bodArray.length; i++){
+        //     bodArray[i] = bodArray[i].trimStart(" ");
+        // }
         body = bodArray.join("\n")
         var returnVal = generator.valueToCode(block, 'RETURN', Blockly.JavaScript.ORDER_NONE)
         return body;
@@ -18,6 +21,9 @@ export function bindControlFlowCommand(generator) {
         var name = block.getFieldValue("NAME");
         var body = generator.statementToCode(block, "STACK");
         let bodArray = body.split("\n");
+        // for(let i = 0; i < bodArray.length; i++){
+        //     bodArray[i] = bodArray[i].trimStart(" ");
+        // }
         body = bodArray.join("\n")
 
         return body;
@@ -128,11 +134,15 @@ export function bindControlFlowCommand(generator) {
 
     generator['controls_if'] = function (block) {
         //console.log(block);
-        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
+        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_NONE);
         cond = cond.replace("(", "");
         cond = cond.replace(")", "");
+        cond = cond.trimStart(" ");
+        cond = "\t " + cond;
         // console.log(cond);
         var body = generator.statementToCode(block, "DO0");
+        body = body.split("\n");
+        body = "\t" + body.join("\n\t");
         var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Endif";
         //console.log(code)
         return code;
@@ -140,9 +150,18 @@ export function bindControlFlowCommand(generator) {
 
     generator['controls_ifelse'] = function (block) {
         //console.log(block);
-        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
+        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_NONE);
+        cond = cond.replace("(", "");
+        cond = cond.replace(")", "");
+        cond = cond.trimStart(" ");
+        cond = "\t " + cond;
+        // console.log(cond);
         var body = generator.statementToCode(block, "DO0");
+        body = body.split("\n");
+        body = "\t" + body.join("\n\t");
         var elseBody = generator.statementToCode(block, "ELSE");
+        elseBody = elseBody.split("\n");
+        elseBody = "\t" + elseBody.join("\n\t");
         var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Else\n" + elseBody + "\n" + "Endif";
         return code;
     };
