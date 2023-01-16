@@ -23,7 +23,7 @@ function codeToFiles(code) {
     for (let i = 0; i < lines.length; i++) {
         lines[i] = lines[i].substring(1, lines[i].length);
         lines[i] = lines[i].replaceAll("\t", " ");
-        /**if (lines[i].split(" ")[0] == "Label") {
+        if (lines[i].split(" ")[0] == "Label") {
             let func = [];
             
             let fname = lines[i].split(" ")[1].replaceAll("'", "");
@@ -35,7 +35,7 @@ function codeToFiles(code) {
             i++;
             let funcText = func.join("\n");
             files.push({ fname, funcText });
-        }*/
+        }
         if (lines[i].split(" ")[0] == "Do") {
             let fCallText = lines[i].split(" ")[1].replaceAll("'", "");
             let fCallTextFile = "'" + fCallText + "'"
