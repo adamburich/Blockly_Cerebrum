@@ -91,7 +91,9 @@ export function bindControlFlowCommand(generator) {
         //     return code;
         // }
         // else return "Do "
-        return generator.statementToCode(block, "fname")
+        let code = generator.statementToCode(block, "fname")
+        code = code.substring(1, code.length)
+        return code
     };
 
     generator['gotolabelreturn'] = function (block) {

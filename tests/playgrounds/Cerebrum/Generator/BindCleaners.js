@@ -3,14 +3,19 @@ export function bindCleaners(generator) {
 
         code = code.replaceAll("TRUE", "true");
         code = code.replaceAll("FALSE", "false");
+        //hacky, hardly works
         code = code.replaceAll("  ", " ");
         code = code.replaceAll("\\'", "");
+        // code = code.replaceAll("\t\t", "\t");
 
         return code;
 
     }
 
     generator.scrub_ = function (block, code, opt_thisOnly) {
+        //hacky
+        code = code.replaceAll("  ", " ");
+        code = code.replaceAll("\t\t", "\t");
         const lastBlock = block.getParent();
         if (!lastBlock) {
             code = "\n" + code;

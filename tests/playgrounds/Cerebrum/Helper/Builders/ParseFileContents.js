@@ -108,38 +108,52 @@ function parseArrToWorkspace(arr, workspace) {
 function parseLineToWorkspace(line, workspace) {
 
     line = line.trim();
-    //This is here to fix the bug with comments in the same line as valid code - It is a hack solution, but I cannot find another
+
+    //let comment_block = null;
+    let line_block = null;
+    // This is here to fix the bug with comments in the same line as valid code
+    // also made some adjustments to how the function returns, no longer does it
+    // in branches, now branches assign and block is returned at end
+    // 
+    // Commented out the adding the comment to workspace because it connected incorrectly and I don't know why
     if(line.indexOf("#") != -1 && line.indexOf("#") != 0){
+        //let comment = line.substring(line.indexOf("#"), line.length);
         line = line.substring(0, line.indexOf("#"))
+        //comment_block = buildCommentBlock(workspace, comment)
     }
     
     if (line == "") {
-        return buildEmpty(workspace);
+        line_block = buildEmpty(workspace);
     }
     else if (line.charAt(0) == "#") {
-        return buildCommentBlock(workspace, line);
+        line_block = buildCommentBlock(workspace, line);
     }
     else if (line.indexOf("!=") != -1 || line.indexOf("==") != -1 || line.indexOf("<=") != -1 || line.indexOf(">=") != -1 || line.indexOf(">") != -1 || line.indexOf("<") != -1) {
-        return buildLogicalExpressionBlock(workspace, line);
+        line_block = buildLogicalExpressionBlock(workspace, line);
     }
     else if (line.charAt(0) == "$" && line.indexOf("=") != -1) {
-        return buildVariableSetBlock(workspace, varDecl(line));
+        line_block = buildVariableSetBlock(workspace, varDecl(line));
     }
     else if (lineHasDo(line)) {
-        return buildDoCall(line, workspace);
+        line_block = buildDoCall(line, workspace);
     }
     else if (lineHasGameManagerCall(line)) {
-        return buildCallBlock(workspace, gameManagerCall(line), true);
+        line_block = buildCallBlock(workspace, gameManagerCall(line), true);
     }
     else if (lineHasOMH(line)) {
-        return buildObjectMessageHandlerBlock(workspace, objectMessageHandlerCall(line));
+        line_block = buildObjectMessageHandlerBlock(workspace, objectMessageHandlerCall(line));
     }
     else if (lineHasGlobal(line)) {
-        return buildGlobalBlock(workspace, objectMessageHandlerCall(line))
+        line_block = buildGlobalBlock(workspace, objectMessageHandlerCall(line))
     }
-    else {
-        //console.log(line);
+
+    if(line_block == null){
         return -1;
+    }else{
+        // if(comment_block != null){
+        //     connectBlocksAB(line_block, comment_block);
+        // }
+        return line_block;
     }
 }
 
