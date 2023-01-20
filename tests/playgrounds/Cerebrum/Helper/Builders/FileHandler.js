@@ -21,12 +21,12 @@ function codeToFiles(code) {
     let mainFile = [];
 
     for (let i = 0; i < lines.length; i++) {
-        if (lines[i].split(" ")[0] == "Label") {
+        if (lines[i].trim().indexOf("#returnless_procedure") != -1 || lines[i].trim().indexOf("#return_procedure") != -1) {
             let func = [];
-            let fname = lines[i].split(" ")[1].replaceAll("'", "");
+            let fname = lines[i].split(":")[1];
             i++;
-            while (lines[i] != "Return") {
-                func.push(lines[i].trim());
+            while (lines[i].trim() != "#end:"+fname.trim()) {
+                func.push(lines[i].substring(1, lines[i].length));
                 i++;
             }
             i++;
@@ -40,12 +40,14 @@ function codeToFiles(code) {
             mainFile.push(newLine);
         }
         else {
-            mainFile.push(lines[i]);
+            mainFile.push(lines[i].substring(0, lines[i].length));
         }
     }
     let funcText = mainFile.join("\n");
-    let fname = "main";
-    files.push({ fname, funcText });
+    if(funcText.trim().length > 0){
+        let fname = "main";
+        files.push({ fname, funcText });
+    }
 
     return files;
 }

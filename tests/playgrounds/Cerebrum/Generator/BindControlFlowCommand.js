@@ -8,25 +8,26 @@ export function bindControlFlowCommand(generator) {
         var name = block.getFieldValue("NAME");
         //console.log(block)
         var body = generator.statementToCode(block, "STACK");
-        let bodArray = body.split("\n");
-        for(let i = 0; i < bodArray.length; i++){
-            bodArray[i] = bodArray[i].trimStart(" ");
-        }
-        body = bodArray.join("\n")
+        // let bodArray = body.split("\n");
+        // for(let i = 0; i < bodArray.length; i++){
+        //     bodArray[i] = bodArray[i].trimStart(" ");
+        // }
+        // body = bodArray.join("\n")
         var returnVal = generator.valueToCode(block, 'RETURN', Blockly.JavaScript.ORDER_NONE)
-        return body;
+        
+        return " #return_procedure:" + name + "\n" + body + " #end:"+name;
     }
 
     generator['procedures_defnoreturn'] = function (block) {
         var name = block.getFieldValue("NAME");
         var body = generator.statementToCode(block, "STACK");
-        let bodArray = body.split("\n");
-        for(let i = 0; i < bodArray.length; i++){
-            bodArray[i] = bodArray[i].trimStart(" ");
-        }
-        body = bodArray.join("\n")
+        // let bodArray = body.split("\n");
+        // for(let i = 0; i < bodArray.length; i++){
+        //     bodArray[i] = bodArray[i].trimStart(" ");
+        // }
+        // body = bodArray.join("\n")
 
-        return body;
+        return " #returnless_procedure:" + name + "\n" + body + " #end:"+name;
     }
 
     generator['procedures_callnoreturn'] = function (block) {
@@ -139,7 +140,7 @@ export function bindControlFlowCommand(generator) {
         cond = cond.replace(")", "");
         console.log(cond);
         var body = generator.statementToCode(block, "DO0");
-        var code = "If\n  " + "\t" + cond + "\n" + "Then\n" + "\t" + body + "\n" + "Endif";
+        var code = "If\n" + "\t" + cond + "\n" + "Then\n" + "\t" + body.trimStart() + "\n" + "Endif";
         return code;
     };
 
@@ -148,7 +149,7 @@ export function bindControlFlowCommand(generator) {
         var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
         var body = generator.statementToCode(block, "DO0");
         var elseBody = generator.statementToCode(block, "ELSE");
-        var code = "If\n  " + "\t" + cond + "\n" + "Then\n" + "\t" + body + "\n" + "Else\n" + "\t" + elseBody + "\n" + "Endif";
+        var code = "If\n  " + "\t" + cond + "\n" + "Then\n" + "\t" + body.trimStart() + "\n" + "Else\n" + "\t" + elseBody.trimStart() + "\n" + "Endif";
         return code;
     };
 

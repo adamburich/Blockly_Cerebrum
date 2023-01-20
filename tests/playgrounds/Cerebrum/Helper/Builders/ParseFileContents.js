@@ -106,12 +106,13 @@ function parseArrToWorkspace(arr, workspace) {
  * @returns the resulting block that gets built from whatever line we're parsing
  */
 function parseLineToWorkspace(line, workspace) {
-    // for(let i = 0; i < line.length; i++){
-    //     //console.log(line.charAt(i));
-    // }
-    //console.log(line);
+
     line = line.trim();
-    //console.log(line);
+    //This is here to fix the bug with comments in the same line as valid code - It is a hack solution, but I cannot find another
+    if(line.indexOf("#") != -1 && line.indexOf("#") != 0){
+        line = line.substring(0, line.indexOf("#"))
+    }
+    
     if (line == "") {
         return buildEmpty(workspace);
     }
