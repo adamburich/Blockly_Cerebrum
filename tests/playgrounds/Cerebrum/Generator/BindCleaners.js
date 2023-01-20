@@ -13,9 +13,6 @@ export function bindCleaners(generator) {
     }
 
     generator.scrub_ = function (block, code, opt_thisOnly) {
-        //hacky
-        code = code.replaceAll("  ", " ");
-        code = code.replaceAll("\t\t", "\t");
         const lastBlock = block.getParent();
         if (!lastBlock) {
             code = "\n" + code;
@@ -31,6 +28,9 @@ export function bindCleaners(generator) {
             }
         }
         //code = code.trimStart("\n");
+        //hacky
+        code = code.replaceAll("  ", " ");
+        code = code.replaceAll("\t\t", "\t");
         return code;
         //return code;
     };
