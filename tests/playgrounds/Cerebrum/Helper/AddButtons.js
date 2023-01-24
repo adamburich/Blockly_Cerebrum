@@ -37,11 +37,10 @@ export function addButtons(){
 
     let flist = document.createElement("input");
     flist.setAttribute("name", "upload-flist");
-    flist.setAttribute("type", "button");
+    flist.setAttribute("type", "file");
     flist.setAttribute("id", "upload-flist");
-    flist.setAttribute("value", "Import Defaults")
     let flistLabel = document.createElement("h3");
-    flistLabel.innerText = "Import Default Functions";
+    flistLabel.innerText = "Load Workspace XML";
     flist.style.marginLeft = "5px";
     flistLabel.style.marginLeft = "5px";
     flistLabel.style.marginTop = "25px";

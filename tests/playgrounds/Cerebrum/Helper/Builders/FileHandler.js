@@ -84,6 +84,39 @@ function handleSelected(e) {
     }
 }
 
+function setUpDemo(workspace){
+    let input = document.getElementById('upload-flist')
+    //console.log(input);
+    input.addEventListener('change', () => {
+        let files = input.files;
+
+        if (files.length == 0) return;
+
+        /* If any further modifications have to be made on the
+           Extracted text. The text can be accessed using the
+           file variable. But since this is const, it is a read
+           only variable, hence immutable. To make any changes,
+           changing const to var, here and In the reader.onload
+           function would be advisible */
+        const file = files[0];
+
+        let reader = new FileReader();
+
+        reader.onload = (e) => {
+            const file = e.target.result;
+            let xml_text = file;
+            let xml = Blockly.Xml.textToDom(xml_text);
+            Blockly.Xml.domToWorkspace(xml, workspace);
+
+        };
+
+        reader.onerror = (e) => alert(e.target.error.name);
+
+        reader.readAsText(file);
+    });
+
+}
+
 function setUpFile(workspace) {
     let input = document.getElementById('upload-code')
     //console.log(input);
@@ -214,7 +247,7 @@ function importDefaultFunctions(workspace){
         let fblock = workspace.newBlock("procedures_defnoreturn");
                     fblock.setFieldValue(flist[i].fname, "NAME");
                     fblock.setEnabled(true);
-                    fblock.setEditable(false);
+                    //fblock.setEditable(false);
                     fblock.setCollapsed(true);
     }
     let blob = fblob_consolidate("", workspace);
@@ -225,6 +258,7 @@ function importDefaultFunctions(workspace){
 
 function allowUpload(workspace) {
     setUpFile(workspace);
+    setUpDemo(workspace);
     //uploadFileList(workspace);
 }
 

@@ -55,6 +55,7 @@ function parseArrToWorkspace(arr, workspace) {
 
     let newBlocks = [];
     for (let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].replace("SPO2", "SpO2")
         let thisBlock;
         if (arr[i].trim() === "/*") {
             let multi_line_comment = mlc(arr, i, workspace);
@@ -92,6 +93,7 @@ function parseArrToWorkspace(arr, workspace) {
         }
     }
 
+    workspace.render()
     //Run this since we disabled events at the top of the function
     Blockly.Events.enable();
 
@@ -133,6 +135,7 @@ function parseLineToWorkspace(line, workspace) {
     }
     else if (line.charAt(0) == "$" && line.indexOf("=") != -1) {
         line_block = buildVariableSetBlock(workspace, varDecl(line));
+        console.log(line_block);
     }
     else if (lineHasDo(line)) {
         line_block = buildDoCall(line, workspace);
@@ -262,6 +265,7 @@ function buildDoCall(line, workspace) {
     fdefblock.setFieldValue(fname, "NAME");
     fdefblock.initSvg();
     fdefblock.setEnabled(true);
+    //fdefblock.setColour("949494");
     //console.log(fblock)
     //console.log(args)
     fblock.initSvg();
@@ -319,7 +323,7 @@ function fblob_consolidate(name, workspace){
         if(name != fdefs[i].getProcedureDef()[0]){
             fdefs[i].setCollapsed(true);
             //fdefs[i].setEnabled(false);
-            fdefs[i].setEditable(false);
+            //fdefs[i].setEditable(false);
             squish.push(fdefs[i]);
         }
     }
@@ -332,13 +336,15 @@ function fblob_consolidate(name, workspace){
         blob = blobExists[0];
     }
     else blob = workspace.newBlock("fblob");
-    let parent_connection = blob.getInput("imports").connection;
-    let child_connection = squish[0].previousConnection;
-    parent_connection.connect(child_connection);
+    if(squish.length > 0){
+        let parent_connection = blob.getInput("imports").connection;
+        let child_connection = squish[0].previousConnection;
+        parent_connection.connect(child_connection);
+    }
     blob.setEditable(false);
     //blob.setEnabled(false);
     blob.initSvg();
-    workspace.render();
+    //workspace.render();
     return blob;
 }
 
