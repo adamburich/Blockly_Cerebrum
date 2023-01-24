@@ -116,4 +116,9 @@ export function bindMisc(generator) {
         const code = value_if + ' ? ' + value_then + ' : ' + value_else;
         return [code, Blockly.JavaScript.ORDER_CONDITIONAL];
     };
+
+    generator['text_multiline'] = function (block) {
+        let text = block.getFieldValue("TEXT");
+        return [text, Blockly.JavaScript.ORDER_NONE];
+    }
 }

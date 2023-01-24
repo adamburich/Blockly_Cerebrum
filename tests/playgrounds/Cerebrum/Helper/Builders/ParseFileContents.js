@@ -14,7 +14,6 @@ import { f0, connectBlocksAB } from './BuildIf.js';
 import { parseLabel } from './ParseLabel.js';
 import { OMH_CALLS } from "./OMH_Calls.js";
 import { GAME_MANAGER_RWORDS } from './GameManager_RWORDS.js';
-import { isDuplicate } from './FileHandler.js';
 
 const SPECIAL_CHARS = ["#", "$"];
 
@@ -56,6 +55,7 @@ function parseArrToWorkspace(arr, workspace) {
 
     let newBlocks = [];
     for (let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].replace("SPO2", "SpO2")
         let thisBlock;
         if (arr[i].trim() === "/*") {
             let multi_line_comment = mlc(arr, i, workspace);
@@ -93,6 +93,7 @@ function parseArrToWorkspace(arr, workspace) {
         }
     }
 
+    workspace.render()
     //Run this since we disabled events at the top of the function
     Blockly.Events.enable();
 
@@ -107,39 +108,55 @@ function parseArrToWorkspace(arr, workspace) {
  * @returns the resulting block that gets built from whatever line we're parsing
  */
 function parseLineToWorkspace(line, workspace) {
-    // for(let i = 0; i < line.length; i++){
-    //     //console.log(line.charAt(i));
-    // }
-    //console.log(line);
+
     line = line.trim();
-    //console.log(line);
+
+    //let comment_block = null;
+    let line_block = null;
+    // This is here to fix the bug with comments in the same line as valid code
+    // also made some adjustments to how the function returns, no longer does it
+    // in branches, now branches assign and block is returned at end
+    // 
+    // Commented out the adding the comment to workspace because it connected incorrectly and I don't know why
+    if(line.indexOf("#") != -1 && line.indexOf("#") != 0){
+        //let comment = line.substring(line.indexOf("#"), line.length);
+        line = line.substring(0, line.indexOf("#"))
+        //comment_block = buildCommentBlock(workspace, comment)
+    }
+    
     if (line == "") {
-        return buildEmpty(workspace);
+        line_block = buildEmpty(workspace);
     }
     else if (line.charAt(0) == "#") {
-        return buildCommentBlock(workspace, line);
+        line_block = buildCommentBlock(workspace, line);
     }
     else if (line.indexOf("!=") != -1 || line.indexOf("==") != -1 || line.indexOf("<=") != -1 || line.indexOf(">=") != -1 || line.indexOf(">") != -1 || line.indexOf("<") != -1) {
-        return buildLogicalExpressionBlock(workspace, line);
+        line_block = buildLogicalExpressionBlock(workspace, line);
     }
     else if (line.charAt(0) == "$" && line.indexOf("=") != -1) {
-        return buildVariableSetBlock(workspace, varDecl(line));
+        line_block = buildVariableSetBlock(workspace, varDecl(line));
+        console.log(line_block);
     }
     else if (lineHasDo(line)) {
-        return buildDoCall(line, workspace);
+        line_block = buildDoCall(line, workspace);
     }
     else if (lineHasGameManagerCall(line)) {
-        return buildCallBlock(workspace, gameManagerCall(line), true);
+        line_block = buildCallBlock(workspace, gameManagerCall(line), true);
     }
     else if (lineHasOMH(line)) {
-        return buildObjectMessageHandlerBlock(workspace, objectMessageHandlerCall(line));
+        line_block = buildObjectMessageHandlerBlock(workspace, objectMessageHandlerCall(line));
     }
     else if (lineHasGlobal(line)) {
-        return buildGlobalBlock(workspace, objectMessageHandlerCall(line))
+        line_block = buildGlobalBlock(workspace, objectMessageHandlerCall(line))
     }
-    else {
-        //console.log(line);
+
+    if(line_block == null){
         return -1;
+    }else{
+        // if(comment_block != null){
+        //     connectBlocksAB(line_block, comment_block);
+        // }
+        return line_block;
     }
 }
 
@@ -243,13 +260,12 @@ function buildDoCall(line, workspace) {
     }
     let fblock = workspace.newBlock("procedures_callnoreturn");
     fname = fname.replaceAll("'", "");
-    fblock.setFieldValue(fname, "NAME");
-    if(!isDuplicate(workspace, fname)){
-        let fdefblock = workspace.newBlock("procedures_defnoreturn");
-        fdefblock.setFieldValue(fname, "NAME");
-        fdefblock.initSvg();
-        fdefblock.setEnabled(true);
-    }
+    fblock.inputList[0].fieldRow[0].value_ = fname;
+    let fdefblock = workspace.newBlock("procedures_defnoreturn");
+    fdefblock.setFieldValue(fname, "NAME");
+    fdefblock.initSvg();
+    fdefblock.setEnabled(true);
+    //fdefblock.setColour("949494");
     //console.log(fblock)
     //console.log(args)
     fblock.initSvg();
@@ -307,7 +323,7 @@ function fblob_consolidate(name, workspace){
         if(name != fdefs[i].getProcedureDef()[0]){
             fdefs[i].setCollapsed(true);
             //fdefs[i].setEnabled(false);
-            fdefs[i].setEditable(false);
+            //fdefs[i].setEditable(false);
             squish.push(fdefs[i]);
         }
     }
@@ -320,13 +336,15 @@ function fblob_consolidate(name, workspace){
         blob = blobExists[0];
     }
     else blob = workspace.newBlock("fblob");
-    let parent_connection = blob.getInput("imports").connection;
-    let child_connection = squish[0].previousConnection;
-    parent_connection.connect(child_connection);
+    if(squish.length > 0){
+        let parent_connection = blob.getInput("imports").connection;
+        let child_connection = squish[0].previousConnection;
+        parent_connection.connect(child_connection);
+    }
     blob.setEditable(false);
     //blob.setEnabled(false);
     blob.initSvg();
-    workspace.render();
+    //workspace.render();
     return blob;
 }
 

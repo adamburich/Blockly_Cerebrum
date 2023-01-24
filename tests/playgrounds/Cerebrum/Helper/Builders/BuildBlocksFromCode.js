@@ -14,7 +14,7 @@
 import { custom_block_lib } from "../../Blocks/CustomBlockLibrary.mjs";
 import { parseArrToWorkspace, buildDoReturnCall } from "./ParseFileContents.js";
 import { buildBlockFromInfix } from "./ExpressionParser.js";
-const simpleObjectMessageHandlerCalls = " reset setmaterial switchtoscene clickable says playsound setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
+const simpleObjectMessageHandlerCalls = "reset switchtoscene clickable says playsound setitemtext setitemdate setitemdatetime menu_question menu_choices menu_result".split(" ");
 
 function buildLogicalExpressionBlock(workspace, expression) {
     //console.log("EXPRESSION FROM BUILDLOGICAL: ", expression);
@@ -120,7 +120,7 @@ function buildVariableSetBlock(workspace, declarationValues) {
         valBlock = workspace.newBlock("logic_boolean")
         valBlock.setFieldValue('FALSE', "BOOL");
     }
-    else if ((obj != "BloodType" && (payload.indexOf("+") != -1 || payload.indexOf("-") != -1 || payload.indexOf(" / ") != -1 || payload.indexOf("*") != -1))/** && (payload.trim().charAt(0) != "'" && payload.trim().charAt(payload.trim().length - 1) != "'")*/) {
+    else if ((obj != "BloodType" && (payload.indexOf(" + ") != -1 || payload.indexOf(" - ") != -1 || payload.indexOf(" / ") != -1 || payload.indexOf(" * ") != -1))/** && (payload.trim().charAt(0) != "'" && payload.trim().charAt(payload.trim().length - 1) != "'")*/) {
        //console.log("PAYLOAD: ", payload)
        //console.log(payload.trim().charAt(0))
        //console.log(payload.trim().charAt(payload.trim().length - 1))
@@ -151,8 +151,9 @@ function buildVariableSetBlock(workspace, declarationValues) {
         // //console.log("VARIABLE ASSIGNMENT OVER NOW")
     }
     else {
-        valBlock = workspace.newBlock("text")
+        valBlock = workspace.newBlock("text_multiline")
         valBlock.setFieldValue(payload, "TEXT");
+        //console.log(valBlock)
     }
 
     let parentConnection = setBlock.getInput("VALUE").connection;
@@ -217,8 +218,13 @@ function buildGlobalBlock(workspace, callerCallingArgs) {
 }
 
 function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
+    //console.log(callerCallingArgs)
     let caller = callerCallingArgs[0];
     let callerId = caller.substring(0, caller.length);
+
+    if (!workspace.getAllVariableNames().includes(callerId)) {
+        workspace.createVariable(callerId, "", callerId);
+    }
 
     let call = callerCallingArgs[1];
     let args = callerCallingArgs[2];
@@ -226,10 +232,6 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
    //console.log(callerCallingArgs)
     let callBlock = buildCallBlock(workspace, [call, args.join(" ")], false);
     ////console.log(callBlock)
-
-    if (!workspace.getAllVariableNames().includes(callerId)) {
-        workspace.createVariable(callerId, "", callerId);
-    }
 
     let callerBlock = workspace.newBlock("object_calling");
     callerBlock.setFieldValue(callerId, "Object_Variable");
@@ -239,11 +241,9 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
     let childConnection = callBlock.previousConnection;
     parentConnection.connect(childConnection);
 
-    callerBlock.setEnabled(true);
 
     ////console.log(workspace)
     ////console.log(args)
-
     //If the type of ObjectMessageHandler Call we're looking at doesn't require a param block but just some typed inputs we don't want to use buildParamBlocks(workspace, args), so instead we use buildValBlocks which is a helper to buildParamBlocks
     if (simpleObjectMessageHandlerCalls.includes(call)) {
        //console.log("SIMPLE OBJECT MESSAGE HANDLER CALL: ", call)
@@ -264,8 +264,10 @@ function buildObjectMessageHandlerBlock(workspace, callerCallingArgs) {
         }
     }
 
+    callerBlock.setEnabled(true);
     callBlock.initSvg();
     callerBlock.initSvg();
+
     //workspace.render();
     return callerBlock;
 }
@@ -347,7 +349,7 @@ function buildValBlocks(workspace, args) {
                     }
                     valBlock.setFieldValue(varId, "VAR");
                 } else {
-                    valBlock = workspace.newBlock("text")
+                    valBlock = workspace.newBlock("text_multiline")
                     let payload_val = payload.substring(0, payload.length);
                     valBlock.setFieldValue(payload_val, "TEXT");
                 }
@@ -424,6 +426,7 @@ function buildCallBlock(workspace, callAndArgs, isGameManagerCall) {
     //console.log(init_block);
 
     let required_args = result[0].args0;
+    //console.log(required_args)
     ////console.log(init_block.getConnections_());
 
     let inputs = init_block.inputList;

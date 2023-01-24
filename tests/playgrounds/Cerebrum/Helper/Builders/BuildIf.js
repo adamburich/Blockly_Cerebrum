@@ -103,10 +103,10 @@ function f2(arr, ind, workspace){
             blockFromLine = multi_line_comment.block;
             blockList.push(blockFromLine);
         }
-        else if(arr[i].trim() != "Endif"){
-            if(arr[i].trim() === "Else"){
-                break;
-            }
+        else if(arr[i].trim() != "Endif" && arr[i].trim() != "Else"){
+            // if(arr[i].trim() === "Else"){
+            //     break;
+            // }
             blockFromLine = parseLineToWorkspace(arr[i], workspace);
             //console.log("BLOCKFROMLINE: ", blockFromLine);
             if(blockFromLine == null){

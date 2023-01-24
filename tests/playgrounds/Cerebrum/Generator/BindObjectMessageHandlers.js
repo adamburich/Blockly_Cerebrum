@@ -51,10 +51,9 @@ export function bindObjectMessageHandlersToGenerator(generator) {
     };
 
     generator['clickable'] = function (block) {
-        var value_clickable_bool = generator.valueToCode(block, 'logic_boolean', Blockly.JavaScript.ORDER_ATOMIC);
-        //console.log(block.getChildren())
+        var value_clickable_bool = generator.valueToCode(block, 'clickable_bool', Blockly.JavaScript.ORDER_ATOMIC);
         // TODO: Assemble JavaScript into code variable.
-        var code = "clickable " + block.getChildren()[0].getFieldValue("BOOL").toLowerCase();
+        var code = "clickable " + value_clickable_bool;
         return code;
     };
 
@@ -490,10 +489,283 @@ export function bindObjectMessageHandlersToGenerator(generator) {
         return code;
     };
 
-    generator['pressed'] = function (block) {
+// ---------------------------------------------------------------------------
+// ---------------------Blocks Added For Demo---------------------------------
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+
+
+    generator['speaker.color'] = function (block) {
         // TODO: Assemble JavaScript into code variable.
-        var code = " pressed";
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " speaker.color " + statements_params;
         //console.log("." + statements_params)
         return code;
     };
+
+    generator['speaker.object'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " speaker.object " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['changeshader'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " changeshader " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['lookatlegacy'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " lookatlegacy " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['selectable'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " selectable " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['component.off'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " component.off " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['getdate'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " getdate " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['getbone'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " getbone " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['close'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " close " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['component.off'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " component.off " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['component.on'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " component.on " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['component.remove'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " component.remove " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['component.add'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " component.add " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['setglobal'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " setglobal " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['getglobal'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " getglobal " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['moveto'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " moveto " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['starttimer'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " starttimer " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['iscurrent'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " iscurrent " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['write'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " write " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['droop'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " droop " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['setvitals'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " setvitals " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['setblend'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " setblend " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['settimer'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " settimer " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['stoptimer'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " stoptimer " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['endstage'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " endstage " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['closestage'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " closestage " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['setstage'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " setstage " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['pressed'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " pressed " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['headturn'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " headturn " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['taskcompleted'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " taskcompleted " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['numitems'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " numitems " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['scalex'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " scalex " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['scaley'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " scaley " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+    generator['scalez'] = function (block) {
+        // TODO: Assemble JavaScript into code variable.
+        var statements_params = generator.statementToCode(block, 'Params', Blockly.JavaScript.ORDER_ATOMIC);
+        var code = " scalez " + statements_params;
+        //console.log("." + statements_params)
+        return code;
+    };
+
+
 }

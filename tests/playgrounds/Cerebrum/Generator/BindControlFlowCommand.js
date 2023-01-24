@@ -8,25 +8,26 @@ export function bindControlFlowCommand(generator) {
         var name = block.getFieldValue("NAME");
         //console.log(block)
         var body = generator.statementToCode(block, "STACK");
-        let bodArray = body.split("\n");
+        // let bodArray = body.split("\n");
         // for(let i = 0; i < bodArray.length; i++){
         //     bodArray[i] = bodArray[i].trimStart(" ");
         // }
-        body = bodArray.join("\n")
+        // body = bodArray.join("\n")
         var returnVal = generator.valueToCode(block, 'RETURN', Blockly.JavaScript.ORDER_NONE)
-        return body;
+        
+        return "\n" + " #return_procedure:" + name + "\n" + body + "\n" + " #end:"+name;
     }
 
     generator['procedures_defnoreturn'] = function (block) {
         var name = block.getFieldValue("NAME");
         var body = generator.statementToCode(block, "STACK");
-        let bodArray = body.split("\n");
+        // let bodArray = body.split("\n");
         // for(let i = 0; i < bodArray.length; i++){
         //     bodArray[i] = bodArray[i].trimStart(" ");
         // }
-        body = bodArray.join("\n")
+        // body = bodArray.join("\n")
 
-        return body;
+        return "\n" + " #returnless_procedure:" + name + "\n" + body + "\n" + " #end:"+name;
     }
 
     generator['procedures_callnoreturn'] = function (block) {
@@ -70,7 +71,7 @@ export function bindControlFlowCommand(generator) {
         // }
         // else return "Do "
         let call = block.childBlocks_[0].getFieldValue("TEXT");
-        // console.log(block.childBlocks_, call);
+        console.log(block.childBlocks_, call);
         return ["Do " + call, Blockly.JavaScript.ORDER_NONE]
     };
 
@@ -90,7 +91,9 @@ export function bindControlFlowCommand(generator) {
         //     return code;
         // }
         // else return "Do "
-        return generator.statementToCode(block, "fname")
+        let code = generator.statementToCode(block, "fname")
+        code = code.substring(1, code.length)
+        return code
     };
 
     generator['gotolabelreturn'] = function (block) {
@@ -134,35 +137,21 @@ export function bindControlFlowCommand(generator) {
 
     generator['controls_if'] = function (block) {
         //console.log(block);
-        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_NONE);
+        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
         cond = cond.replace("(", "");
         cond = cond.replace(")", "");
-        cond = cond.trimStart(" ");
-        cond = "\t " + cond;
-        // console.log(cond);
+        //console.log(cond);
         var body = generator.statementToCode(block, "DO0");
-        body = body.split("\n");
-        body = "\t" + body.join("\n\t");
-        var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Endif";
-        //console.log(code)
+        var code = "If\n" + "\t" + cond + "\n" + "Then\n" + "\t" + body.trimStart() + "\n" + "Endif";
         return code;
     };
 
     generator['controls_ifelse'] = function (block) {
         //console.log(block);
-        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_NONE);
-        cond = cond.replace("(", "");
-        cond = cond.replace(")", "");
-        cond = cond.trimStart(" ");
-        cond = "\t " + cond;
-        // console.log(cond);
+        var cond = generator.valueToCode(block, "IF0", Blockly.JavaScript.ORDER_CONDITIONAL);
         var body = generator.statementToCode(block, "DO0");
-        body = body.split("\n");
-        body = "\t" + body.join("\n\t");
         var elseBody = generator.statementToCode(block, "ELSE");
-        elseBody = elseBody.split("\n");
-        elseBody = "\t" + elseBody.join("\n\t");
-        var code = "If\n  " + cond + "\n" + "Then\n" + body + "\n" + "Else\n" + elseBody + "\n" + "Endif";
+        var code = "If\n  " + "\t" + cond + "\n" + "Then\n" + "\t" + body.trimStart() + "\n" + "Else\n" + "\t" + elseBody.trimStart() + "\n" + "Endif";
         return code;
     };
 

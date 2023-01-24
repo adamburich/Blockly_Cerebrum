@@ -21,34 +21,33 @@ function codeToFiles(code) {
     let mainFile = [];
 
     for (let i = 0; i < lines.length; i++) {
-        lines[i] = lines[i].substring(1, lines[i].length);
-        lines[i] = lines[i].replaceAll("\t", " ");
-        if (lines[i].split(" ")[0] == "Label") {
+        if (lines[i].trim().indexOf("#returnless_procedure") != -1 || lines[i].trim().indexOf("#return_procedure") != -1) {
             let func = [];
-            
-            let fname = lines[i].split(" ")[1].replaceAll("'", "");
+            let fname = lines[i].split(":")[1];
             i++;
-            while (lines[i] != "Return" && lines[i] != undefined) {
-                func.push(lines[i].trim());
+            while (lines[i].trim() != "#end:"+fname.trim()) {
+                func.push(lines[i].substring(1, lines[i].length));
                 i++;
             }
             i++;
             let funcText = func.join("\n");
             files.push({ fname, funcText });
         }
-        if (lines[i].split(" ")[0] == "Do") {
+        else if (lines[i].split(" ")[0] == "Do") {
             let fCallText = lines[i].split(" ")[1].replaceAll("'", "");
             let fCallTextFile = "'" + fCallText + "'"
             let newLine = "Do " + fCallTextFile;
             mainFile.push(newLine);
         }
         else {
-            mainFile.push(lines[i]);
+            mainFile.push(lines[i].substring(0, lines[i].length));
         }
     }
     let funcText = mainFile.join("\n");
-    let fname = "main";
-    files.push({ fname, funcText });
+    if(funcText.trim().length > 0){
+        let fname = "main";
+        files.push({ fname, funcText });
+    }
 
     return files;
 }
@@ -83,6 +82,39 @@ function handleSelected(e) {
         //console.log((reader.readAsText(selectedFile)));
         //console.log(reader.result);
     }
+}
+
+function setUpDemo(workspace){
+    let input = document.getElementById('upload-flist')
+    //console.log(input);
+    input.addEventListener('change', () => {
+        let files = input.files;
+
+        if (files.length == 0) return;
+
+        /* If any further modifications have to be made on the
+           Extracted text. The text can be accessed using the
+           file variable. But since this is const, it is a read
+           only variable, hence immutable. To make any changes,
+           changing const to var, here and In the reader.onload
+           function would be advisible */
+        const file = files[0];
+
+        let reader = new FileReader();
+
+        reader.onload = (e) => {
+            const file = e.target.result;
+            let xml_text = file;
+            let xml = Blockly.Xml.textToDom(xml_text);
+            Blockly.Xml.domToWorkspace(xml, workspace);
+
+        };
+
+        reader.onerror = (e) => alert(e.target.error.name);
+
+        reader.readAsText(file);
+    });
+
 }
 
 function setUpFile(workspace) {
@@ -209,28 +241,14 @@ function updateCodeAndDownload(workspace) {
 
 }
 
-function isDuplicate(workspace, fname){
-    let list = workspace.getBlocksByType("procedures_defnoreturn", true);
-    for(let i = 0; i < list.length; i++){
-        console.log(fname, list[i].getFieldValue("NAME"))
-        if(fname === list[i].getFieldValue("NAME")){
-            return true
-        }
-    }
-    return false;
-}
-
 function importDefaultFunctions(workspace){
     Blockly.Events.disable();
     for(let i = 0; i < flist.length; i++){
-        if(!isDuplicate(workspace, flist[i].fname)){
-            let fblock = workspace.newBlock("procedures_defnoreturn");
+        let fblock = workspace.newBlock("procedures_defnoreturn");
                     fblock.setFieldValue(flist[i].fname, "NAME");
                     fblock.setEnabled(true);
-                    fblock.setEditable(false);
+                    //fblock.setEditable(false);
                     fblock.setCollapsed(true);
-            
-        }
     }
     let blob = fblob_consolidate("", workspace);
     blob.setCollapsed(true);
@@ -240,7 +258,8 @@ function importDefaultFunctions(workspace){
 
 function allowUpload(workspace) {
     setUpFile(workspace);
+    setUpDemo(workspace);
     //uploadFileList(workspace);
 }
 
-export { isDuplicate, importDefaultFunctions, uploadFileList, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }
+export { importDefaultFunctions, uploadFileList, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload }

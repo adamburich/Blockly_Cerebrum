@@ -1,16 +1,18 @@
 export function bindCleaners(generator) {
     generator.finish = function (code) {
+
         code = code.replaceAll("TRUE", "true");
         code = code.replaceAll("FALSE", "false");
+        //hacky, hardly works
         code = code.replaceAll("  ", " ");
         code = code.replaceAll("\\'", "");
-        //generator.INDENT = "   ";
+        // code = code.replaceAll("\t\t", "\t");
+
         return code;
 
     }
 
     generator.scrub_ = function (block, code, opt_thisOnly) {
-        //console.log(code)
         const lastBlock = block.getParent();
         if (!lastBlock) {
             code = "\n" + code;
@@ -26,7 +28,9 @@ export function bindCleaners(generator) {
             }
         }
         //code = code.trimStart("\n");
-        //console.log(code);
+        //hacky
+        code = code.replaceAll("  ", " ");
+        code = code.replaceAll("\t\t", "\t");
         return code;
         //return code;
     };
