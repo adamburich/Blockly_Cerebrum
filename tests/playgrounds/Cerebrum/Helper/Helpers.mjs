@@ -11,13 +11,15 @@
 import { addButtons } from "./AddButtons.js";
 import {fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, fcall, objectMessageHandlerCall, varDecl} from "./Builders/ParseFileContents.js";
 import {buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, buildValBlocks, buildVariableSetBlock} from './Builders/BuildBlocksFromCode.js';
-import {importDefaultFunctions, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload} from './Builders/FileHandler.js';
+import {prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, updateCodeAndDownload, allowUpload} from './Builders/FileHandler.js';
 import { hideUnusedGenerators } from "./Prettify.js";
 import { populatePatientVars } from "./VariableSetup.js";
+import {readFromS3, writeToS3} from "./S3Handlers.js"
 
 export {
-    importDefaultFunctions, addButtons, fcall, fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, 
+    addButtons, fcall, fcallFromObject, gameManagerCall, parseArrToWorkspace, parseLineToWorkspace, 
     objectMessageHandlerCall, varDecl, buildCallBlock, buildObjectMessageHandlerBlock, buildCommentBlock, buildParamBlocks, 
     buildValBlocks, buildVariableSetBlock, prepareFileText, setUpFile, handleSelected, handleEvent, codeToFiles, addListeners, 
-    hideUnusedGenerators, populatePatientVars, updateCodeAndDownload, allowUpload
+    hideUnusedGenerators, populatePatientVars, updateCodeAndDownload, allowUpload,
+    readFromS3, writeToS3
 };

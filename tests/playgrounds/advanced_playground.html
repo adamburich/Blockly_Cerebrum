@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>Blockly Cerebrum Playground</title>
 <script src="prepare.js"></script>
+<script src="aws-sdk-s3.js"></script>
 <script src="./screenshot.js"></script>
 <script src="../themes/test_themes.js"></script>
 <script src="https://unpkg.com/@blockly/dev-tools/dist/index.js"></script>
@@ -11,9 +12,17 @@
 
 <script type="module">
 
+// Initialize the Amazon Cognito credentials provider
+AWS.config.region = 'ap-southeast-1'; // Region
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'ap-southeast-1:9408dd2e-7f2e-433d-a57b-d8a60aa295a2',
+});
+
+const path = 'btg2/base/StreamingAssets/'
+
 import { cerebrumToolbox } from './Cerebrum/Toolbox/cerebrum_toolbox.mjs'
 import { custom_block_lib } from './Cerebrum/Blocks/CustomBlockLibrary.mjs'
-import { addButtons, updateCodeAndDownload, hideUnusedGenerators, allowUpload, populatePatientVars, importDefaultFunctions } from './Cerebrum/Helper/Helpers.mjs'
+import { addButtons, updateCodeAndDownload, hideUnusedGenerators, allowUpload, populatePatientVars, readFromS3, writeToS3 } from './Cerebrum/Helper/Helpers.mjs'
 import { cerebrumGenerator } from './Cerebrum/Generator/CerebrumGenerator.mjs'
 
 import Blockly from './blockly.mjs';
@@ -22,18 +31,19 @@ import Blockly from './blockly.mjs';
 var wspace;
 var happened = false;
 
+let files = [];
+
 function start() {
   setBackgroundColour();
   initPlayground();
   addButtons();
   var download = document.getElementById("download-code");
-  var import_flist = document.getElementById("upload-flist");
   download.onclick = function(){
-    updateCodeAndDownload(wspace);
+    //Replace 01/DW01Setup.txt with path to the saved files
+    readFromS3(path+'01/DW01Setup.txt');
+    writeToS3(path+'01/DW01Setup1.txt', "hello\nworld");
+    // updateCodeAndDownload(wspace);
   };
-  // import_flist.onclick = function(){
-  //   importDefaultFunctions(wspace);
-  // };
   setTimeout(hideUnusedGenerators, 125);
   setTimeout(hideUnusedGenerators, 5000);
 
