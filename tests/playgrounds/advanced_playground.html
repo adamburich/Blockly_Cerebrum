@@ -18,11 +18,11 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'ap-southeast-1:9408dd2e-7f2e-433d-a57b-d8a60aa295a2',
 });
 
-const path = 'btg2/base/StreamingAssets/'
+const path = 'news/base/StreamingAssets/NEWS_Nurse/'
 
 import { cerebrumToolbox } from './Cerebrum/Toolbox/cerebrum_toolbox.mjs'
 import { custom_block_lib } from './Cerebrum/Blocks/CustomBlockLibrary.mjs'
-import { addButtons, updateCodeAndDownload, hideUnusedGenerators, allowUpload, populatePatientVars, readFromS3, writeToS3 } from './Cerebrum/Helper/Helpers.mjs'
+import { setUpFileFromS3, addButtons, updateCodeAndDownload, hideUnusedGenerators, allowUpload, populatePatientVars, readFromS3, writeToS3 } from './Cerebrum/Helper/Helpers.mjs'
 import { cerebrumGenerator } from './Cerebrum/Generator/CerebrumGenerator.mjs'
 
 import Blockly from './blockly.mjs';
@@ -31,19 +31,29 @@ import Blockly from './blockly.mjs';
 var wspace;
 var happened = false;
 
-let files = [];
+let stage1_files = ["Stage1/PatientNews1.txt", "Stage1/PatientNews2.txt", "Stage1/PatientNews3.txt", "Stage1/PatientNews4.txt", "Stage1/PatientNon1.txt", "Stage1/PatientNon2.txt", "Stage1/PatientNon3.txt", "Stage1/PatientNon4.txt", "Stage1/PatientNon5.txt"];
+let stage2_files = ["Stage2/PatientNews1.txt", "Stage2/PatientNews2.txt", "Stage2/PatientNews3.txt", "Stage2/PatientNews4.txt", "Stage2/PatientNon1.txt", "Stage2/PatientNon2.txt", "Stage2/PatientNon3.txt", "Stage2/PatientNon4.txt", "Stage2/PatientNon5.txt"];
+let stage3_files = ["Stage3/PatientNews1.txt", "Stage3/PatientNews2.txt", "Stage3/PatientNews3.txt", "Stage3/PatientNews4.txt", "Stage3/PatientNon1.txt", "Stage3/PatientNon2.txt", "Stage3/PatientNon3.txt", "Stage3/PatientNon4.txt", "Stage3/PatientNon5.txt"];
 
 function start() {
   setBackgroundColour();
   initPlayground();
   addButtons();
+  const path = 'news/base/StreamingAssets/NEWS_Nurse/'
+  let selection = document.getElementById("file_select_dropdown").value;
   var download = document.getElementById("download-code");
   download.onclick = function(){
     //Replace 01/DW01Setup.txt with path to the saved files
-    readFromS3(path+'01/DW01Setup.txt');
-    writeToS3(path+'01/DW01Setup1.txt', "hello\nworld");
-    // updateCodeAndDownload(wspace);
+    //readFromS3(path+'01/DW01Setup.txt');
+
+    //writeToS3(path + activeFunctionFile, functionContents)
+    //writeToS3(path+'01/DW01Setup1.txt', "hello\nworld");
+    updateCodeAndDownload(wspace);
   };
+  let s3_to_workspace_button = document.getElementById("get-from-s3");
+  s3_to_workspace_button.onclick = function(){
+    readFromS3(path+selection, wspace)
+  }
   setTimeout(hideUnusedGenerators, 125);
   setTimeout(hideUnusedGenerators, 5000);
 
@@ -202,6 +212,11 @@ start();
     display: none !important;
   }
 
+  #custom_buttons_container{
+    display: flex;
+    flex-wrap: wrap;
+    overflow-wrap: wrap;
+  }
 </style>
 </head>
 <body>

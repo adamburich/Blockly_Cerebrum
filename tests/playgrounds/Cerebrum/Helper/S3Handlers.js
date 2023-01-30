@@ -1,4 +1,6 @@
-function readFromS3(key) {
+import { setUpFileFromS3 } from "./Helpers.mjs";
+
+function readFromS3(key, workspace) {
     var s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
     s3.getObject({
@@ -9,6 +11,7 @@ function readFromS3(key) {
         else {
             let objectData = data.Body.toString('utf-8');
             console.log(objectData);
+            setUpFileFromS3(objectData, workspace);
         }
     })
 
@@ -28,6 +31,7 @@ function writeToS3(key, body) {
         }
     });
     console.log('writeToS3');
+
 }
 
 export {readFromS3, writeToS3}
