@@ -3,8 +3,10 @@ export function bindCleaners(generator) {
 
         code = code.replaceAll("TRUE", "true");
         code = code.replaceAll("FALSE", "false");
+        //hacky, hardly works
         code = code.replaceAll("  ", " ");
         code = code.replaceAll("\\'", "");
+        // code = code.replaceAll("\t\t", "\t");
 
         return code;
 
@@ -26,6 +28,9 @@ export function bindCleaners(generator) {
             }
         }
         //code = code.trimStart("\n");
+        //hacky
+        code = code.replaceAll("  ", " ");
+        code = code.replaceAll("\t\t", "\t");
         return code;
         //return code;
     };

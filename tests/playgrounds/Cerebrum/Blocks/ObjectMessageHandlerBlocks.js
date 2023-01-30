@@ -1141,4 +1141,620 @@ export let objectMessageHandlerBlocks = [
     "nextStatement": null,
     "previousStatement": null
   },
+
+  
+  {
+    "type": "droop",
+    "message0": "droop %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "setvitals",
+    "message0": "setvitals %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "setblend",
+    "message0": "setblend %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "settimer",
+    "message0": "settimer %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "stoptimer",
+    "message0": "stoptimer %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "endstage",
+    "message0": "endstage %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "closestage",
+    "message0": "closestage %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "setstage",
+    "message0": "setstage %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "numitems",
+    "message0": "numitems %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "taskcompleted",
+    "message0": "taskcompleted %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "headturn",
+    "message0": "headturn %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "pressed",
+    "message0": "pressed %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "close",
+    "message0": "close %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "component.on",
+    "message0": "component.on %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "component.off",
+    "message0": "component.off %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "component.remove",
+    "message0": "component.remove %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "component.add",
+    "message0": "component.add %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "setglobal",
+    "message0": "setglobal %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "getglobal",
+    "message0": "getglobal %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "moveto",
+    "message0": "moveto %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "starttimer",
+    "message0": "starttimer %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "iscurrent",
+    "message0": "iscurrent %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "write",
+    "message0": "write %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "speaker.color",
+    "message0": "speaker.color %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "speaker.object",
+    "message0": "speaker.object %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "changeshader",
+    "message0": "changeshader %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "taskcorrect",
+    "message0": "taskcorrect %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "lookatlegacy",
+    "message0": "lookatlegacy %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "selectable",
+    "message0": "selectable %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "getdate",
+    "message0": "getdate %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "getbone",
+    "message0": "getbone %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "scalex",
+    "message0": "scalex %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "scaley",
+    "message0": "scaley %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+  {
+    "type": "scalez",
+    "message0": "scalez %1",
+    "args0": [
+      {
+        "type": "input_statement",
+        "name": "Params",
+        "check": "Params"
+      }
+    ],
+    "inputsInline": true,
+
+    "colour": 230,
+    "tooltip": "",
+    "helpUrl": "",
+    "nextStatement": null,
+    "previousStatement": null
+  },
+
+
 ]

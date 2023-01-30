@@ -116,4 +116,13 @@ export function bindMisc(generator) {
         const code = value_if + ' ? ' + value_then + ' : ' + value_else;
         return [code, Blockly.JavaScript.ORDER_CONDITIONAL];
     };
+
+    generator['text_multiline'] = function (block) {
+        let text = block.getFieldValue("TEXT");
+        text = text.trim();
+        if(text.charAt(0) != "'" && text.charAt(text.length) != "'"){
+            text = "'" + text + "'"
+        }
+        return [text, Blockly.JavaScript.ORDER_NONE];
+    }
 }

@@ -47,14 +47,26 @@ export function bindHelpers(generator) {
     generator['variables_set'] = function variables_set(block) {
 
         // Variable setter.
-        const argument0 = generator.valueToCode(
+        let argument0 = generator.valueToCode(
             block, 'VALUE', Blockly.JavaScript.ORDER_ASSIGNMENT) || '0';
-        const varName = block.inputList[0].fieldRow[1].selectedOption_[0];
-        let code = "$" + varName + ' = ' + argument0 + '';
-        if(code.indexOf("'") != -1){
-            code = code.replaceAll("(", "");
-            code = code.replaceAll(")", "");
-        }
+
+        let str = argument0.toString().trim();
+        let out = ""
+        if(str.indexOf("'") != -1){
+            if(str.charAt(0) == "("){
+                if(str.charAt(str.length == ")")){
+                    for(let i = 1; i < str.length-1; i++){
+                        out += str.charAt(i);
+                    }
+                }
+            }
+        }else out = str;
+        let varName = block.inputList[0].fieldRow[1].selectedOption_[0];
+        let code = "$" + varName + ' = ' + out + '';
+        // if(code.indexOf("'") != -1){
+        //     code = code.replaceAll("(", "");
+        //     code = code.replaceAll(")", "");
+        // }
         return code;
     }
 
@@ -77,7 +89,8 @@ export function bindHelpers(generator) {
 
     generator['text'] = function (block) {
         const code = Blockly.JavaScript.quote_(block.getFieldValue('TEXT'));
-        console.log("TEXT PARSE", code)
+        //console.log(code)
+        //console.log("TEXT PARSE", code)
         return [code, Blockly.JavaScript.ORDER_ATOMIC];
     };
 
