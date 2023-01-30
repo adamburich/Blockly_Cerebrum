@@ -1,0 +1,1487 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="$Patient">$Patient</variable>
+    <variable id="Temperature">Temperature</variable>
+    <variable id="HR">HR</variable>
+    <variable id="BP">BP</variable>
+    <variable id="BPSys">BPSys</variable>
+    <variable id="face">face</variable>
+    <variable id="Respiration">Respiration</variable>
+    <variable id="BloodGlucoseLevel">BloodGlucoseLevel</variable>
+    <variable id="SpO2">SpO2</variable>
+    <variable id="Eyes">Eyes</variable>
+    <variable id="LevelOfConscious">LevelOfConscious</variable>
+    <variable id="EyeResponse3">EyeResponse3</variable>
+    <variable id="Verbal">Verbal</variable>
+    <variable id="LOCResponse2">LOCResponse2</variable>
+    <variable id="VerbalResponse3">VerbalResponse3</variable>
+    <variable id="Body">Body</variable>
+    <variable id="MotorResponse5">MotorResponse5</variable>
+    <variable id="VerbalResponse4">VerbalResponse4</variable>
+    <variable id="LimbResponse">LimbResponse</variable>
+    <variable id="SinusBradycardia">SinusBradycardia</variable>
+    <variable id="PhysicalExamResponse">PhysicalExamResponse</variable>
+    <variable id="$Vitals">$Vitals</variable>
+    <variable id="FreqHourlyResponse">FreqHourlyResponse</variable>
+    <variable id="Oriented">Oriented</variable>
+    <variable id="FreqShiftResponse">FreqShiftResponse</variable>
+    <variable id="BreathingSpeed">BreathingSpeed</variable>
+    <variable id="8.0 #test comment">8.0 #test comment</variable>
+    <variable id="RightArmWeakness">RightArmWeakness</variable>
+    <variable id="PatientSpeak">PatientSpeak</variable>
+    <variable id="isEyesOpen">isEyesOpen</variable>
+  </variables>
+  <block type="fblob" id="0O?$/6xbt9vazoOw+y=y" editable="false" x="-62" y="12">
+    <statement name="imports">
+      <block type="procedures_defnoreturn" id="bUV7@J+[:2Nq67Qh_Jb+" collapsed="true">
+        <field name="NAME">S2_PatientNews1</field>
+        <comment pinned="false" h="80" w="160">Describe this function...</comment>
+        <statement name="STACK">
+          <block type="comment" id="N%)ye0h(IPWy]Jj)Shi`">
+            <value name="comment_val">
+              <block type="text" id="gG%%7E!qNiXd7d,]A71Z">
+                <field name="TEXT">########################################</field>
+              </block>
+            </value>
+            <next>
+              <block type="comment" id="h7(-l;/S_ysVk%1sCA{z">
+                <value name="comment_val">
+                  <block type="text" id="AQAk`^sz]U4vlR1e8d?~">
+                    <field name="TEXT">  PATIENTNEWS1 INFO STAGE 2</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="comment" id="I0x4lL,sRc+8/(K6N*`*">
+                    <value name="comment_val">
+                      <block type="text" id="0~JJ(m.,s~3oE/ST.~fb">
+                        <field name="TEXT">########################################</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="comment" id="m-+[cL}:o^Us;`=[#$km">
+                        <value name="comment_val">
+                          <block type="text" id="qXmaeEZ2YET~IV$XQk^g">
+                            <field name="TEXT">Speaker1 'in Pat1Stage2'</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="empty_line" id="@xx#R}SlT^rz~#U@!}!e">
+                            <next>
+                              <block type="object_calling" id="2Lvea$RB{X7+SCi^n.P8">
+                                <field name="Object_Variable" id="$Patient">$Patient</field>
+                                <statement name="Params">
+                                  <block type="droop" id=".5H2Gw[k)#P1*]CSqMfQ">
+                                    <statement name="Params">
+                                      <block type="param" id="}YcsW0|sBv]//ti(Rd71">
+                                        <value name="param_val">
+                                          <block type="logic_boolean" id="Ryw^V2I_D;pzL^yNj)NC">
+                                            <field name="BOOL">TRUE</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="param" id="*-yS]9KKd{6(aqhevlI$">
+                                            <value name="param_val">
+                                              <block type="math_number" id="2?SGTSD{?UWnp)/Wm!/L">
+                                                <field name="NUM">65</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="param" id="J4?c[K?EfO#$F^R7-M?e">
+                                                <value name="param_val">
+                                                  <block type="math_number" id="%[Y-3am?XjYQR2:ZXRKJ">
+                                                    <field name="NUM">0</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="object_calling" id=".qj8tS}VXt|Xe~:fIuo)">
+                                    <field name="Object_Variable" id="$Patient">$Patient</field>
+                                    <statement name="Params">
+                                      <block type="setblend" id="A.|?+PtmCP3!f}~C:rKI">
+                                        <statement name="Params">
+                                          <block type="param" id="qAo{anR-w)rm9VgXD];)">
+                                            <value name="param_val">
+                                              <block type="variables_get" id="aaXE%G5+?t*X7G!y;b%p">
+                                                <field name="VAR" id="face">face</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="param" id="J:07Z+sWUgwoR2B;{EPX">
+                                                <value name="param_val">
+                                                  <block type="math_number" id="XBte4#B^nXp~IM{G^2XX">
+                                                    <field name="NUM">20</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="param" id="jGRFr9}lH5gn*|Sfw@Pg">
+                                                    <value name="param_val">
+                                                      <block type="math_number" id="pC|~s$aBX@C$?@!SMXWM">
+                                                        <field name="NUM">100</field>
+                                                      </block>
+                                                    </value>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="object_calling" id="9+feSnL(c+cxJr`}}/3@">
+                                        <field name="Object_Variable" id="$Patient">$Patient</field>
+                                        <statement name="Params">
+                                          <block type="setblend" id="4c:I{L#}-O9FfaEOdo^u">
+                                            <statement name="Params">
+                                              <block type="param" id="?v^dvr!?izB%`h=^mI}8">
+                                                <value name="param_val">
+                                                  <block type="variables_get" id="O`Z=tiv!ID08Ci#xj!dt">
+                                                    <field name="VAR" id="face">face</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="param" id="Lw;TP_BcR#ZAg4P*I%P2">
+                                                    <value name="param_val">
+                                                      <block type="math_number" id="09?vV@5*{md$v#Y_VT2x">
+                                                        <field name="NUM">23</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="param" id="ArEPtLSFsl$}Va6[$xZT">
+                                                        <value name="param_val">
+                                                          <block type="math_number" id="Fj!{bcClT=0y1Lj-IUd.">
+                                                            <field name="NUM">100</field>
+                                                          </block>
+                                                        </value>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </statement>
+                                          </block>
+                                        </statement>
+                                        <next>
+                                          <block type="object_calling" id="RxDB5(3h6,IsW6tT#$=R">
+                                            <field name="Object_Variable" id="$Patient">$Patient</field>
+                                            <statement name="Params">
+                                              <block type="setblend" id="{[wA1Tu]2)~_p73enn)Y">
+                                                <statement name="Params">
+                                                  <block type="param" id="P4j,B*yXJtWv#iMWshYs">
+                                                    <value name="param_val">
+                                                      <block type="variables_get" id="Mz)G5[trL5}4o|M)BGj:">
+                                                        <field name="VAR" id="face">face</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="param" id=",`U7]i0)e,HSYx0EdBJd">
+                                                        <value name="param_val">
+                                                          <block type="math_number" id="us)0R?-7$Kht;XrZP75A">
+                                                            <field name="NUM">26</field>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="param" id="-OHsO0x^L)@#8t3j7Syv">
+                                                            <value name="param_val">
+                                                              <block type="math_number" id="lWz!D,LNYN@abB#R4`s*">
+                                                                <field name="NUM">50</field>
+                                                              </block>
+                                                            </value>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </statement>
+                                              </block>
+                                            </statement>
+                                            <next>
+                                              <block type="object_calling" id="7@#|2kvA9Er/DU{DQPg]">
+                                                <field name="Object_Variable" id="$Patient">$Patient</field>
+                                                <statement name="Params">
+                                                  <block type="setblend" id="YWO[ugW0(n.{Q`6A_nt~">
+                                                    <statement name="Params">
+                                                      <block type="param" id="+[|(/w7-ILZ%+decYC8x">
+                                                        <value name="param_val">
+                                                          <block type="variables_get" id="7)t9@i6MCHU]Fu^#BI#u">
+                                                            <field name="VAR" id="face">face</field>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="param" id="ZTKf9[Vv:z/iLh/0rdA:">
+                                                            <value name="param_val">
+                                                              <block type="math_number" id="QKS|5s,blP`ox=Zdm_[D">
+                                                                <field name="NUM">33</field>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="param" id="eqvWIz?/?/]IR8S1|{;Y">
+                                                                <value name="param_val">
+                                                                  <block type="math_number" id="7QauN5X?G$.s`s5CngV`">
+                                                                    <field name="NUM">40</field>
+                                                                  </block>
+                                                                </value>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </statement>
+                                                  </block>
+                                                </statement>
+                                                <next>
+                                                  <block type="object_calling" id="s9MA6gA2j,]NRG_/iI1t">
+                                                    <field name="Object_Variable" id="$Patient">$Patient</field>
+                                                    <statement name="Params">
+                                                      <block type="setblend" id="`4)n`7j2[a^JzHzV0x.N">
+                                                        <statement name="Params">
+                                                          <block type="param" id="m^G:cq:|7nG,3H)LE~2W">
+                                                            <value name="param_val">
+                                                              <block type="variables_get" id="VpGDjLCVZ`z=u:LWjKBL">
+                                                                <field name="VAR" id="face">face</field>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="param" id=":Eh0jw9qRK=+WmF!WZKu">
+                                                                <value name="param_val">
+                                                                  <block type="math_number" id="V9eR;96k.`GNemY:uxW*">
+                                                                    <field name="NUM">36</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="param" id="#|oe54_ol[eBsBQOV5ex">
+                                                                    <value name="param_val">
+                                                                      <block type="math_number" id="#WG]I{E#[lIIRk-}8JLL">
+                                                                        <field name="NUM">100</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </statement>
+                                                      </block>
+                                                    </statement>
+                                                    <next>
+                                                      <block type="object_calling" id="9dLiUT~K7fz9JtM5m]$j">
+                                                        <field name="Object_Variable" id="$Patient">$Patient</field>
+                                                        <statement name="Params">
+                                                          <block type="setblend" id="$SJy?i9f)h4/+G~6[z)m">
+                                                            <statement name="Params">
+                                                              <block type="param" id="g?c+$%I^`pG##}R?~Wv2">
+                                                                <value name="param_val">
+                                                                  <block type="variables_get" id="f#0R]%IFu#%l1{kf5vPW">
+                                                                    <field name="VAR" id="face">face</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="param" id="|dJY2@%b8e/tDV:`hxtS">
+                                                                    <value name="param_val">
+                                                                      <block type="math_number" id="%,RewLjGH5wbOUB-uckG">
+                                                                        <field name="NUM">6</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="param" id="}^HmvTcq_aK=(BQCj?%M">
+                                                                        <value name="param_val">
+                                                                          <block type="math_number" id="yA#c?.W@8:m}4@XyPN_c">
+                                                                            <field name="NUM">50</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </statement>
+                                                          </block>
+                                                        </statement>
+                                                        <next>
+                                                          <block type="empty_line" id=",/DyPzQ5[T2-x./).MW9">
+                                                            <next>
+                                                              <block type="variables_set" id="I-Hi7F@)JtOWv2Rbfp3R">
+                                                                <field name="VAR" id="Temperature">Temperature</field>
+                                                                <value name="VALUE">
+                                                                  <block type="math_number" id="O5tztGJ/Yo*_tk8MUA[,">
+                                                                    <field name="NUM">36.3</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="variables_set" id="6i;3T=TY7C7)bOPNFp^p">
+                                                                    <field name="VAR" id="BP">BP</field>
+                                                                    <value name="VALUE">
+                                                                      <block type="text_multiline" id="aU)WT!VkNpl~t(I:m.S]">
+                                                                        <field name="TEXT">'170/71' </field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="variables_set" id="?!ck#,)Uch]{Nw`[6Y|O">
+                                                                        <field name="VAR" id="BPSys">BPSys</field>
+                                                                        <value name="VALUE">
+                                                                          <block type="math_number" id="YxiA]^].G|`8mMpZtTez">
+                                                                            <field name="NUM">170</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <next>
+                                                                          <block type="empty_line" id="T2qiP4-r*~}_yRXU^{1e">
+                                                                            <next>
+                                                                              <block type="variables_set" id="98gPbZ_rBa]gDX*M1nFp">
+                                                                                <field name="VAR" id="PhysicalExamResponse">PhysicalExamResponse</field>
+                                                                                <value name="VALUE">
+                                                                                  <block type="text_multiline" id="E%;!~N*o@,_6*J}].B0D">
+                                                                                    <field name="TEXT">'Facial droop seen.'</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <next>
+                                                                                  <block type="empty_line" id="*3PXpvL)77{7sXakHAJ4">
+                                                                                    <next>
+                                                                                      <block type="variables_set" id="eMU51gnr$?58VQzE?V,t">
+                                                                                        <field name="VAR" id="FreqHourlyResponse">FreqHourlyResponse</field>
+                                                                                        <value name="VALUE">
+                                                                                          <block type="text_multiline" id=",*H:6p{*J*c2*4wUM*n@">
+                                                                                            <field name="TEXT">'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical team immediately.'</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                          <block type="variables_set" id="EsQ4p0%r=|g#.2,r)|xx">
+                                                                                            <field name="VAR" id="FreqShiftResponse">FreqShiftResponse</field>
+                                                                                            <value name="VALUE">
+                                                                                              <block type="text_multiline" id="S3W,+t9RsE59;;OwEIbk">
+                                                                                                <field name="TEXT">'Patient is showing the signs and symptoms of stroke, you should step up monitoring frequency and alert the medical team immediately.'</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <next>
+                                                                                              <block type="empty_line" id="pSotk]N6ou/eZwR,e7Le">
+                                                                                                <next>
+                                                                                                  <block type="controls_if" id="O|Y~TEHuJJF*sDa{ueU9">
+                                                                                                    <value name="IF0">
+                                                                                                      <block type="logic_compare" id="|{XI7b69!zT;rUv5/*R%">
+                                                                                                        <field name="OP">LT</field>
+                                                                                                        <value name="A">
+                                                                                                          <block type="variables_get" id="{]AZ0+{Y3mj0~@PxkOJx">
+                                                                                                            <field name="VAR" id="BloodGlucoseLevel">BloodGlucoseLevel</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                        <value name="B">
+                                                                                                          <block type="variables_get" id="+_@0l_kqSZRmfDJ][6eF">
+                                                                                                            <field name="VAR" id="8.0 #test comment">8.0 #test comment</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <statement name="DO0">
+                                                                                                      <block type="variables_set" id="PvteR7sfP_XdyQjmd3rY">
+                                                                                                        <field name="VAR" id="BloodGlucoseLevel">BloodGlucoseLevel</field>
+                                                                                                        <value name="VALUE">
+                                                                                                          <block type="text_multiline" id="/F+3R$j~(k5!ZCYui#{o">
+                                                                                                            <field name="TEXT">'8.0'</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                      </block>
+                                                                                                    </statement>
+                                                                                                    <next>
+                                                                                                      <block type="empty_line" id="Cfn7=lQ|Z1=w$R`$|4nd">
+                                                                                                        <next>
+                                                                                                          <block type="variables_set" id="@dwFd,!rMMP^EjOLTKjW">
+                                                                                                            <field name="VAR" id="RightArmWeakness">RightArmWeakness</field>
+                                                                                                            <value name="VALUE">
+                                                                                                              <block type="logic_boolean" id="p^#)KvP*)i9,|*?Zs=/V">
+                                                                                                                <field name="BOOL">TRUE</field>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <next>
+                                                                                                              <block type="comment" id="kjHbE;H0D#NhzO4|fowo">
+                                                                                                                <value name="comment_val">
+                                                                                                                  <block type="text" id="lh3uT{xr{~qG8!6I{YX6">
+                                                                                                                    <field name="TEXT">Prompt 'RightArmWeakness setting to ' + RightArmWeakness</field>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                                <next>
+                                                                                                                  <block type="comment" id="Zj{*ZGBT=(6aJ0R%GCCH">
+                                                                                                                    <value name="comment_val">
+                                                                                                                      <block type="text" id="yAMc]QukR7Wi=gU5@?W4">
+                                                                                                                        <field name="TEXT">Wait 2</field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <next>
+                                                                                                                      <block type="variables_set" id="gF7O%0_PqNt$wZ~{Y0b^">
+                                                                                                                        <field name="VAR" id="LimbResponse">LimbResponse</field>
+                                                                                                                        <value name="VALUE">
+                                                                                                                          <block type="text_multiline" id="M*tn.=cEgw[-4voJuc~V">
+                                                                                                                            <field name="TEXT">'Mild weakness on right arm and right leg' </field>
+                                                                                                                          </block>
+                                                                                                                        </value>
+                                                                                                                        <next>
+                                                                                                                          <block type="variables_set" id="w;h].a[1ZCi{cHzjVSxK">
+                                                                                                                            <field name="VAR" id="PatientSpeak">PatientSpeak</field>
+                                                                                                                            <value name="VALUE">
+                                                                                                                              <block type="text_multiline" id="o1y`HZ?uQ?L?aPqSI=HE">
+                                                                                                                                <field name="TEXT">'Hi, I cant speak properly. I feel a bit weak on my right arm too. Is there anything wrong?'</field>
+                                                                                                                              </block>
+                                                                                                                            </value>
+                                                                                                                            <next>
+                                                                                                                              <block type="empty_line" id="lTIH@=BMw=QH42M!o{{.">
+                                                                                                                                <next>
+                                                                                                                                  <block type="object_calling" id="=,i(Zs(GVpL@?;1O5AgC">
+                                                                                                                                    <field name="Object_Variable" id="$Vitals">$Vitals</field>
+                                                                                                                                    <statement name="Params">
+                                                                                                                                      <block type="setvitals" id="_|P3`L}aSY)}`PzpHMeX">
+                                                                                                                                        <statement name="Params">
+                                                                                                                                          <block type="param" id="#S?ulL++$!yv/!BTz}DD">
+                                                                                                                                            <value name="param_val">
+                                                                                                                                              <block type="variables_get" id="QJuu-3nt1LZz9g`RsJD?">
+                                                                                                                                                <field name="VAR" id="HR">HR</field>
+                                                                                                                                              </block>
+                                                                                                                                            </value>
+                                                                                                                                            <next>
+                                                                                                                                              <block type="param" id="T@ixn{#}2E-eAIviOk,c">
+                                                                                                                                                <value name="param_val">
+                                                                                                                                                  <block type="variables_get" id="R?-[N0i./U`T]]1|?uE{">
+                                                                                                                                                    <field name="VAR" id="SpO2">SpO2</field>
+                                                                                                                                                  </block>
+                                                                                                                                                </value>
+                                                                                                                                                <next>
+                                                                                                                                                  <block type="param" id="Ei89[DSd/NCzX2{sc_zt">
+                                                                                                                                                    <value name="param_val">
+                                                                                                                                                      <block type="variables_get" id="^bvD3sCPWF4:j}9Ea#{{">
+                                                                                                                                                        <field name="VAR" id="BP">BP</field>
+                                                                                                                                                      </block>
+                                                                                                                                                    </value>
+                                                                                                                                                    <next>
+                                                                                                                                                      <block type="param" id="1kp*||+HqhDAc|yThOR=">
+                                                                                                                                                        <value name="param_val">
+                                                                                                                                                          <block type="variables_get" id="2cuwBF4zWe-gx~SA_Pop">
+                                                                                                                                                            <field name="VAR" id="Respiration">Respiration</field>
+                                                                                                                                                          </block>
+                                                                                                                                                        </value>
+                                                                                                                                                      </block>
+                                                                                                                                                    </next>
+                                                                                                                                                  </block>
+                                                                                                                                                </next>
+                                                                                                                                              </block>
+                                                                                                                                            </next>
+                                                                                                                                          </block>
+                                                                                                                                        </statement>
+                                                                                                                                      </block>
+                                                                                                                                    </statement>
+                                                                                                                                  </block>
+                                                                                                                                </next>
+                                                                                                                              </block>
+                                                                                                                            </next>
+                                                                                                                          </block>
+                                                                                                                        </next>
+                                                                                                                      </block>
+                                                                                                                    </next>
+                                                                                                                  </block>
+                                                                                                                </next>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="procedures_defnoreturn" id="Oqb:X,FU)l?3rKRiQiLs" collapsed="true">
+            <field name="NAME">S2_PatientNews2</field>
+            <comment pinned="false" h="80" w="160">Describe this function...</comment>
+            <statement name="STACK">
+              <block type="comment" id="rIvddM%b@,a!)4_M8lT{">
+                <value name="comment_val">
+                  <block type="text" id="D}TqRv;57k_IgQWT8ZYY">
+                    <field name="TEXT">########################################</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="comment" id="?$A/J1plOkLv^X[Aap~[">
+                    <value name="comment_val">
+                      <block type="text" id="~xTtXpD++=O-HUhR,]KX">
+                        <field name="TEXT">  PATIENTNEWS2 INFO STAGE 2</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="comment" id="=gL0,dWHT/^IE.OKr{iF">
+                        <value name="comment_val">
+                          <block type="text" id="vTNG5F/ni+[hZ{|RZm_.">
+                            <field name="TEXT">########################################</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="empty_line" id="^p9eSlF,5-ggKyOGmscY">
+                            <next>
+                              <block type="variables_set" id="Un#m2SE+{yl{.n+Na-WP">
+                                <field name="VAR" id="Temperature">Temperature</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="7Ba!VNP+CQbzj/oUZ9ej">
+                                    <field name="NUM">37</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="k-ShV9(S5x_6DX.J(!pm">
+                                    <field name="VAR" id="HR">HR</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="{PEG.5BKEiLMV3MpvB7Z">
+                                        <field name="NUM">115</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="qE4pa.uqf=:!,B1Zs=_$">
+                                        <field name="VAR" id="BP">BP</field>
+                                        <value name="VALUE">
+                                          <block type="text_multiline" id="Ri7$DS]%rBh/3F792LEv">
+                                            <field name="TEXT">'78/53' </field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id=":T^$+S)(+2=ln~V|FL$s">
+                                            <field name="VAR" id="BPSys">BPSys</field>
+                                            <value name="VALUE">
+                                              <block type="math_number" id="r(tD.{[NpL=hEJHNc#/-">
+                                                <field name="NUM">78</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="variables_set" id="qjp$0bexj.xU/~,`bZVk">
+                                                <field name="VAR" id="Respiration">Respiration</field>
+                                                <value name="VALUE">
+                                                  <block type="math_number" id="?f{+x-jKWD$,d5c$b4I4">
+                                                    <field name="NUM">26</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="variables_set" id="jeW9Y,@/IqV9fJ${d?pv">
+                                                    <field name="VAR" id="SpO2">SpO2</field>
+                                                    <value name="VALUE">
+                                                      <block type="math_number" id="m{Fc67VRKjS+ll}xeg~K">
+                                                        <field name="NUM">92</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="empty_line" id="XJ]Ae],}9yzUl%CQEh$i">
+                                                        <next>
+                                                          <block type="variables_set" id="1:***84k:;cbF,Su$4Z.">
+                                                            <field name="VAR" id="Eyes">Eyes</field>
+                                                            <value name="VALUE">
+                                                              <block type="variables_get" id="!-L_bIx#$zzb%bj,=Xzz">
+                                                                <field name="VAR" id="EyeResponse3">EyeResponse3</field>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="variables_set" id="!E;Tk5GG{rpP}ccG,cUV">
+                                                                <field name="VAR" id="Verbal">Verbal</field>
+                                                                <value name="VALUE">
+                                                                  <block type="variables_get" id="IyUQ+N{5e[J_;NFwTawE">
+                                                                    <field name="VAR" id="VerbalResponse3">VerbalResponse3</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="variables_set" id="?QGZ_J~0TLd~UrU,rm,i">
+                                                                    <field name="VAR" id="Body">Body</field>
+                                                                    <value name="VALUE">
+                                                                      <block type="variables_get" id="}7qiXYz@cNND1!2UQLE-">
+                                                                        <field name="VAR" id="MotorResponse5">MotorResponse5</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="empty_line" id="KW(A{-;~(uwgM9Nvh.Pu">
+                                                                        <next>
+                                                                          <block type="variables_set" id="*?ij[D]C{5e+C9PUe=-_">
+                                                                            <field name="VAR" id="SinusBradycardia">SinusBradycardia</field>
+                                                                            <value name="VALUE">
+                                                                              <block type="logic_boolean" id="zQ{$ene$^JW$Lg:,,kNG">
+                                                                                <field name="BOOL">TRUE</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <next>
+                                                                              <block type="variables_set" id="DY3EA*LIlIsdl0K3Ix]5">
+                                                                                <field name="VAR" id="PhysicalExamResponse">PhysicalExamResponse</field>
+                                                                                <value name="VALUE">
+                                                                                  <block type="text_multiline" id="R*4qZ]8*DB5)o+l-9Ftu">
+                                                                                    <field name="TEXT">'Patient breathing heavily.'</field>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <next>
+                                                                                  <block type="empty_line" id="Sj}aiXsu8Q~,$KY:aOMY">
+                                                                                    <next>
+                                                                                      <block type="object_calling" id="y-d.Cq/,KeaEt:T^/Ixw">
+                                                                                        <field name="Object_Variable" id="$Patient">$Patient</field>
+                                                                                        <statement name="Params">
+                                                                                          <block type="play" id="8,6qZftsN_Z.xwqq6x[q">
+                                                                                            <statement name="triggername">
+                                                                                              <block type="param" id="+v8%KIf/iH*t2p?)+82x">
+                                                                                                <value name="param_val">
+                                                                                                  <block type="variables_get" id="pq9Dc)UI{;+^:905pZ?{">
+                                                                                                    <field name="VAR" id="BreathingSpeed">BreathingSpeed</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <next>
+                                                                                                  <block type="param" id="Dr]5,kB97I7-h|7SQB*7">
+                                                                                                    <value name="param_val">
+                                                                                                      <block type="logic_boolean" id=",pi$GUtIXpfFypEhgt[O">
+                                                                                                        <field name="BOOL">TRUE</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <next>
+                                                                                                      <block type="param" id="{^F?HL3n|r:6VN8Ac1lU">
+                                                                                                        <value name="param_val">
+                                                                                                          <block type="math_number" id="BA9b6nT2cHs%xai{f1)f">
+                                                                                                            <field name="NUM">2</field>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </statement>
+                                                                                          </block>
+                                                                                        </statement>
+                                                                                        <next>
+                                                                                          <block type="empty_line" id="Bf*(bbAdmm+/c)(ux)WF">
+                                                                                            <next>
+                                                                                              <block type="variables_set" id="8kuH1i#[f_y2vygzP-S@">
+                                                                                                <field name="VAR" id="FreqHourlyResponse">FreqHourlyResponse</field>
+                                                                                                <value name="VALUE">
+                                                                                                  <block type="text_multiline" id="K0i|Gg8P+Xy3SJ[qe@h3">
+                                                                                                    <field name="TEXT">'Patient is showing the signs and symptoms of pulmonary embolism, you should step up monitoring frequency and alert the medical team immediately.'</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <next>
+                                                                                                  <block type="variables_set" id="{nzKk{PDla:Bv{7~V3|(">
+                                                                                                    <field name="VAR" id="FreqShiftResponse">FreqShiftResponse</field>
+                                                                                                    <value name="VALUE">
+                                                                                                      <block type="text_multiline" id="W:(!j|=)Ix{l!-Uef2#v">
+                                                                                                        <field name="TEXT">'Patient is showing the signs and symptoms of pulmonary embolism, you should step up monitoring frequency and alert the medical team immediately.'</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <next>
+                                                                                                      <block type="empty_line" id="d$^#qQF=ub2ag+rqp!Ne">
+                                                                                                        <next>
+                                                                                                          <block type="variables_set" id="x-!l]AZH0f71LHl9l*U1">
+                                                                                                            <field name="VAR" id="PatientSpeak">PatientSpeak</field>
+                                                                                                            <value name="VALUE">
+                                                                                                              <block type="text_multiline" id="sfupb8q]6(a{]:c]~m/(">
+                                                                                                                <field name="TEXT">'I am feeling breathless now and my chest is pain.'</field>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <next>
+                                                                                                              <block type="empty_line" id="l6ub6k,cBH#?/VFr$+@s">
+                                                                                                                <next>
+                                                                                                                  <block type="object_calling" id="Q]sJ,!^a;B!gbSg5DVD2">
+                                                                                                                    <field name="Object_Variable" id="$Vitals">$Vitals</field>
+                                                                                                                    <statement name="Params">
+                                                                                                                      <block type="setvitals" id="u5.,xCOj]r2SoS,CEDt,">
+                                                                                                                        <statement name="Params">
+                                                                                                                          <block type="param" id="%ER1./_WWFq3q{QH1OSM">
+                                                                                                                            <value name="param_val">
+                                                                                                                              <block type="variables_get" id="$QG5,jV*f@6a%guehTne">
+                                                                                                                                <field name="VAR" id="HR">HR</field>
+                                                                                                                              </block>
+                                                                                                                            </value>
+                                                                                                                            <next>
+                                                                                                                              <block type="param" id="s:Gp+OHIr757mMzX%dt,">
+                                                                                                                                <value name="param_val">
+                                                                                                                                  <block type="variables_get" id="YEDFzR!5*(UW!%KF$//h">
+                                                                                                                                    <field name="VAR" id="SpO2">SpO2</field>
+                                                                                                                                  </block>
+                                                                                                                                </value>
+                                                                                                                                <next>
+                                                                                                                                  <block type="param" id="@=duxPM6wO|)JXH6nvuj">
+                                                                                                                                    <value name="param_val">
+                                                                                                                                      <block type="variables_get" id="4,D6`NVk*ZG?0S.6XLfn">
+                                                                                                                                        <field name="VAR" id="BP">BP</field>
+                                                                                                                                      </block>
+                                                                                                                                    </value>
+                                                                                                                                    <next>
+                                                                                                                                      <block type="param" id="]i1T{;Yk[0,nGODQARSo">
+                                                                                                                                        <value name="param_val">
+                                                                                                                                          <block type="variables_get" id="Ar^rHUhflysv|rF`7k_{">
+                                                                                                                                            <field name="VAR" id="Respiration">Respiration</field>
+                                                                                                                                          </block>
+                                                                                                                                        </value>
+                                                                                                                                      </block>
+                                                                                                                                    </next>
+                                                                                                                                  </block>
+                                                                                                                                </next>
+                                                                                                                              </block>
+                                                                                                                            </next>
+                                                                                                                          </block>
+                                                                                                                        </statement>
+                                                                                                                      </block>
+                                                                                                                    </statement>
+                                                                                                                  </block>
+                                                                                                                </next>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="procedures_defnoreturn" id="ay0YDnDD?P$X?Bt#:u?6" collapsed="true">
+                <field name="NAME">S2_PatientNews3</field>
+                <comment pinned="false" h="80" w="160">Describe this function...</comment>
+                <statement name="STACK">
+                  <block type="comment" id="f!dcU|yjO~tHz%{z@1)x">
+                    <value name="comment_val">
+                      <block type="text" id="p{x8(a`R,BS.XSxJtGWi">
+                        <field name="TEXT">########################################</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="comment" id="iFS]|r84eExr#BIsmYt4">
+                        <value name="comment_val">
+                          <block type="text" id="B`aD*7bK{bOKc!Dv|$ot">
+                            <field name="TEXT">  PATIENTNEWS3 INFO STAGE 2</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="comment" id="A~^RTewb4G+u|BAVI0ZS">
+                            <value name="comment_val">
+                              <block type="text" id="=d:y9V*6#RI:r[SgEa?(">
+                                <field name="TEXT">########################################</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="empty_line" id="X2O)RG8`#?h/bz:KkBu?">
+                                <next>
+                                  <block type="variables_set" id="^908VY{6mZFAVq.4#wXE">
+                                    <field name="VAR" id="HR">HR</field>
+                                    <value name="VALUE">
+                                      <block type="math_number" id="!zIbs,mN%3jZA-lARj!1">
+                                        <field name="NUM">85</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="JVt~Nu[ARpguD|leg$*V">
+                                        <field name="VAR" id="BP">BP</field>
+                                        <value name="VALUE">
+                                          <block type="text_multiline" id="Ca0*;3(rk;UWr2#VaI,*">
+                                            <field name="TEXT">'92/43' </field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="?2s{1!BS|bi2|_T{!QS=">
+                                            <field name="VAR" id="BPSys">BPSys</field>
+                                            <value name="VALUE">
+                                              <block type="math_number" id="rCMI;l^f0{i7BB7d6,dw">
+                                                <field name="NUM">92</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="variables_set" id="s;T*YUF)q3*j}]I[)X09">
+                                                <field name="VAR" id="Respiration">Respiration</field>
+                                                <value name="VALUE">
+                                                  <block type="math_number" id="NZ;kg3/nJIpU8Yv7Jbp%">
+                                                    <field name="NUM">12</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="variables_set" id="S5A3T22+T^=5;W*@9S-v">
+                                                    <field name="VAR" id="SpO2">SpO2</field>
+                                                    <value name="VALUE">
+                                                      <block type="math_number" id="d#8Y:u7|QQzw!,zhp,oD">
+                                                        <field name="NUM">90</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="empty_line" id="Vtg(SS(;gd~Pg=-P#|~c">
+                                                        <next>
+                                                          <block type="variables_set" id="^f1/6,X/@.d$E8tr?*r@">
+                                                            <field name="VAR" id="LevelOfConscious">LevelOfConscious</field>
+                                                            <value name="VALUE">
+                                                              <block type="variables_get" id="VeFXZ)Bt,X*RUa|5,^jW">
+                                                                <field name="VAR" id="LOCResponse2">LOCResponse2</field>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="empty_line" id="iZ7cB(-Wlk7Mc|y_:Nz~">
+                                                                <next>
+                                                                  <block type="variables_set" id="M9|R.s=?i1~(ulT;$sIl">
+                                                                    <field name="VAR" id="Verbal">Verbal</field>
+                                                                    <value name="VALUE">
+                                                                      <block type="variables_get" id="oWhjk5Ii#[[Y5lbnHIQO">
+                                                                        <field name="VAR" id="VerbalResponse4">VerbalResponse4</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="variables_set" id="`imDaxVnK/EFsq,^saJM">
+                                                                        <field name="VAR" id="Eyes">Eyes</field>
+                                                                        <value name="VALUE">
+                                                                          <block type="variables_get" id="cr9%D]lP^t;;!scvey^z">
+                                                                            <field name="VAR" id="EyeResponse3">EyeResponse3</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <next>
+                                                                          <block type="variables_set" id="@8ig*G03eVyhZb^i51y|">
+                                                                            <field name="VAR" id="Body">Body</field>
+                                                                            <value name="VALUE">
+                                                                              <block type="variables_get" id="q5I@0N{@5P.FwgD,/@+B">
+                                                                                <field name="VAR" id="MotorResponse5">MotorResponse5</field>
+                                                                              </block>
+                                                                            </value>
+                                                                            <next>
+                                                                              <block type="empty_line" id="YD)0;O9:;c8szB3K}tJ4">
+                                                                                <next>
+                                                                                  <block type="variables_set" id="$i_Wf4V*6(lKf]eRN/GB">
+                                                                                    <field name="VAR" id="PhysicalExamResponse">PhysicalExamResponse</field>
+                                                                                    <value name="VALUE">
+                                                                                      <block type="text_multiline" id="Jd+FgT1Rx~^(9b5#ZDu+">
+                                                                                        <field name="TEXT">'Drowsy looking.'</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <next>
+                                                                                      <block type="variables_set" id=")/=12]@+;AU?o6h3G2ie">
+                                                                                        <field name="VAR" id="Oriented">Oriented</field>
+                                                                                        <value name="VALUE">
+                                                                                          <block type="logic_boolean" id="cPPo6-#Gjv[iP1+L#!!|">
+                                                                                            <field name="BOOL">FALSE</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                          <block type="empty_line" id="zJCdKed(rx:.cRuvV:8t">
+                                                                                            <next>
+                                                                                              <block type="variables_set" id="k2)ZRZRq}=*@7Lg?8/q(">
+                                                                                                <field name="VAR" id="FreqHourlyResponse">FreqHourlyResponse</field>
+                                                                                                <value name="VALUE">
+                                                                                                  <block type="text_multiline" id="2fO%G%+)%3yPIfidl~oa">
+                                                                                                    <field name="TEXT">'Patient is showing the signs and symptoms of Fentanyl overdose, you should step up monitoring frequency and alert the medical team immediately.'</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <next>
+                                                                                                  <block type="variables_set" id="YY.DMnO1)eG5:^(Qd6qY">
+                                                                                                    <field name="VAR" id="FreqShiftResponse">FreqShiftResponse</field>
+                                                                                                    <value name="VALUE">
+                                                                                                      <block type="text_multiline" id="h#H`EE=CeuMp(I=+3oHt">
+                                                                                                        <field name="TEXT">'Patient is showing the signs and symptoms of Fentanyl overdose, you should step up monitoring frequency and alert the medical team immediately.'</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                    <next>
+                                                                                                      <block type="empty_line" id="b;_,|SZNk_JBU*Ey,BT7">
+                                                                                                        <next>
+                                                                                                          <block type="variables_set" id=":a_vsS$R6R5}bddqh7eE">
+                                                                                                            <field name="VAR" id="PatientSpeak">PatientSpeak</field>
+                                                                                                            <value name="VALUE">
+                                                                                                              <block type="text_multiline" id="jFI4#ur:94z;opQ4P@]/">
+                                                                                                                <field name="TEXT">'Patient looks drowsy and unable to answer your questions'</field>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <next>
+                                                                                                              <block type="empty_line" id="0p!plT;4rIE=.k@sy/cl">
+                                                                                                                <next>
+                                                                                                                  <block type="variables_set" id="xl|3/(d][t=%1J``3@AG">
+                                                                                                                    <field name="VAR" id="isEyesOpen">isEyesOpen</field>
+                                                                                                                    <value name="VALUE">
+                                                                                                                      <block type="logic_boolean" id="cN^bkwuWyO@ZsHNz.#7}">
+                                                                                                                        <field name="BOOL">FALSE</field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <next>
+                                                                                                                      <block type="empty_line" id="HxOup4*a*!c{4[FY6,M#">
+                                                                                                                        <next>
+                                                                                                                          <block type="object_calling" id=";%6Lag_cu!ms$HlbiG;N">
+                                                                                                                            <field name="Object_Variable" id="$Vitals">$Vitals</field>
+                                                                                                                            <statement name="Params">
+                                                                                                                              <block type="setvitals" id="h.k!FaKX/03?xzn53UoW">
+                                                                                                                                <statement name="Params">
+                                                                                                                                  <block type="param" id="_k.hMcR3tq@sWzg;`R,-">
+                                                                                                                                    <value name="param_val">
+                                                                                                                                      <block type="variables_get" id=",7H:#drFcmim3J.[SE|f">
+                                                                                                                                        <field name="VAR" id="HR">HR</field>
+                                                                                                                                      </block>
+                                                                                                                                    </value>
+                                                                                                                                    <next>
+                                                                                                                                      <block type="param" id="9i{TNbvfur.7bo(P}=)c">
+                                                                                                                                        <value name="param_val">
+                                                                                                                                          <block type="variables_get" id="4+zq8).{Kl@;%{OPlJ@j">
+                                                                                                                                            <field name="VAR" id="SpO2">SpO2</field>
+                                                                                                                                          </block>
+                                                                                                                                        </value>
+                                                                                                                                        <next>
+                                                                                                                                          <block type="param" id="mTqb4l|)$UgT4?+R9pp7">
+                                                                                                                                            <value name="param_val">
+                                                                                                                                              <block type="variables_get" id=".otNs,kxbBNc5B35W+MM">
+                                                                                                                                                <field name="VAR" id="BP">BP</field>
+                                                                                                                                              </block>
+                                                                                                                                            </value>
+                                                                                                                                            <next>
+                                                                                                                                              <block type="param" id="H6D|2}y{tUM^Q50B{`Lp">
+                                                                                                                                                <value name="param_val">
+                                                                                                                                                  <block type="variables_get" id=".all$:5v.{WNlj4ayPb;">
+                                                                                                                                                    <field name="VAR" id="Respiration">Respiration</field>
+                                                                                                                                                  </block>
+                                                                                                                                                </value>
+                                                                                                                                              </block>
+                                                                                                                                            </next>
+                                                                                                                                          </block>
+                                                                                                                                        </next>
+                                                                                                                                      </block>
+                                                                                                                                    </next>
+                                                                                                                                  </block>
+                                                                                                                                </statement>
+                                                                                                                              </block>
+                                                                                                                            </statement>
+                                                                                                                          </block>
+                                                                                                                        </next>
+                                                                                                                      </block>
+                                                                                                                    </next>
+                                                                                                                  </block>
+                                                                                                                </next>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </next>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </next>
+                                                                                  </block>
+                                                                                </next>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="procedures_defnoreturn" id="+-6Dzf?Y`@OjNReNCPKf" collapsed="true">
+                    <field name="NAME">S2_PatientNews4</field>
+                    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+                    <statement name="STACK">
+                      <block type="comment" id="=,=Dwsx8[J/.Tk:W9fOB">
+                        <value name="comment_val">
+                          <block type="text" id="-c6brhc$$,8Ftt[#}gq%">
+                            <field name="TEXT">########################################</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="comment" id="s:!=glhCwJgVihiy_zQ3">
+                            <value name="comment_val">
+                              <block type="text" id="E?={7$p8u*sNpW,BQIN{">
+                                <field name="TEXT">  PATIENTNEWS4 INFO STAGE 2</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="comment" id="DyNt}MTLisC7}(YxaWOn">
+                                <value name="comment_val">
+                                  <block type="text" id="NUt!;APO7}W(ttPEO?Rf">
+                                    <field name="TEXT">########################################</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="empty_line" id="Nbsy1!nq,7K3wC{=$Y^4">
+                                    <next>
+                                      <block type="variables_set" id="C}*1{6:-(Si)y1|[/Tx-">
+                                        <field name="VAR" id="Temperature">Temperature</field>
+                                        <value name="VALUE">
+                                          <block type="math_number" id="*ZE_su`e^@JZP8x-L*pS">
+                                            <field name="NUM">36.3</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="R2xX(P#ZgtV#k[9Iylak">
+                                            <field name="VAR" id="BP">BP</field>
+                                            <value name="VALUE">
+                                              <block type="text_multiline" id=":$CHP-bA:M3bJzd3i`5F">
+                                                <field name="TEXT">'197/86' </field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="variables_set" id="=)s+;/ac+R.#j`woGaB*">
+                                                <field name="VAR" id="BPSys">BPSys</field>
+                                                <value name="VALUE">
+                                                  <block type="math_number" id="=Q_vwvYjlnDA![=jGZUx">
+                                                    <field name="NUM">197</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="variables_set" id="s:~z`Muz`!fO!)dbjPaA">
+                                                    <field name="VAR" id="Respiration">Respiration</field>
+                                                    <value name="VALUE">
+                                                      <block type="math_number" id=")M2;yb$HHn7Y.~J}Saj8">
+                                                        <field name="NUM">20</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="variables_set" id="Mzc7n89Uz?lkK8(ukpaz">
+                                                        <field name="VAR" id="SpO2">SpO2</field>
+                                                        <value name="VALUE">
+                                                          <block type="math_number" id="`zOfheVtIRGMm3g1ccl%">
+                                                            <field name="NUM">92</field>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="empty_line" id="=94:~U@msJr0G(+hvfXE">
+                                                            <next>
+                                                              <block type="controls_if" id="$`PvrYB_pp9%SHQThaKD">
+                                                                <value name="IF0">
+                                                                  <block type="logic_compare" id="60;H5T(.BV#C,kblDpBv">
+                                                                    <field name="OP">LT</field>
+                                                                    <value name="A">
+                                                                      <block type="variables_get" id="f{72?eDJ0yAGInxCr?`L">
+                                                                        <field name="VAR" id="BloodGlucoseLevel">BloodGlucoseLevel</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="B">
+                                                                      <block type="math_number" id="`~XR8aiPS4D#18!J^M^J">
+                                                                        <field name="NUM">8</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </value>
+                                                                <statement name="DO0">
+                                                                  <block type="variables_set" id="mB]4u_l(ezIkW]^FZV=y">
+                                                                    <field name="VAR" id="BloodGlucoseLevel">BloodGlucoseLevel</field>
+                                                                    <value name="VALUE">
+                                                                      <block type="text_multiline" id="4+Q`xVjAp@rftM%`to46">
+                                                                        <field name="TEXT">'8.0'</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </statement>
+                                                                <next>
+                                                                  <block type="empty_line" id="[hR_5H]~6IO/EFi-XFBP">
+                                                                    <next>
+                                                                      <block type="variables_set" id="To*5E#FaQa~N*snwqP3J">
+                                                                        <field name="VAR" id="LimbResponse">LimbResponse</field>
+                                                                        <value name="VALUE">
+                                                                          <block type="text_multiline" id="Bx,9;QNydh[K;T6qfR8n">
+                                                                            <field name="TEXT">'Mild weakness on right arm and right leg'</field>
+                                                                          </block>
+                                                                        </value>
+                                                                        <next>
+                                                                          <block type="empty_line" id="+kD+5LW=TynhqR%n8,9`">
+                                                                            <next>
+                                                                              <block type="object_calling" id="mssxZ*]I_lTaypj8d}?R">
+                                                                                <field name="Object_Variable" id="$Vitals">$Vitals</field>
+                                                                                <statement name="Params">
+                                                                                  <block type="setvitals" id="?%4o9?gvR~z;DT7_COwg">
+                                                                                    <statement name="Params">
+                                                                                      <block type="param" id=",OUQ^qUv(.JS;-K*yp/A">
+                                                                                        <value name="param_val">
+                                                                                          <block type="variables_get" id="/r+56ka;l~zi_^yJsUQ,">
+                                                                                            <field name="VAR" id="HR">HR</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                          <block type="param" id="kfiqx;x.mlMDGQy0Pj[2">
+                                                                                            <value name="param_val">
+                                                                                              <block type="variables_get" id="6~la;_l,)ox5xnQrGzis">
+                                                                                                <field name="VAR" id="SpO2">SpO2</field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <next>
+                                                                                              <block type="param" id="AIw!(jJekIl/1Pqkt+C0">
+                                                                                                <value name="param_val">
+                                                                                                  <block type="variables_get" id="vw[Vi=iQh2I($lMgR`g=">
+                                                                                                    <field name="VAR" id="BP">BP</field>
+                                                                                                  </block>
+                                                                                                </value>
+                                                                                                <next>
+                                                                                                  <block type="param" id="G1|CSz:m5h+OyotPS,1J">
+                                                                                                    <value name="param_val">
+                                                                                                      <block type="variables_get" id="FcPLG(3a/?4_Sq1f6K[W">
+                                                                                                        <field name="VAR" id="Respiration">Respiration</field>
+                                                                                                      </block>
+                                                                                                    </value>
+                                                                                                  </block>
+                                                                                                </next>
+                                                                                              </block>
+                                                                                            </next>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </statement>
+                                                                                  </block>
+                                                                                </statement>
+                                                                              </block>
+                                                                            </next>
+                                                                          </block>
+                                                                        </next>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="procedures_defnoreturn" id="i8kI$E_OI{,+Aqmdqp?u" collapsed="true">
+                        <field name="NAME">S2_PatientNon1</field>
+                        <comment pinned="false" h="80" w="160">Describe this function...</comment>
+                        <statement name="STACK">
+                          <block type="comment" id="elO6^RW70V}Y$Jhg_O?t">
+                            <value name="comment_val">
+                              <block type="text" id="CS{+Yv^Tto82uE17vH8v">
+                                <field name="TEXT">########################################</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="comment" id="/K5[Fm02sTlU//0)8SRd">
+                                <value name="comment_val">
+                                  <block type="text" id="=y7%dIs%e)^tFD)Rq`5H">
+                                    <field name="TEXT">  PATIENTNon1 INFO STAGE 2</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="comment" id="rj$o*])|zaJhtU9qOTpO">
+                                    <value name="comment_val">
+                                      <block type="text" id="cWhay/k4O/TF+7$Sy*C,">
+                                        <field name="TEXT">########################################</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="empty_line" id="tKvjGuKzyv5981ZCUd:^">
+                                        <next>
+                                          <block type="controls_if" id=":cF[e~^M,1g]6~|k^1QS">
+                                            <value name="IF0">
+                                              <block type="logic_compare" id="SFRYSJFw4d5d|5cBDEo$">
+                                                <field name="OP">LT</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="DR5nw_g,uJZRt]/VTMAJ">
+                                                    <field name="VAR" id="BloodGlucoseLevel">BloodGlucoseLevel</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="GUutz,U|.8Ocy594CBUx">
+                                                    <field name="NUM">8</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <statement name="DO0">
+                                              <block type="variables_set" id="5t1d!f48ZCjK53bAP#I~">
+                                                <field name="VAR" id="BloodGlucoseLevel">BloodGlucoseLevel</field>
+                                                <value name="VALUE">
+                                                  <block type="text_multiline" id="!pQAsB6-]Ye=RFm%(W7%">
+                                                    <field name="TEXT">'8.0'</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </statement>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="procedures_defnoreturn" id=".n#KM@z|0B#K5_DH?/%Y" collapsed="true">
+                            <field name="NAME">S2_PatientNon2</field>
+                            <comment pinned="false" h="80" w="160">Describe this function...</comment>
+                            <statement name="STACK">
+                              <block type="comment" id="ofl_XP!:M@o)4}M6fCzY">
+                                <value name="comment_val">
+                                  <block type="text" id="YVtLxJ_/ch?71q2oGIf~">
+                                    <field name="TEXT">########################################</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="comment" id="t`d+e:pt+[Gm9(OI.YQi">
+                                    <value name="comment_val">
+                                      <block type="text" id="Hyk1nPew0i}(pu@wF#c=">
+                                        <field name="TEXT">  PATIENTNon2 INFO STAGE 2</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="comment" id=":oS|RfjHoOV7Hr=X?=1Z">
+                                        <value name="comment_val">
+                                          <block type="text" id="el/u;H^fb@(!UteJ|R+Z">
+                                            <field name="TEXT">########################################</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="empty_line" id="`,z5a|Sm]d`z:KXJ=c_l"></block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="procedures_defnoreturn" id="V*f1H0ITIeln0hG:f6rC" collapsed="true">
+                                <field name="NAME">S2_PatientNon3</field>
+                                <comment pinned="false" h="80" w="160">Describe this function...</comment>
+                                <statement name="STACK">
+                                  <block type="comment" id="P=c0wgAMz^03If,!U={s">
+                                    <value name="comment_val">
+                                      <block type="text" id="0QoEJXB/~jj8psXg;4Ql">
+                                        <field name="TEXT">########################################</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="comment" id="mj,adE($r5(m5i*jp5vN">
+                                        <value name="comment_val">
+                                          <block type="text" id="llbWoI~%U{4hB?3NpF7J">
+                                            <field name="TEXT">  PATIENTNon3 INFO STAGE 2</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="comment" id="l!dc|fHf5%pZ9X@;oxGH">
+                                            <value name="comment_val">
+                                              <block type="text" id="D,I,S39}@BUC;gIH$76R">
+                                                <field name="TEXT">########################################</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="empty_line" id="MMqrkw=e5PTAkwNUim!p">
+                                                <next>
+                                                  <block type="empty_line" id="J.;vQJEMJW|V|!=Si::@"></block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="procedures_defnoreturn" id="Je:r66~/+3HecIk$zgwU" collapsed="true">
+                                    <field name="NAME">S2_PatientNon4</field>
+                                    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+                                    <statement name="STACK">
+                                      <block type="comment" id="1v8}#ZM$XmQW.u%FE24}">
+                                        <value name="comment_val">
+                                          <block type="text" id="oDFfNx95PFh-V~uE/inW">
+                                            <field name="TEXT">########################################</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="comment" id="x16k65lFmEzxp|53QFLC">
+                                            <value name="comment_val">
+                                              <block type="text" id="DRX45N4rb+;KdnwLw8@I">
+                                                <field name="TEXT">  PATIENTNon4 INFO STAGE 2</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="comment" id="uvtZ(DNSG,ka|3J.K`ch">
+                                                <value name="comment_val">
+                                                  <block type="text" id="r{27d$!LvWe`5JF%.+/F">
+                                                    <field name="TEXT">########################################</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="empty_line" id="OR28f!c.aK]0/ozGzsvr">
+                                                    <next>
+                                                      <block type="empty_line" id="l/YEF%[FU`:,VBqwy{PD"></block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </statement>
+                                    <next>
+                                      <block type="procedures_defnoreturn" id="Ak|=kNdN%7vts)LB).(K" collapsed="true">
+                                        <field name="NAME">S2_PatientNon5</field>
+                                        <comment pinned="false" h="80" w="160">Describe this function...</comment>
+                                        <statement name="STACK">
+                                          <block type="comment" id="-iwiM([f`ek8z0k+4XjP">
+                                            <value name="comment_val">
+                                              <block type="text" id="aod/=y6Sv4JXIHzKk72e">
+                                                <field name="TEXT">########################################</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="comment" id="_LUa~NEtB3P4c=b%a,xo">
+                                                <value name="comment_val">
+                                                  <block type="text" id="(fRo(Z(gZ;h;|W$Fq=Lj">
+                                                    <field name="TEXT">  PATIENTNon5 INFO STAGE 2</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="comment" id="]2V!=m)O^/||cM@twufb">
+                                                    <value name="comment_val">
+                                                      <block type="text" id="rO7;#;oKpME6M/Njtw`%">
+                                                        <field name="TEXT">########################################</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="empty_line" id="%yx?Nwx!xGO}9PNX3%[V">
+                                                        <next>
+                                                          <block type="empty_line" id="~T9k.ygEsfi)2wpo2o(5"></block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

@@ -84,6 +84,7 @@ function parseArrToWorkspace(arr, workspace) {
             console.log("Line was: ", arr[i])
             //continue;
         }
+        thisBlock.initSvg();
         newBlocks.push(thisBlock);
     }
 
@@ -135,7 +136,6 @@ function parseLineToWorkspace(line, workspace) {
     }
     else if (line.charAt(0) == "$" && line.indexOf("=") != -1) {
         line_block = buildVariableSetBlock(workspace, varDecl(line));
-        console.log(line_block);
     }
     else if (lineHasDo(line)) {
         line_block = buildDoCall(line, workspace);
@@ -320,10 +320,13 @@ function fblob_consolidate(name, workspace){
     let squish = [];
     let fdefs = workspace.getBlocksByType("procedures_defnoreturn");
     for(let i = 0; i < fdefs.length; i++){
+        if(fdefs[i].getProcedureDef()[0].indexOf("PatientN") == -1){
+            fdefs[i].setEnabled(false);
+            fdefs[i].setEditable(false);
+        }
         if(name != fdefs[i].getProcedureDef()[0]){
+            //console.log(name)
             fdefs[i].setCollapsed(true);
-            //fdefs[i].setEnabled(false);
-            //fdefs[i].setEditable(false);
             squish.push(fdefs[i]);
         }
     }

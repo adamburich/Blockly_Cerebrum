@@ -119,6 +119,10 @@ export function bindMisc(generator) {
 
     generator['text_multiline'] = function (block) {
         let text = block.getFieldValue("TEXT");
+        text = text.trim();
+        if(text.charAt(0) != "'" && text.charAt(text.length) != "'"){
+            text = "'" + text + "'"
+        }
         return [text, Blockly.JavaScript.ORDER_NONE];
     }
 }
