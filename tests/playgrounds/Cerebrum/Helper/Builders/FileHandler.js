@@ -263,7 +263,7 @@ function updateCodeAndDownload(workspace) {
         var files = codeToFiles(code);
         for (let i = 0; i < files.length; i++) {
             // var a = document.createElement("a");
-            writeToS3(path + files[i].fname + ".txt", new Blob([files[i].funcText], { type: "text/plain" }))
+            writeToS3(path + files[i].fname, new Blob([files[i].funcText], { type: "text/plain" }))
             // a.href = window.URL.createObjectURL(new Blob([files[i].funcText], { type: "text/plain" }));
             // a.download = files[i].fname;
             // a.click();
