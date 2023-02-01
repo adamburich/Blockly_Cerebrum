@@ -28,15 +28,6 @@ export function bindMisc(generator) {
         let argument0 = generator.valueToCode(block, 'A', order) || '0';
         let argument1 = generator.valueToCode(block, 'B', order) || '0';
 
-        //Hacky, might cause problems
-        if(argument0.charAt(0) == "(")
-        {
-            argument0 = argument0.substring(1, argument0.length-1);
-        }
-        if(argument1.charAt(0) == "(")
-        {
-            argument1 = argument1.substring(1, argument1.length-1);
-        }
         let code;
         // Power in JavaScript requires a special case since it has no operator.
         if (!operator) {

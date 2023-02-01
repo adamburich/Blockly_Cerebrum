@@ -186,6 +186,8 @@ function buildExpressionBlockFromPostfix(workspace, blockA, blockB, op){
 }
 
 function buildBlockFromInfix(workspace, infix){
+    infix = infix.replace("('", "'");
+    infix = infix.replace("')", "'");
     let postfix = InfixtoPostfix(infix);
     // console.log(postfix)
     let blockstack = [];
