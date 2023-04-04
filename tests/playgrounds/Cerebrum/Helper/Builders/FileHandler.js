@@ -246,13 +246,12 @@ function prepareFileText() {
     return file_text.split("\n");
 }
 
-function updateCodeAndDownload(workspace) {
-    const path = 'news/base/StreamingAssets/NEWS_Nurse/'
+function updateCodeAndDownload(path, workspace) {
     var code = cerebrumGenerator.workspaceToCode(workspace);
 
-    let singleFile = document.getElementById("single-output").checked;
+    // let singleFile = document.getElementById("single-output").checked;
 
-    if (singleFile) {
+    if (false && singleFile) {
         //console.log(code);
         var a = document.createElement("a");
         a.href = window.URL.createObjectURL(new Blob([code], { type: "text/plain" }));

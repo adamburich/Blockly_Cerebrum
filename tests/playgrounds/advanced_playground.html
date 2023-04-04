@@ -18,7 +18,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'ap-southeast-1:9408dd2e-7f2e-433d-a57b-d8a60aa295a2',
 });
 
-const path = 'news/base/StreamingAssets/NEWS_Nurse/'
+const ws_path = 'news/base'
 
 import { cerebrumToolbox } from './Cerebrum/Toolbox/cerebrum_toolbox.mjs'
 import { custom_block_lib } from './Cerebrum/Blocks/CustomBlockLibrary.mjs'
@@ -39,21 +39,23 @@ function start() {
   setBackgroundColour();
   initPlayground();
   addButtons();
-  const path = 'news/base/StreamingAssets/NEWS_Nurse/'
-  let selection = document.getElementById("file_select_dropdown").value;
+  const path = ws_path + '/StreamingAssets/Scenarios/NEWS_Nurse/';
+  
   var download = document.getElementById("download-code");
   download.onclick = function(){
-    //Replace 01/DW01Setup.txt with path to the saved files
-    //readFromS3(path+'01/DW01Setup.txt');
-
-    //writeToS3(path + activeFunctionFile, functionContents)
-    //writeToS3(path+'01/DW01Setup1.txt', "hello\nworld");
-    updateCodeAndDownload(wspace);
+    updateCodeAndDownload(path, wspace);
   };
   let s3_to_workspace_button = document.getElementById("get-from-s3");
   s3_to_workspace_button.onclick = function(){
+    let selection = document.getElementById("file_select_dropdown").value;
     readFromS3(path+selection, wspace)
   }
+
+  let game_button = document.getElementById("game-button");
+  game_button.setAttribute("onclick", "window.open('https://sgeditorplayer.sg-tap.com/" + ws_path + "/index.html', '_blank');");
+  let scorm_button = document.getElementById("scorm-button");
+  scorm_button.setAttribute("target", "_blank");
+
   setTimeout(hideUnusedGenerators, 125);
   setTimeout(hideUnusedGenerators, 5000);
 

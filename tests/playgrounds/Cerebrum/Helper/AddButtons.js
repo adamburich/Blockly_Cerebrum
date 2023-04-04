@@ -114,24 +114,18 @@ export function addButtons(){
     /**
      * Code for button that links to game
      */
-    let game_button_form = document.createElement("form")
-    game_button_form.setAttribute("margin-top", "15px")
-    game_button_form.setAttribute("action", "https://www.google.com")
     let game_button = document.createElement("button")
+    game_button.setAttribute("id", "game-button");
     game_button.style.marginTop = "40px"
     game_button.innerText = "NEWS Game"
-    game_button_form.appendChild(game_button)
 
     /**
      * Code for button that links to SCORM
      */
-    let scorm_button_form = document.createElement("form")
-    scorm_button_form.setAttribute("margin-top", "15px")
-    scorm_button_form.setAttribute("action", "https://www.google.com")
     let scorm_button = document.createElement("button")
+    scorm_button.setAttribute("id", "scorm-button");
     scorm_button.style.marginTop = "52px"
     scorm_button.innerText = "Access SCORM"
-    scorm_button_form.appendChild(scorm_button)
 
     /**
      * Add all our buttons to the top right window outside the playground
@@ -144,9 +138,10 @@ export function addButtons(){
     buttons_left.appendChild(dlTitle);
     buttons_left.appendChild(dl);
     buttons_left.appendChild(container);
-    
-    buttons_right.appendChild(game_button_form);
-    buttons_right.appendChild(scorm_button_form);
+
+    buttons_right.appendChild(game_button);
+    buttons_right.appendChild(document.createElement("br"));
+    buttons_right.appendChild(scorm_button);
 
 }
 

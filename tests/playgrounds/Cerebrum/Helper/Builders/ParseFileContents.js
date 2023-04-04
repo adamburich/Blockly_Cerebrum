@@ -82,7 +82,7 @@ function parseArrToWorkspace(arr, workspace) {
         if (thisBlock == -1) {
             console.log("Error producing block at index: ", i)
             console.log("Line was: ", arr[i])
-            //continue;
+            continue;
         }
         thisBlock.initSvg();
         newBlocks.push(thisBlock);
@@ -321,7 +321,7 @@ function fblob_consolidate(name, workspace){
     let fdefs = workspace.getBlocksByType("procedures_defnoreturn");
     for(let i = 0; i < fdefs.length; i++){
         if(fdefs[i].getProcedureDef()[0].indexOf("PatientN") == -1){
-            fdefs[i].setEnabled(false);
+            // fdefs[i].setEnabled(false);
             fdefs[i].setEditable(false);
         }
         if(name != fdefs[i].getProcedureDef()[0]){

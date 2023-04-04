@@ -52,15 +52,15 @@ export function bindHelpers(generator) {
 
         let str = argument0.toString().trim();
         let out = ""
-        if(str.indexOf("'") != -1){
-            if(str.charAt(0) == "("){
-                if(str.charAt(str.length == ")")){
-                    for(let i = 1; i < str.length-1; i++){
-                        out += str.charAt(i);
-                    }
-                }
+        if (
+            (str.indexOf("'") != -1) &&
+            (str.charAt(0) == "(") &&
+            (str.charAt(str.length == ")"))
+        ){
+            for(let i = 1; i < str.length-1; i++){
+                out += str.charAt(i);
             }
-        }else out = str;
+        } else out = str;
         let varName = block.inputList[0].fieldRow[1].selectedOption_[0];
         let code = "$" + varName + ' = ' + out + '';
         // if(code.indexOf("'") != -1){
