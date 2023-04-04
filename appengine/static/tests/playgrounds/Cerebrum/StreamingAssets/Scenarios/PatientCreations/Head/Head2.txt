@@ -1,1 +1,0 @@
-$Patient setpatientface $HeadAmount 54

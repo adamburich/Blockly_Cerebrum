@@ -1,3 +1,0 @@
-Assess Blood Glucose
-Use a Capillary Blood Glucose Monitor to check glucose level.
-Sprites/AssessBloodGlucose

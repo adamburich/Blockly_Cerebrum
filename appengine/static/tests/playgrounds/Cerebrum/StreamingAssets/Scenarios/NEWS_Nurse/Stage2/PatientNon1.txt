@@ -1,9 +1,0 @@
-#########################################
-#  PATIENTNon1 INFO STAGE 2
-#########################################
-
-If
-	$BloodGlucoseLevel < 8.0
-Then
-	$BloodGlucoseLevel = '8.0'
-Endif

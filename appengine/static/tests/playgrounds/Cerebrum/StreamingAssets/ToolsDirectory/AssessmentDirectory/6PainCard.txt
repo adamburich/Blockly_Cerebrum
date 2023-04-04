@@ -1,3 +1,0 @@
-Assess Pain
-Use Pain Score Card to determine patient's pain levels.
-Sprites/AssessPain

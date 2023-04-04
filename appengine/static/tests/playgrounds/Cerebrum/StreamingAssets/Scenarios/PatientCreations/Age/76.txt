@@ -1,4 +1,0 @@
-$Patient setpatientmaterial $BedNumber
-$Patient setpatienttexture 2
-$Patient sethair 1
-$Patient setpatientnormal 3 0.5

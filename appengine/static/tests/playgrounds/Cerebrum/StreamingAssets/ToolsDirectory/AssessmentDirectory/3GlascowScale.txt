@@ -1,3 +1,0 @@
-Glasgow Coma Scale (GCS)
-Use Glasgow Coma Scale (GCS) to assess eye, verbal, and motor response.
-Sprites/GlasgowComaScale

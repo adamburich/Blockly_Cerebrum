@@ -1,3 +1,0 @@
-Prompt 'S6DivideForearm'
-Wait 1
-Prompt ''

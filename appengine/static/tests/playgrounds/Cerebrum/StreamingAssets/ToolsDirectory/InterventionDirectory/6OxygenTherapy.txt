@@ -1,3 +1,0 @@
-Oxygen Therapy
-Give patient oxygen from a Nasal prong or a Non rebreather mask.
-Sprites/OxygenTherapy

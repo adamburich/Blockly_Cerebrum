@@ -1,3 +1,0 @@
-Perform Physical Examination
-Perform a Physical Exam on the patient assessing minor motor movement and physical qualities.
-Sprites/InspectPatient

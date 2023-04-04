@@ -1,3 +1,0 @@
-Monitor Heart Rhythm
-Use an ECG to assess patient heart beat and electrical signals.
-Sprites/AssessECG

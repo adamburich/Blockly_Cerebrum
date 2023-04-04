@@ -1,3 +1,0 @@
-Oral Glucose Sachet
-Have patient drink a cup of glucose solution.
-Sprites/OralGlucoseSachet

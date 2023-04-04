@@ -1,4 +1,0 @@
-Prompt 'S5DipFingernails'
-Do 'Actions/HandWash/FingerDip' 'right' 0
-Do 'Actions/HandWash/FingerDip' 'left' 0
-Prompt ''

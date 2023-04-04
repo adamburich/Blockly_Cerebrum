@@ -1,3 +1,0 @@
-Assess Parameters
-Check Spot Monitor for parameter changes.
-Sprites/AssessParameters

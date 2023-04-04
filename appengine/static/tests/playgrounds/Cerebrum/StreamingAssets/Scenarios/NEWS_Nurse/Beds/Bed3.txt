@@ -1,8 +1,0 @@
-Do 'Setup/DefaultPatientVariables'
-$BedNumber = '3'
-$TasksTotal = '3'
-$Bed = 'Bed'+ BedNumber
-$Patient = Bed + '/Placeholder(Clone)'
-
-$BedOxyTarget = Bed + '/Oxygen'
-

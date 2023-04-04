@@ -1,4 +1,0 @@
-#Prompt 'Start'
-Stages/Exit StartGame
-Wait 1  #delay for scorm
-SceneManager switchToScene MainMenu
